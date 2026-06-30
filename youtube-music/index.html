@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube Music Redesign · Esteban Andrade</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+        :root{
+            --white:#fff; --off:#f8f8f8; --text:#0a0a0a; --muted:#5a5a5a;
+            --light:#a0a0a0; --border:#e8e8e8; --dark:#0f0f0f;
+            --orange:#ff7e00; --red:#FF0000; --yt-bg:#0f0f0f; --yt-card:#212121; --yt-card2:#2a2a2a;
+            --font-d:'Bricolage Grotesque',sans-serif; --font-b:'Plus Jakarta Sans',sans-serif;
+            --ease:cubic-bezier(0.16,1,0.3,1);
+        }
+        html{scroll-behavior:smooth;}
+        body{font-family:var(--font-b);background:var(--white);color:var(--text);overflow-x:hidden;-webkit-font-smoothing:antialiased;}
+        .rv{opacity:0;transform:translateY(18px);transition:opacity .65s var(--ease),transform .65s var(--ease);}
+        .rv.on{opacity:1;transform:none;}
+        .d1{transition-delay:.08s}.d2{transition-delay:.17s}.d3{transition-delay:.26s}.d4{transition-delay:.35s}
+
+        /* NAV */
+        nav.site-nav{
+            position:fixed;top:0;left:0;right:0;z-index:100;height:60px;padding:0 60px;
+            background:rgba(255,255,255,.94);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+            border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;
+            transition:transform .38s var(--ease);
+        }
+        nav.site-nav.nav-hidden{transform:translateY(-100%);}
+        .back-link{display:inline-flex;align-items:center;gap:7px;font-size:13px;color:var(--light);text-decoration:none;transition:color .2s;padding:80px 80px 0;}
+        .back-link:hover{color:var(--text);}
+        .nav-logo{font-family:var(--font-d);font-weight:800;font-size:17px;color:var(--text);text-decoration:none;letter-spacing:-.04em;}
+        .nav-logo span{color:var(--orange);}
+        .nav-back{font-size:13px;font-weight:400;color:var(--muted);text-decoration:none;transition:color .2s;display:flex;align-items:center;gap:6px;}
+        .nav-back:hover{color:var(--text);}
+        .nav-tag{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--red);background:rgba(255,0,0,.06);border:1px solid rgba(255,0,0,.15);padding:4px 12px;border-radius:100px;}
+
+        /* HERO */
+        .hero{min-height:100vh;padding:120px 80px 80px;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden;}
+        .hero::before{content:'';position:absolute;top:-80px;right:-80px;width:500px;height:500px;background:radial-gradient(circle,rgba(255,0,0,.05) 0%,transparent 65%);pointer-events:none;}
+        .hero-kicker{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:28px;}
+        .kicker-pill{font-size:11px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;padding:4px 12px;border-radius:100px;background:var(--off);border:1px solid var(--border);color:var(--light);}
+        .kicker-pill.red{background:rgba(255,0,0,.06);border-color:rgba(255,0,0,.15);color:var(--red);}
+        .hero-h1{font-family:var(--font-d);font-weight:800;font-size:clamp(48px,8vw,104px);letter-spacing:-.045em;line-height:.9;color:var(--text);max-width:860px;margin-bottom:28px;}
+        .hero-h1 em{color:var(--red);font-style:normal;}
+        .hero-sub{font-size:18px;font-weight:300;color:var(--muted);max-width:520px;line-height:1.8;margin-bottom:44px;}
+        .hero-meta{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:14px;overflow:hidden;max-width:820px;}
+        .meta-cell{background:var(--white);padding:18px 22px;display:flex;flex-direction:column;gap:5px;}
+        .meta-label{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--light);}
+        .meta-val{font-family:var(--font-d);font-size:14px;font-weight:600;color:var(--text);letter-spacing:-.01em;}
+
+        /* DISCLAIMER */
+        .disclaimer{margin:0 80px 0;padding:16px 24px;background:rgba(255,0,0,.03);border:1px solid rgba(255,0,0,.12);border-radius:12px;font-size:13px;color:var(--muted);line-height:1.6;}
+        .disclaimer strong{color:var(--text);font-weight:600;}
+
+        /* DEVICE SHOWCASE */
+        .device-showcase{padding:0 80px 80px;display:flex;align-items:flex-end;gap:32px;overflow-x:auto;}
+        .mac-frame{position:relative;flex:0 0 auto;width:min(640px,70vw);}
+        .mac-frame-body{background:#d4d4d4;border-radius:14px 14px 0 0;padding:20px 20px 0;box-shadow:0 20px 60px rgba(0,0,0,.18);}
+        .mac-screen{background:#0f0f0f;border-radius:8px 8px 0 0;overflow:hidden;aspect-ratio:16/10;}
+        .mac-screen img{width:100%;height:100%;object-fit:cover;object-position:top;display:block;}
+        .mac-notch{width:50px;height:10px;background:#aaa;border-radius:0 0 8px 8px;margin:0 auto;margin-top:-1px;}
+        .mac-base{height:10px;background:#c0c0c0;border-radius:0 0 4px 4px;}
+        .mac-stand{width:40%;height:8px;background:#b0b0b0;margin:0 auto;border-radius:0 0 4px 4px;}
+        .iphone-frame{position:relative;flex:0 0 auto;width:140px;margin-bottom:20px;}
+        .iphone-body{background:#1a1a1a;border-radius:32px;padding:10px;box-shadow:0 20px 60px rgba(0,0,0,.3);}
+        .iphone-notch{width:50px;height:18px;background:#000;border-radius:0 0 10px 10px;margin:0 auto 4px;position:relative;z-index:2;}
+        .iphone-screen{background:#000;border-radius:22px;overflow:hidden;aspect-ratio:9/19.5;}
+        .iphone-screen img{width:100%;height:100%;object-fit:cover;object-position:top;display:block;}
+        .iphone-btn{width:3px;height:36px;background:#2a2a2a;border-radius:2px;position:absolute;right:-3px;top:80px;}
+        @media(max-width:680px){
+            .device-showcase{padding:0 24px 48px;gap:20px;}
+            .mac-frame{width:min(500px,85vw);}
+            .iphone-frame{width:110px;}
+        }
+
+        /* SECTION */
+        .section{padding:80px 80px;}
+        .section-border{border-top:1px solid var(--border);}
+        .s-eyebrow{font-size:10.5px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--light);margin-bottom:10px;}
+        .s-title{font-family:var(--font-d);font-weight:700;font-size:clamp(26px,3vw,40px);letter-spacing:-.03em;color:var(--text);line-height:1.1;margin-bottom:18px;}
+        .s-body{font-size:16px;font-weight:300;color:var(--muted);line-height:1.85;max-width:640px;}
+        .s-body strong{font-weight:600;color:var(--text);}
+
+        /* AUDIT GRID */
+        .audit-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:36px;}
+        .audit-card{background:var(--off);border:1px solid var(--border);border-radius:14px;padding:22px;}
+        .audit-num{font-family:var(--font-d);font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--red);margin-bottom:10px;}
+        .audit-title{font-size:15px;font-weight:700;color:var(--text);letter-spacing:-.015em;margin-bottom:6px;}
+        .audit-desc{font-size:13px;font-weight:300;color:var(--muted);line-height:1.7;}
+
+        /* DECISION SECTION */
+        .decision{padding:72px 80px;border-top:1px solid var(--border);}
+        .decision-header{display:flex;align-items:flex-start;gap:60px;margin-bottom:52px;}
+        .decision-left{flex:1;max-width:420px;}
+        .dec-num{font-family:var(--font-d);font-size:72px;font-weight:800;letter-spacing:-.06em;line-height:1;color:transparent;-webkit-text-stroke:1.5px var(--border);margin-bottom:16px;user-select:none;}
+        .dec-tag{display:inline-flex;align-items:center;background:rgba(255,0,0,.06);border:1px solid rgba(255,0,0,.15);color:var(--red);font-size:10.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:4px 11px;border-radius:100px;margin-bottom:14px;}
+        .dec-title{font-family:var(--font-d);font-size:clamp(22px,2.5vw,30px);font-weight:700;letter-spacing:-.025em;color:var(--text);margin-bottom:14px;line-height:1.2;}
+        .dec-body{font-size:15px;font-weight:300;color:var(--muted);line-height:1.82;}
+        .dec-body strong{font-weight:600;color:var(--text);}
+        .decision-right{flex:0 0 auto;}
+
+        /* PHONES COMPARE LAYOUT */
+        .phones-compare{display:flex;align-items:flex-start;gap:20px;}
+        .phone-wrap{display:flex;flex-direction:column;align-items:center;gap:12px;flex-shrink:0;}
+        .phone-label{font-size:10.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;}
+        .phone-label.before{color:var(--red);}
+        .phone-label.after{color:#16a34a;}
+        .phones-arrow{display:flex;align-items:center;padding:0 4px;margin-top:180px;flex-shrink:0;}
+        .phones-arrow-icon{font-size:18px;color:var(--border);}
+
+        /* IMAGE PLACEHOLDERS */
+        .phone-ph{
+            width:220px;height:454px;border-radius:38px;flex-shrink:0;
+            border:2px dashed;display:flex;align-items:center;justify-content:center;
+            overflow:hidden;position:relative;
+        }
+        .before-ph{border-color:rgba(255,0,0,.35);background:rgba(255,0,0,.04);}
+        .after-ph{border-color:rgba(22,163,74,.35);background:rgba(22,163,74,.04);}
+        .phone-ph img{width:100%;height:100%;object-fit:cover;border-radius:36px;display:block;}
+        .ph-empty{text-align:center;padding:24px;pointer-events:none;}
+        .ph-icon{display:block;font-size:28px;margin-bottom:12px;opacity:.25;}
+        .ph-label{display:block;font-size:11px;font-weight:700;color:var(--text);margin-bottom:8px;letter-spacing:-.01em;}
+        .ph-note{display:block;font-size:10px;color:var(--light);line-height:1.7;}
+
+        /* Badges */
+        .problem-badge{
+            display:inline-flex;align-items:center;gap:5px;
+            background:rgba(255,0,0,.1);border:1px solid rgba(255,0,0,.25);color:var(--red);
+            font-size:10.5px;font-weight:600;padding:3px 10px;border-radius:100px;
+            margin-top:8px;
+        }
+        .solution-badge{
+            display:inline-flex;align-items:center;gap:5px;
+            background:rgba(22,163,74,.1);border:1px solid rgba(22,163,74,.25);color:#16a34a;
+            font-size:10.5px;font-weight:600;padding:3px 10px;border-radius:100px;
+            margin-top:8px;
+        }
+
+        /* RESULTS TABLE */
+        .results-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:36px;}
+        .result-card{background:var(--off);border:1px solid var(--border);border-radius:14px;padding:24px;position:relative;overflow:hidden;}
+        .result-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--red);}
+        .rc-problem{font-size:13px;font-weight:600;color:var(--text);margin-bottom:6px;}
+        .rc-change{font-size:13px;font-weight:300;color:var(--muted);line-height:1.6;}
+        .rc-arrow{color:var(--red);font-size:14px;margin:6px 0;}
+
+        /* NEXT */
+        .next-section{padding:80px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;gap:32px;flex-wrap:wrap;}
+        .next-label{font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--light);margin-bottom:10px;}
+        .next-title{font-family:var(--font-d);font-size:clamp(22px,3vw,34px);font-weight:700;letter-spacing:-.03em;color:var(--text);}
+        .next-btns{display:flex;gap:10px;flex-wrap:wrap;flex-shrink:0;}
+        .n-btn{display:inline-flex;align-items:center;gap:7px;padding:12px 22px;border-radius:100px;font-size:13px;font-weight:500;text-decoration:none;letter-spacing:.01em;transition:transform .28s var(--ease),background .2s,color .2s;}
+        .n-fill{background:var(--text);color:#fff;}
+        .n-fill:hover{background:var(--orange);transform:scale(1.04);}
+        .n-out{background:transparent;color:var(--muted);border:1.5px solid var(--border);}
+        .n-out:hover{color:var(--text);border-color:#bbb;transform:scale(1.03);}
+
+        /* ── HAMBURGER ───────────────────────────────────── */
+        .hamburger{display:flex;flex-direction:column;gap:5px;cursor:pointer;padding:8px;background:none;border:none;z-index:200;}
+        .hamburger span{display:block;width:20px;height:1.5px;background:var(--text);border-radius:2px;transition:transform .38s var(--ease),opacity .22s;transform-origin:center;}
+        .hamburger.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg);}
+        .hamburger.open span:nth-child(2){opacity:0;transform:scaleX(0);}
+        .hamburger.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg);}
+
+        /* ── DRAWER ──────────────────────────────────────── */
+        .drawer-overlay{position:fixed;inset:0;z-index:300;background:rgba(0,0,0,.5);opacity:0;pointer-events:none;transition:opacity .35s var(--ease);backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px);}
+        .drawer-overlay.open{opacity:1;pointer-events:all;}
+        .drawer{position:fixed;top:0;right:0;bottom:0;z-index:400;width:320px;max-width:90vw;background:#fff;transform:translateX(100%);transition:transform .45s var(--ease);padding:80px 32px 40px;display:flex;flex-direction:column;overflow-y:auto;box-shadow:-16px 0 48px rgba(0,0,0,.2);}
+        .drawer.open{transform:translateX(0);}
+        .drawer-close{position:absolute;top:20px;right:20px;background:var(--off);border:1px solid var(--border);border-radius:100px;width:36px;height:36px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:13px;color:var(--muted);transition:background .2s;}
+        .drawer-close:hover{background:var(--border);}
+        .drawer-label{font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--orange);margin-bottom:18px;}
+        .drawer-nav{display:flex;flex-direction:column;margin-bottom:28px;}
+        .drawer-nav a{font-family:var(--font-d);font-size:24px;font-weight:700;letter-spacing:-.03em;color:#0a0a0a;text-decoration:none;padding:8px 0;border-bottom:1px solid #e8e8e8;line-height:1.2;transition:color .2s,padding-left .3s var(--ease);}
+        .drawer-nav a:last-child{border-bottom:none;}
+        .drawer-nav a:hover{color:var(--orange);padding-left:6px;}
+        .drawer-current{color:var(--orange) !important;}
+        .drawer-divider{height:1px;background:#e8e8e8;margin:4px 0 20px;}
+        .drawer-section-title{font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#a0a0a0;margin-bottom:10px;}
+        .drawer-social-row{display:flex;flex-direction:column;gap:0;}
+        .drawer-social-link{font-size:14px;font-weight:500;color:#5a5a5a;text-decoration:none;transition:color .2s;padding:8px 0;border-bottom:1px solid #e8e8e8;}
+        .drawer-social-link:last-child{border-bottom:none;}
+        .drawer-social-link:hover{color:var(--orange);}
+
+        /* ── RIGHT SIDEBAR ───────────────────────────────── */
+        .right-sidebar{position:fixed;right:36px;top:50%;transform:translateY(-50%);z-index:90;display:flex;flex-direction:column;gap:0;align-items:flex-end;}
+        .rsb-item{display:flex;flex-direction:row-reverse;align-items:center;gap:10px;padding:6px 0;cursor:pointer;transition:opacity .2s;}
+        .rsb-item:not(.active){opacity:.3;}
+        .rsb-dot{width:6px;height:6px;border-radius:50%;background:rgba(0,0,0,.25);flex-shrink:0;transition:background .3s var(--ease),width .3s var(--ease),border-radius .3s;}
+        .rsb-item.active .rsb-dot{background:var(--red);width:20px;border-radius:3px;}
+        .rsb-label{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;white-space:nowrap;opacity:0;transition:opacity .2s,transform .2s;transform:translateX(4px);background:rgba(255,255,255,.92);color:#111;padding:2px 7px;border-radius:4px;box-shadow:0 1px 6px rgba(0,0,0,.15);}
+        .rsb-item.active .rsb-label{opacity:1;transform:none;}
+        .rsb-line{width:1px;height:16px;background:rgba(0,0,0,.1);margin-right:9px;}
+        @media(max-width:1024px){.right-sidebar{display:none;}}
+
+        /* ── SITE FOOTER ─────────────────────────────────── */
+        .site-footer{background:var(--off);border-top:1px solid var(--border);padding:60px 80px;}
+        .footer-inner{display:flex;justify-content:space-between;align-items:flex-start;gap:48px;flex-wrap:wrap;}
+        .footer-logo{font-family:var(--font-d);font-weight:800;font-size:20px;color:var(--text);text-decoration:none;letter-spacing:-.04em;}
+        .footer-logo span{color:var(--orange);}
+        .footer-copy{font-size:12px;color:var(--light);margin-top:8px;}
+        .footer-links{display:flex;gap:48px;flex-wrap:wrap;}
+        .footer-col{display:flex;flex-direction:column;gap:10px;}
+        .footer-col-title{font-size:10px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--light);margin-bottom:4px;}
+        .footer-col a{font-size:13px;color:var(--muted);text-decoration:none;transition:color .2s;}
+        .footer-col a:hover{color:var(--text);}
+
+        @media(max-width:960px){
+            .decision-header{flex-direction:column;gap:32px;}
+            .decision-right{width:100%;overflow-x:auto;}
+            .phones-compare{gap:12px;}
+            .audit-grid,.results-grid{grid-template-columns:1fr;}
+            .hero-meta{grid-template-columns:1fr 1fr;}
+            .phone-ph{width:160px;height:330px;}
+        }
+        @media(max-width:680px){
+            nav.site-nav{padding:0 20px;}
+            .hero,.section,.decision,.disclaimer,.next-section{padding-left:24px;padding-right:24px;}
+            .back-link{padding:60px 24px 0;}
+            .phones-compare{flex-wrap:wrap;justify-content:center;}
+            .phones-arrow{display:none;}
+            .phone-ph{width:48%;height:auto;aspect-ratio:220/454;}
+            .next-section{flex-direction:column-reverse;}
+            .next-section > div:last-child{width:100% !important;}
+            .site-footer{padding:40px 24px;}
+            .footer-inner{flex-direction:column;gap:32px;}
+            .footer-links{gap:24px;}
+        }
+    </style>
+</head>
+<body>
+
+<nav class="site-nav">
+    <a href="../index.html" class="nav-logo">EA<span>.</span></a>
+    <div style="display:flex;align-items:center;gap:12px;">
+        <span class="nav-tag">Speculative Redesign</span>
+        <button class="hamburger" id="ham-btn" aria-label="Menu">
+            <span></span><span></span><span></span>
+        </button>
+    </div>
+</nav>
+
+<!-- DRAWER -->
+<div class="drawer-overlay" id="overlay"></div>
+<aside class="drawer" id="drawer">
+    <button class="drawer-close" id="dclose">✕</button>
+    <p class="drawer-label">Navigation</p>
+    <nav class="drawer-nav">
+        <a href="../index.html">Home</a>
+        <a href="../about.html">About me</a>
+    </nav>
+    <div class="drawer-divider"></div>
+    <p class="drawer-section-title">Projects</p>
+    <nav class="drawer-nav">
+        <a href="../gonow/index.html">GoNow</a>
+        <a href="../pw-digital/index.html">Pipeline Automation</a>
+        <a href="index.html" class="drawer-current">YouTube Music</a>
+        <a href="../pw-landing/index.html">Conversion Landing</a>
+    </nav>
+    <div class="drawer-divider"></div>
+    <p class="drawer-section-title">Connect</p>
+    <div class="drawer-social-row">
+        <a href="https://www.behance.net/esteban13" target="_blank" class="drawer-social-link">Behance ↗</a>
+        <a href="https://www.linkedin.com/in/estebandrade13/" target="_blank" class="drawer-social-link">LinkedIn ↗</a>
+        <a href="mailto:isaiandrade7.ea@gmail.com" class="drawer-social-link">Email</a>
+    </div>
+</aside>
+
+<!-- RIGHT SIDEBAR -->
+<aside class="right-sidebar" id="right-sb">
+    <div class="rsb-item active" data-target="sec-yt-hero"><div class="rsb-dot"></div><span class="rsb-label">Overview</span></div>
+    <div class="rsb-line"></div>
+    <div class="rsb-item" data-target="sec-yt-problems"><div class="rsb-dot"></div><span class="rsb-label">Problems</span></div>
+    <div class="rsb-line"></div>
+    <div class="rsb-item" data-target="sec-yt-home"><div class="rsb-dot"></div><span class="rsb-label">Home</span></div>
+    <div class="rsb-line"></div>
+    <div class="rsb-item" data-target="sec-yt-library"><div class="rsb-dot"></div><span class="rsb-label">Library</span></div>
+    <div class="rsb-line"></div>
+    <div class="rsb-item" data-target="sec-yt-player"><div class="rsb-dot"></div><span class="rsb-label">Player</span></div>
+    <div class="rsb-line"></div>
+    <div class="rsb-item" data-target="sec-yt-takeaway"><div class="rsb-dot"></div><span class="rsb-label">Takeaway</span></div>
+</aside>
+
+<!-- BACK LINK -->
+<a href="../index.html" class="back-link">← Portfolio</a>
+
+<!-- HERO -->
+<section class="hero" id="sec-yt-hero">
+    <div class="hero-kicker rv">
+        <span class="kicker-pill red">Concept · Not affiliated with YouTube</span>
+        <span class="kicker-pill">UX / UI</span>
+        <span class="kicker-pill">Mobile</span>
+    </div>
+    <h1 class="hero-h1 rv d1">YouTube Music<br><em>Redesigned.</em></h1>
+    <p class="hero-sub rv d2">Three UX problems that make daily use frustrating — and three design decisions that fix them.</p>
+    <div class="hero-meta rv d3">
+        <div class="meta-cell">
+            <span class="meta-label">Type</span>
+            <span class="meta-val">Speculative redesign</span>
+        </div>
+        <div class="meta-cell">
+            <span class="meta-label">Platform</span>
+            <span class="meta-val">Mobile + Web</span>
+        </div>
+        <div class="meta-cell">
+            <span class="meta-label">Tools</span>
+            <span class="meta-val">Figma · Illustrator</span>
+        </div>
+        <div class="meta-cell">
+            <span class="meta-label">View full project</span>
+            <span class="meta-val"><a href="https://www.behance.net/gallery/232422355/Youtube-Music-Redesign" target="_blank" rel="noopener" style="color:var(--red);text-decoration:none;font-weight:600;">Behance ↗</a></span>
+        </div>
+    </div>
+</section>
+
+<!-- DEVICE SHOWCASE -->
+<div class="device-showcase">
+    <!-- MacBook — Home -->
+    <div class="mac-frame rv">
+        <div class="mac-frame-body">
+            <div class="mac-screen">
+                <img src="Home-web.webp" alt="YouTube Music redesign — web home">
+            </div>
+        </div>
+        <div class="mac-notch"></div>
+        <div class="mac-base"></div>
+        <div class="mac-stand"></div>
+    </div>
+    <!-- iPhone 13 — Home -->
+    <div class="iphone-frame rv d1">
+        <div class="iphone-btn"></div>
+        <div class="iphone-body">
+            <div class="iphone-notch"></div>
+            <div class="iphone-screen">
+                <img src="Home.webp" alt="YouTube Music redesign — mobile home">
+            </div>
+        </div>
+    </div>
+    <!-- MacBook — Player -->
+    <div class="mac-frame rv d2" style="width:min(520px,55vw);">
+        <div class="mac-frame-body">
+            <div class="mac-screen">
+                <img src="Player-web.webp" alt="YouTube Music redesign — web player">
+            </div>
+        </div>
+        <div class="mac-notch"></div>
+        <div class="mac-base"></div>
+        <div class="mac-stand"></div>
+    </div>
+</div>
+
+<div class="disclaimer rv" style="margin-bottom:0;">
+    <strong>Disclaimer:</strong> This is a personal UX concept project, not affiliated with or endorsed by YouTube or Google. All UI representations are illustrative redesign proposals only.
+</div>
+
+<!-- OVERVIEW -->
+<section class="section section-border" id="sec-yt-problems">
+    <p class="s-eyebrow rv">Why YouTube Music</p>
+    <h2 class="s-title rv d1">A powerful product held back<br>by three daily frustrations.</h2>
+    <p class="s-body rv d2">YouTube Music has the biggest catalog of any streaming app — but the interface was unattractive, cluttered, and made it hard to enjoy even simple actions like finding or searching music. Users found the hierarchy confusing across both web and mobile. I redesigned it with <strong>a cleaner layout, clearer icons, and a modern color palette</strong> that feels simple, accessible, and visually engaging.</p>
+    <div class="audit-grid">
+        <div class="audit-card rv d1">
+            <div class="audit-num">Problem 01</div>
+            <div class="audit-title">Interface is cluttered, no clear priority</div>
+            <div class="audit-desc">Both the mobile and web interfaces dump too much on screen at once. No visual hierarchy, no filters, no clear entry point — users felt overwhelmed.</div>
+        </div>
+        <div class="audit-card rv d2">
+            <div class="audit-num">Problem 02</div>
+            <div class="audit-title">Library mixes everything</div>
+            <div class="audit-desc">Songs, albums, playlists, music videos, and podcasts all live in one flat list. No way to filter by type without scrolling.</div>
+        </div>
+        <div class="audit-card rv d3">
+            <div class="audit-num">Problem 03</div>
+            <div class="audit-title">Player wastes the screen</div>
+            <div class="audit-desc">Album art takes 60% of the screen, then there's empty space before the controls. Queue, lyrics, and related content are buried.</div>
+        </div>
+    </div>
+</section>
+
+<!-- DECISION 01: HOME -->
+<div class="decision" id="sec-yt-home">
+    <div class="decision-header rv">
+        <div class="decision-left">
+            <div class="dec-num">01</div>
+            <div class="dec-tag">Home Discovery</div>
+            <h2 class="dec-title">Clean the home screen hierarchy.</h2>
+            <p class="dec-body">
+                The original home dumped everything at once — no clear priority, no visual breathing room. The redesign introduces <strong>filter chips</strong> (All / Music / Playlist) so users immediately narrow scope, and restructures content into clear sections: Recommended first (large card), then Recently Played as a scannable list. The information hierarchy now matches how people actually use the app.
+            </p>
+        </div>
+        <div class="decision-right rv d2">
+            <div class="phones-compare">
+                <!-- BEFORE: Home — original YT Music (no screenshot) -->
+                <div class="phone-wrap">
+                    <span class="phone-label before">Before</span>
+                    <div class="phone-ph before-ph">
+                        <div class="ph-empty">
+                            <span class="ph-icon">📱</span>
+                            <span class="ph-label">Original</span>
+                            <span class="ph-note">YouTube Music<br>home — 2024</span>
+                        </div>
+                    </div>
+                    <span class="problem-badge">Cluttered, no visual hierarchy</span>
+                </div>
+                <div class="phones-arrow"><span class="phones-arrow-icon">→</span></div>
+                <!-- AFTER: Home -->
+                <div class="phone-wrap">
+                    <span class="phone-label after">After</span>
+                    <div class="phone-ph after-ph">
+                        <img src="Home.webp" alt="YouTube Music home — redesign" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block;">
+                    </div>
+                    <span class="solution-badge">Cleaner hierarchy, clear filters</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- DECISION 02: LIBRARY -->
+<div class="decision" id="sec-yt-library">
+    <div class="decision-header rv">
+        <div class="decision-left">
+            <div class="dec-num">02</div>
+            <div class="dec-tag">Library</div>
+            <h2 class="dec-title">One library. Four clear categories.</h2>
+            <p class="dec-body">
+                The current library dumps everything together — music playlists, auto-mixes, music videos, and uploads in a single scrollable list. The redesign adds <strong>tab-based filtering</strong> at the top: Songs, Albums, Artists, Playlists, Videos. The user picks their mode and sees only what's relevant. Simple, obvious, fast.
+            </p>
+        </div>
+        <div class="decision-right rv d2">
+            <div class="phones-compare">
+                <!-- BEFORE: Library -->
+                <div class="phone-wrap">
+                    <span class="phone-label before">Before</span>
+                    <div class="phone-ph before-ph">
+                        <img src="Search.webp" alt="YouTube Music search — original" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block;">
+                    </div>
+                    <span class="problem-badge">All content types mixed</span>
+                </div>
+                <div class="phones-arrow"><span class="phones-arrow-icon">→</span></div>
+                <!-- AFTER: Library -->
+                <div class="phone-wrap">
+                    <span class="phone-label after">After</span>
+                    <div class="phone-ph after-ph">
+                        <img src="Library.webp" alt="YouTube Music library — redesign" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block;">
+                    </div>
+                    <span class="solution-badge">Tab filter → instant clarity</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- DECISION 03: PLAYER -->
+<div class="decision" id="sec-yt-player">
+    <div class="decision-header rv">
+        <div class="decision-left">
+            <div class="dec-num">03</div>
+            <div class="dec-tag">Now Playing</div>
+            <h2 class="dec-title">Make the player screen earn its space.</h2>
+            <p class="dec-body">
+                The current player uses most of the screen for album art and leaves the bottom empty. Queue, lyrics, and related tracks are hidden behind gestures users don't know exist. The redesign compacts the art slightly and surfaces an <strong>"Up Next" mini-queue</strong> and <strong>quick-action buttons</strong> (lyrics, share) directly on the screen — no hidden gestures required.
+            </p>
+        </div>
+        <div class="decision-right rv d2">
+            <div class="phones-compare">
+                <!-- BEFORE: Player — original YT Music (no screenshot) -->
+                <div class="phone-wrap">
+                    <span class="phone-label before">Before</span>
+                    <div class="phone-ph before-ph">
+                        <div class="ph-empty">
+                            <span class="ph-icon">📱</span>
+                            <span class="ph-label">Original</span>
+                            <span class="ph-note">YouTube Music<br>player — 2024</span>
+                        </div>
+                    </div>
+                    <span class="problem-badge">Empty space, hidden queue</span>
+                </div>
+                <div class="phones-arrow"><span class="phones-arrow-icon">→</span></div>
+                <!-- AFTER: Player -->
+                <div class="phone-wrap">
+                    <span class="phone-label after">After</span>
+                    <div class="phone-ph after-ph">
+                        <img src="Player.webp" alt="YouTube Music player — redesign" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block;">
+                    </div>
+                    <span class="solution-badge">Queue + actions always visible</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- SUMMARY -->
+<section class="section section-border">
+    <p class="s-eyebrow rv">What changed</p>
+    <h2 class="s-title rv d1">Three problems. Three decisions.<br>One clearer product.</h2>
+    <div class="results-grid">
+        <div class="result-card rv d1">
+            <div class="rc-problem">Home: Cluttered → Clear hierarchy</div>
+            <div class="rc-arrow">↓</div>
+            <div class="rc-change">Filter chips (All / Music / Playlist) + structured sections (Recommended → Recently Played) give the home screen a logical, scannable flow.</div>
+        </div>
+        <div class="result-card rv d2">
+            <div class="rc-problem">Library: Mixed content → Tabbed filtering</div>
+            <div class="rc-arrow">↓</div>
+            <div class="rc-change">Songs, Albums, Artists, Playlists, and Videos each get their own view. Find what you're looking for in one tap.</div>
+        </div>
+        <div class="result-card rv d3">
+            <div class="rc-problem">Player: Wasted space → Functional screen</div>
+            <div class="rc-arrow">↓</div>
+            <div class="rc-change">Compact art + always-visible Up Next queue + quick-access buttons for lyrics and sharing. No hidden gestures.</div>
+        </div>
+    </div>
+</section>
+
+<!-- REFLECTION -->
+<section class="section section-border" id="sec-yt-takeaway">
+    <p class="s-eyebrow rv">Takeaway</p>
+    <h2 class="s-title rv d1">Great catalogs deserve<br>better navigation.</h2>
+    <p class="s-body rv d2">The most valuable thing this project reinforced: <strong>UX problems are rarely about missing features.</strong> YouTube Music has lyrics, has a queue, has discovery algorithms — but they're all buried. The redesign doesn't add anything new. It surfaces what's already there, in the moment users actually want it. That's the job.</p>
+</section>
+
+<!-- NEXT -->
+<div class="next-section rv" style="gap:48px;">
+    <div>
+        <div class="next-label">Up next</div>
+        <div class="next-title">Conversion Landing</div>
+        <p style="font-size:14px;font-weight:300;color:var(--muted);max-width:340px;line-height:1.7;margin:10px 0 24px;">A focused landing page that brought in 75 leads in 7 days. One decision at a time.</p>
+        <div class="next-btns">
+            <a href="../pw-landing/index.html" class="n-btn n-fill">View case study ↗</a>
+            <a href="../index.html" class="n-btn n-out">Back to portfolio</a>
+        </div>
+    </div>
+    <div style="width:260px;flex-shrink:0;border-radius:16px;overflow:hidden;border:1px solid var(--border);background:var(--off);padding:28px;display:flex;flex-direction:column;gap:14px;">
+        <div style="font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--orange);">Conversion Landing</div>
+        <div style="font-family:var(--font-d);font-size:28px;font-weight:800;letter-spacing:-.04em;color:var(--text);line-height:1;">75 leads<br><span style="color:var(--orange);">7 days</span></div>
+        <div style="display:flex;flex-direction:column;gap:6px;">
+            <div style="height:8px;background:var(--border);border-radius:100px;overflow:hidden;"><div style="height:100%;width:82%;background:var(--orange);border-radius:100px;"></div></div>
+            <div style="font-size:11px;color:var(--muted);">Conversion rate +82%</div>
+        </div>
+        <div style="font-size:11px;color:var(--light);line-height:1.6;">5 decisions. No paid ads. Full redesign in a week.</div>
+    </div>
+</div>
+
+<footer class="site-footer">
+    <div class="footer-inner">
+        <div>
+            <a href="../index.html" class="footer-logo">EA<span>.</span></a>
+            <p class="footer-copy">© 2026 Esteban Andrade</p>
+        </div>
+        <div class="footer-links">
+            <div class="footer-col">
+                <p class="footer-col-title">Projects</p>
+                <a href="../gonow/index.html">GoNow</a>
+                <a href="../pw-digital/index.html">Pipeline Automation</a>
+                <a href="index.html">YouTube Music</a>
+                <a href="../pw-landing/index.html">Conversion Landing</a>
+            </div>
+            <div class="footer-col">
+                <p class="footer-col-title">Connect</p>
+                <a href="https://www.behance.net/esteban13" target="_blank">Behance ↗</a>
+                <a href="https://www.linkedin.com/in/estebandrade13/" target="_blank">LinkedIn ↗</a>
+                <a href="mailto:isaiandrade7.ea@gmail.com">Email</a>
+                <a href="../about.html">About</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script>
+const obs=new IntersectionObserver((e)=>{e.forEach(el=>{if(el.isIntersecting){el.target.classList.add('on');obs.unobserve(el.target);}});},{threshold:0.06,rootMargin:'0px 0px -28px 0px'});
+document.querySelectorAll('.rv').forEach(el=>obs.observe(el));
+setTimeout(()=>{document.querySelectorAll('.hero .rv').forEach(el=>el.classList.add('on'));},60);
+
+/* Hamburger */
+const hamBtn=document.getElementById('ham-btn');
+const drawer=document.getElementById('drawer');
+const overlay=document.getElementById('overlay');
+const dclose=document.getElementById('dclose');
+function openDrawer(){hamBtn.classList.add('open');drawer.classList.add('open');overlay.classList.add('open');document.body.style.overflow='hidden';}
+function closeDrawer(){hamBtn.classList.remove('open');drawer.classList.remove('open');overlay.classList.remove('open');document.body.style.overflow='';}
+hamBtn.addEventListener('click',openDrawer);
+dclose.addEventListener('click',closeDrawer);
+overlay.addEventListener('click',closeDrawer);
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeDrawer();});
+
+/* Right sidebar */
+const rsbSecs=['sec-yt-hero','sec-yt-problems','sec-yt-home','sec-yt-library','sec-yt-player','sec-yt-takeaway'];
+const rsbItems=document.querySelectorAll('.rsb-item');
+function updateRsb(){
+    let active=0;
+    rsbSecs.forEach((id,i)=>{const el=document.getElementById(id);if(el&&el.getBoundingClientRect().top<=window.innerHeight*0.45)active=i;});
+    rsbItems.forEach((item,i)=>item.classList.toggle('active',i===active));
+}
+window.addEventListener('scroll',updateRsb,{passive:true});
+rsbItems.forEach(item=>item.addEventListener('click',()=>{
+    const el=document.getElementById(item.dataset.target);
+    if(el)el.scrollIntoView({behavior:'smooth',block:'start'});
+}));
+updateRsb();
+
+/* Smart nav */
+let lastScrollYT=0;
+const siteNavYT=document.querySelector('.site-nav');
+window.addEventListener('scroll',()=>{
+    const c=window.scrollY;
+    if(c>lastScrollYT&&c>100)siteNavYT.classList.add('nav-hidden');
+    else siteNavYT.classList.remove('nav-hidden');
+    lastScrollYT=Math.max(0,c);
+},{passive:true});
+</script>
+</body>
+</html>

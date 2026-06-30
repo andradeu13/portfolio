@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conversion Landing · Esteban Andrade</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+        :root{
+            --white:#fff;--off:#f7f7f7;--text:#0a0a0a;--muted:#5a5a5a;
+            --light:#a0a0a0;--border:#e8e8e8;--dark:#0f0f0f;
+            --orange:#ff7e00;--green:#16a34a;
+            --font-d:'Bricolage Grotesque',sans-serif;--font-b:'Plus Jakarta Sans',sans-serif;
+            --ease:cubic-bezier(0.16,1,0.3,1);
+        }
+        html{scroll-behavior:smooth;}
+        body{font-family:var(--font-b);background:var(--white);color:var(--text);overflow-x:hidden;-webkit-font-smoothing:antialiased;}
+        .rv{opacity:0;transform:translateY(18px);transition:opacity .65s var(--ease),transform .65s var(--ease);}
+        .rv.on{opacity:1;transform:none;}
+        .d1{transition-delay:.08s}.d2{transition-delay:.17s}.d3{transition-delay:.26s}.d4{transition-delay:.35s}
+
+        /* NAV */
+        nav.site-nav{position:fixed;top:0;left:0;right:0;z-index:100;height:60px;padding:0 60px;background:rgba(255,255,255,.94);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;transition:transform .38s var(--ease);}
+        nav.site-nav.nav-hidden{transform:translateY(-100%);}
+        .nav-logo{font-family:var(--font-d);font-weight:800;font-size:17px;color:var(--text);text-decoration:none;letter-spacing:-.04em;}
+        .nav-logo span{color:var(--orange);}
+        .back-link{display:inline-flex;align-items:center;gap:7px;font-size:13px;color:var(--light);text-decoration:none;transition:color .2s;padding:80px 80px 0;}
+        .back-link:hover{color:var(--text);}
+        .nav-tag{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--green);background:rgba(22,163,74,.08);border:1px solid rgba(22,163,74,.2);padding:4px 12px;border-radius:100px;}
+
+        /* HERO */
+        .hero{min-height:100vh;padding:120px 80px 80px;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden;}
+        .hero::before{content:'';position:absolute;top:-60px;right:-80px;width:480px;height:480px;background:radial-gradient(circle,rgba(22,163,74,.06) 0%,transparent 65%);pointer-events:none;}
+        .hero-kicker{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:28px;}
+        .kicker-pill{font-size:11px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;padding:4px 12px;border-radius:100px;background:var(--off);border:1px solid var(--border);color:var(--light);}
+        .kicker-pill.green{background:rgba(22,163,74,.07);border-color:rgba(22,163,74,.2);color:var(--green);}
+        .hero-h1{font-family:var(--font-d);font-weight:800;font-size:clamp(44px,7.5vw,96px);letter-spacing:-.045em;line-height:.92;color:var(--text);max-width:840px;margin-bottom:28px;}
+        .hero-h1 em{color:var(--orange);font-style:normal;}
+        .hero-sub{font-size:18px;font-weight:300;color:var(--muted);max-width:520px;line-height:1.8;margin-bottom:44px;}
+        .hero-meta{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:14px;overflow:hidden;max-width:840px;}
+        .meta-cell{background:var(--white);padding:18px 22px;display:flex;flex-direction:column;gap:5px;}
+        .meta-label{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--light);}
+        .meta-val{font-family:var(--font-d);font-size:14px;font-weight:600;color:var(--text);letter-spacing:-.01em;}
+
+        /* SECTIONS */
+        .section{padding:80px 80px;}
+        .section-border{border-top:1px solid var(--border);}
+        .s-eyebrow{font-size:10.5px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--light);margin-bottom:10px;}
+        .s-title{font-family:var(--font-d);font-weight:700;font-size:clamp(26px,3vw,40px);letter-spacing:-.03em;color:var(--text);line-height:1.1;margin-bottom:18px;}
+        .s-body{font-size:16px;font-weight:300;color:var(--muted);line-height:1.85;max-width:640px;}
+        .s-body strong{font-weight:600;color:var(--text);}
+        .s-body em{font-style:normal;color:var(--orange);font-weight:500;}
+
+        /* CONTEXT GRID */
+        .context-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:36px;}
+        .ctx-card{background:var(--off);border:1px solid var(--border);border-radius:14px;padding:22px;}
+        .ctx-label{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--light);margin-bottom:8px;}
+        .ctx-val{font-size:15px;font-weight:500;color:var(--text);line-height:1.6;}
+
+        /* LANDING PAGE ANATOMY */
+        .anatomy-wrap{margin-top:44px;display:grid;grid-template-columns:1fr 1.4fr;gap:48px;align-items:start;}
+        .anatomy-left{position:sticky;top:80px;}
+
+        /* Browser mockup of landing page */
+        .browser{background:var(--off);border:1px solid var(--border);border-radius:16px;overflow:hidden;box-shadow:0 16px 56px rgba(0,0,0,.07);}
+        .browser-bar{background:#f0f0f0;border-bottom:1px solid var(--border);padding:10px 14px;display:flex;align-items:center;gap:8px;}
+        .b-dot{width:9px;height:9px;border-radius:50%;}
+        .b-url{flex:1;background:#e0e0e0;border-radius:100px;padding:4px 10px;font-size:8.5px;color:#777;margin-left:8px;font-family:monospace;}
+        .browser-screen{background:#0a0a0a;font-family:var(--font-b);}
+
+        /* Landing page sections inside browser */
+        .lp-section{position:relative;}
+        .lp-section.highlighted{outline:2px solid var(--orange);outline-offset:-2px;z-index:2;}
+        .lp-popup{
+            position:absolute;inset:0;background:rgba(0,0,0,.7);display:flex;align-items:center;justify-content:center;z-index:10;
+        }
+        .lp-popup-box{background:#1a1a1a;border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:16px 18px;width:78%;text-align:center;}
+        .lp-popup-title{font-size:9px;font-weight:700;color:#fff;line-height:1.4;margin-bottom:8px;}
+        .lp-popup-sub{font-size:7.5px;color:rgba(255,255,255,.4);margin-bottom:10px;line-height:1.5;}
+        .lp-popup-cta{background:var(--orange);border-radius:100px;padding:5px 14px;font-size:8px;font-weight:700;color:#fff;display:inline-block;}
+        .lp-popup-no{font-size:7px;color:rgba(255,255,255,.25);margin-top:5px;text-decoration:underline;}
+
+        /* Hero section of landing */
+        .lp-hero{padding:20px 18px 16px;text-align:center;}
+        .lp-hero-h{font-size:10.5px;font-weight:800;color:#fff;line-height:1.3;margin-bottom:6px;font-family:var(--font-d);}
+        .lp-hero-sub{font-size:7.5px;color:rgba(255,255,255,.45);margin-bottom:10px;line-height:1.5;}
+        .lp-hero-cta{background:var(--orange);border-radius:100px;padding:6px 16px;font-size:8.5px;font-weight:700;color:#fff;display:inline-block;}
+        .lp-hero-no{font-size:7px;color:rgba(255,255,255,.25);margin-top:5px;text-decoration:underline;}
+
+        /* Pricing section */
+        .lp-pricing{padding:12px 14px;background:#111;border-top:1px solid rgba(255,255,255,.07);}
+        .lp-pricing-title{font-size:9px;font-weight:700;color:rgba(255,255,255,.6);text-align:center;margin-bottom:8px;}
+        .lp-price-row{display:flex;gap:6px;}
+        .lp-price-card{flex:1;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:6px;padding:8px 6px;text-align:center;}
+        .lp-price-card.featured{border-color:rgba(255,126,0,.4);background:rgba(255,126,0,.06);}
+        .lp-price-val{font-size:8px;font-weight:700;color:var(--orange);}
+        .lp-price-name{font-size:7px;color:rgba(255,255,255,.4);margin-top:3px;}
+
+        /* Social proof section */
+        .lp-proof{padding:12px 14px;background:#0f0f0f;border-top:1px solid rgba(255,255,255,.05);}
+        .lp-proof-row{display:flex;justify-content:space-around;}
+        .lp-proof-item{text-align:center;}
+        .lp-proof-num{font-size:11px;font-weight:800;color:var(--orange);font-family:var(--font-d);}
+        .lp-proof-label{font-size:6.5px;color:rgba(255,255,255,.3);margin-top:2px;}
+
+        /* Scarcity badge */
+        .lp-scarcity{padding:8px 14px;background:rgba(22,163,74,.08);border-top:1px solid rgba(22,163,74,.15);text-align:center;}
+        .lp-scarcity-text{font-size:8px;font-weight:600;color:#4ade80;}
+
+        /* Pain points section */
+        .lp-pain{padding:10px 14px;background:#111;border-top:1px solid rgba(255,255,255,.05);}
+        .lp-pain-title{font-size:8.5px;font-weight:700;color:#fff;margin-bottom:5px;}
+        .lp-pain-item{font-size:7px;color:rgba(255,255,255,.35);padding:2px 0;}
+
+        /* Final CTA section */
+        .lp-final{padding:14px;background:#0a0a0a;border-top:1px solid rgba(255,255,255,.05);text-align:center;}
+        .lp-final-h{font-size:9.5px;font-weight:700;color:#fff;margin-bottom:8px;line-height:1.4;}
+        .lp-final-cta{background:var(--orange);border-radius:100px;padding:6px 16px;font-size:8px;font-weight:700;color:#fff;display:inline-block;}
+
+        /* Annotation label for highlighted section */
+        .section-number{
+            position:absolute;top:50%;left:-28px;transform:translateY(-50%);
+            width:22px;height:22px;border-radius:50%;background:var(--orange);
+            display:flex;align-items:center;justify-content:center;
+            font-size:10px;font-weight:800;color:#fff;flex-shrink:0;z-index:5;
+        }
+
+        /* DECISIONS LIST */
+        .decisions-list{display:flex;flex-direction:column;gap:0;}
+        .decision-item{
+            display:flex;gap:20px;align-items:flex-start;
+            padding:24px 0;border-bottom:1px solid var(--border);cursor:pointer;
+            transition:background .2s;
+        }
+        .decision-item:last-child{border-bottom:none;}
+        .dec-num-badge{
+            width:32px;height:32px;border-radius:50%;border:1.5px solid var(--border);
+            display:flex;align-items:center;justify-content:center;
+            font-size:12px;font-weight:800;color:var(--light);flex-shrink:0;margin-top:2px;
+            transition:background .2s,border-color .2s,color .2s;
+        }
+        .decision-item.active .dec-num-badge{background:var(--orange);border-color:var(--orange);color:#fff;}
+        .dec-content{}
+        .dec-name{font-size:16px;font-weight:700;color:var(--text);letter-spacing:-.015em;margin-bottom:5px;}
+        .dec-explain{font-size:14px;font-weight:300;color:var(--muted);line-height:1.75;}
+        .dec-explain strong{font-weight:600;color:var(--text);}
+        .dec-tag-row{display:flex;gap:6px;margin-top:10px;flex-wrap:wrap;}
+        .dec-chip{font-size:10.5px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;padding:3px 10px;border-radius:100px;background:var(--off);border:1px solid var(--border);color:var(--light);}
+        .dec-chip.orange{background:rgba(255,126,0,.07);border-color:rgba(255,126,0,.2);color:var(--orange);}
+        .dec-chip.green{background:rgba(22,163,74,.07);border-color:rgba(22,163,74,.2);color:var(--green);}
+
+        /* METRICS */
+        .metrics-section{padding:80px;background:#0f0f0f;}
+        .metrics-eyebrow{font-size:10.5px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.25);margin-bottom:10px;}
+        .metrics-title{font-family:var(--font-d);font-weight:700;font-size:clamp(26px,3vw,40px);letter-spacing:-.03em;color:#fff;line-height:1.1;margin-bottom:44px;}
+        .metrics-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:40px;}
+        .met-card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:16px;padding:28px 24px;position:relative;overflow:hidden;}
+        .met-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;}
+        .met-card.orange::before{background:var(--orange);}
+        .met-card.green::before{background:var(--green);}
+        .met-card.blue::before{background:#60a5fa;}
+        .met-num{font-family:var(--font-d);font-size:52px;font-weight:800;letter-spacing:-.05em;line-height:1;margin-bottom:8px;}
+        .met-num.orange{color:var(--orange);}
+        .met-num.green{color:var(--green);}
+        .met-num.blue{color:#60a5fa;}
+        .met-label{font-size:14px;font-weight:500;color:rgba(255,255,255,.6);margin-bottom:5px;}
+        .met-sub{font-size:12px;font-weight:300;color:rgba(255,255,255,.3);line-height:1.6;}
+
+        /* LEARNINGS */
+        .learnings-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+        .learn-card{background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.06);border-radius:14px;padding:22px;}
+        .learn-icon{font-size:18px;margin-bottom:10px;}
+        .learn-title{font-size:14px;font-weight:600;color:rgba(255,255,255,.8);margin-bottom:5px;}
+        .learn-body{font-size:13px;font-weight:300;color:rgba(255,255,255,.4);line-height:1.7;}
+
+        /* NEXT */
+        .next-section{padding:80px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;gap:32px;flex-wrap:wrap;}
+        .next-label{font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--light);margin-bottom:10px;}
+        .next-title{font-family:var(--font-d);font-size:clamp(22px,3vw,34px);font-weight:700;letter-spacing:-.03em;color:var(--text);}
+        .next-btns{display:flex;gap:10px;flex-wrap:wrap;flex-shrink:0;}
+        .n-btn{display:inline-flex;align-items:center;gap:7px;padding:12px 22px;border-radius:100px;font-size:13px;font-weight:500;text-decoration:none;transition:transform .28s var(--ease),background .2s,color .2s;}
+        .n-fill{background:var(--text);color:#fff;}
+        .n-fill:hover{background:var(--orange);transform:scale(1.04);}
+        .n-out{background:transparent;color:var(--muted);border:1.5px solid var(--border);}
+        .n-out:hover{color:var(--text);border-color:#bbb;transform:scale(1.03);}
+
+        /* ── HAMBURGER ───────────────────────────────────── */
+        .hamburger{display:flex;flex-direction:column;gap:5px;cursor:pointer;padding:8px;background:none;border:none;z-index:200;}
+        .hamburger span{display:block;width:20px;height:1.5px;background:var(--text);border-radius:2px;transition:transform .38s var(--ease),opacity .22s;transform-origin:center;}
+        .hamburger.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg);}
+        .hamburger.open span:nth-child(2){opacity:0;transform:scaleX(0);}
+        .hamburger.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg);}
+
+        /* ── DRAWER ──────────────────────────────────────── */
+        .drawer-overlay{position:fixed;inset:0;z-index:300;background:rgba(0,0,0,.5);opacity:0;pointer-events:none;transition:opacity .35s var(--ease);backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px);}
+        .drawer-overlay.open{opacity:1;pointer-events:all;}
+        .drawer{position:fixed;top:0;right:0;bottom:0;z-index:400;width:320px;max-width:90vw;background:#fff;transform:translateX(100%);transition:transform .45s var(--ease);padding:80px 32px 40px;display:flex;flex-direction:column;overflow-y:auto;box-shadow:-16px 0 48px rgba(0,0,0,.2);}
+        .drawer.open{transform:translateX(0);}
+        .drawer-close{position:absolute;top:20px;right:20px;background:var(--off);border:1px solid var(--border);border-radius:100px;width:36px;height:36px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:13px;color:var(--muted);transition:background .2s;}
+        .drawer-close:hover{background:var(--border);}
+        .drawer-label{font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--orange);margin-bottom:18px;}
+        .drawer-nav{display:flex;flex-direction:column;margin-bottom:28px;}
+        .drawer-nav a{font-family:var(--font-d);font-size:24px;font-weight:700;letter-spacing:-.03em;color:#0a0a0a;text-decoration:none;padding:8px 0;border-bottom:1px solid #e8e8e8;line-height:1.2;transition:color .2s,padding-left .3s var(--ease);}
+        .drawer-nav a:last-child{border-bottom:none;}
+        .drawer-nav a:hover{color:var(--orange);padding-left:6px;}
+        .drawer-current{color:var(--orange) !important;}
+        .drawer-divider{height:1px;background:#e8e8e8;margin:4px 0 20px;}
+        .drawer-section-title{font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#a0a0a0;margin-bottom:10px;}
+        .drawer-social-row{display:flex;flex-direction:column;gap:0;}
+        .drawer-social-link{font-size:14px;font-weight:500;color:#5a5a5a;text-decoration:none;transition:color .2s;padding:8px 0;border-bottom:1px solid #e8e8e8;}
+        .drawer-social-link:last-child{border-bottom:none;}
+        .drawer-social-link:hover{color:var(--orange);}
+
+        /* ── RIGHT SIDEBAR ───────────────────────────────── */
+        .right-sidebar{position:fixed;right:36px;top:50%;transform:translateY(-50%);z-index:90;display:flex;flex-direction:column;gap:0;align-items:flex-end;}
+        .rsb-item{display:flex;flex-direction:row-reverse;align-items:center;gap:10px;padding:6px 0;cursor:pointer;transition:opacity .2s;}
+        .rsb-item:not(.active){opacity:.3;}
+        .rsb-dot{width:6px;height:6px;border-radius:50%;background:rgba(0,0,0,.25);flex-shrink:0;transition:background .3s var(--ease),width .3s var(--ease),border-radius .3s;}
+        .rsb-item.active .rsb-dot{background:var(--orange);width:20px;border-radius:3px;}
+        .rsb-label{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;white-space:nowrap;opacity:0;transition:opacity .2s,transform .2s;transform:translateX(4px);background:rgba(255,255,255,.92);color:#111;padding:2px 7px;border-radius:4px;box-shadow:0 1px 6px rgba(0,0,0,.15);}
+        .rsb-item.active .rsb-label{opacity:1;transform:none;}
+        .rsb-line{width:1px;height:16px;background:rgba(0,0,0,.1);margin-right:9px;}
+        @media(max-width:1024px){.right-sidebar{display:none;}}
+
+        /* ── SITE FOOTER ─────────────────────────────────── */
+        .site-footer{background:var(--off);border-top:1px solid var(--border);padding:60px 80px;}
+        .footer-inner{display:flex;justify-content:space-between;align-items:flex-start;gap:48px;flex-wrap:wrap;}
+        .footer-logo{font-family:var(--font-d);font-weight:800;font-size:20px;color:var(--text);text-decoration:none;letter-spacing:-.04em;}
+        .footer-logo span{color:var(--orange);}
+        .footer-copy{font-size:12px;color:var(--light);margin-top:8px;}
+        .footer-links{display:flex;gap:48px;flex-wrap:wrap;}
+        .footer-col{display:flex;flex-direction:column;gap:10px;}
+        .footer-col-title{font-size:10px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--light);margin-bottom:4px;}
+        .footer-col a{font-size:13px;color:var(--muted);text-decoration:none;transition:color .2s;}
+        .footer-col a:hover{color:var(--text);}
+
+        @media(max-width:960px){.anatomy-wrap{grid-template-columns:1fr;}.anatomy-left{position:static;}.hero-meta{grid-template-columns:1fr 1fr;}.metrics-grid{grid-template-columns:1fr;}.learnings-grid{grid-template-columns:1fr;}.context-grid{grid-template-columns:1fr;}}
+        @media(max-width:680px){nav.site-nav{padding:0 20px;}.hero,.section,.metrics-section,.next-section{padding-left:24px;padding-right:24px;}.back-link{padding:60px 24px 0;}.next-section{flex-direction:column-reverse;}.next-section>div:last-child{width:100% !important;}.site-footer{padding:40px 24px;}.footer-inner{flex-direction:column;gap:32px;}.footer-links{gap:24px;}}
+    </style>
+</head>
+<body>
+
+<nav class="site-nav">
+    <a href="../index.html" class="nav-logo">EA<span>.</span></a>
+    <div style="display:flex;align-items:center;gap:12px;">
+        <span class="nav-tag">Conversion Landing</span>
+        <button class="hamburger" id="ham-btn" aria-label="Menu">
+            <span></span><span></span><span></span>
+        </button>
+    </div>
+</nav>
+
+<!-- DRAWER -->
+<div class="drawer-overlay" id="overlay"></div>
+<aside class="drawer" id="drawer">
+    <button class="drawer-close" id="dclose">✕</button>
+    <p class="drawer-label">Navigation</p>
+    <nav class="drawer-nav">
+        <a href="../index.html">Home</a>
+        <a href="../about.html">About me</a>
+    </nav>
+    <div class="drawer-divider"></div>
+    <p class="drawer-section-title">Projects</p>
+    <nav class="drawer-nav">
+        <a href="../gonow/index.html">GoNow</a>
+        <a href="../pw-digital/index.html">Pipeline Automation</a>
+        <a href="../youtube-music/index.html">YouTube Music</a>
+        <a href="index.html" class="drawer-current">Conversion Landing</a>
+    </nav>
+    <div class="drawer-divider"></div>
+    <p class="drawer-section-title">Connect</p>
+    <div class="drawer-social-row">
+        <a href="https://www.behance.net/esteban13" target="_blank" class="drawer-social-link">Behance ↗</a>
+        <a href="https://www.linkedin.com/in/estebandrade13/" target="_blank" class="drawer-social-link">LinkedIn ↗</a>
+        <a href="mailto:isaiandrade7.ea@gmail.com" class="drawer-social-link">Email</a>
+    </div>
+</aside>
+
+<!-- RIGHT SIDEBAR -->
+<aside class="right-sidebar" id="right-sb">
+    <div class="rsb-item active" data-target="sec-lp-hero"><div class="rsb-dot"></div><span class="rsb-label">Overview</span></div>
+    <div class="rsb-line"></div>
+    <div class="rsb-item" data-target="sec-lp-brief"><div class="rsb-dot"></div><span class="rsb-label">Brief</span></div>
+    <div class="rsb-line"></div>
+    <div class="rsb-item" data-target="sec-lp-decisions"><div class="rsb-dot"></div><span class="rsb-label">Decisions</span></div>
+    <div class="rsb-line"></div>
+    <div class="rsb-item" data-target="sec-lp-results"><div class="rsb-dot"></div><span class="rsb-label">Results</span></div>
+</aside>
+
+<!-- BACK LINK -->
+<a href="../index.html" class="back-link">← Portfolio</a>
+
+<!-- HERO -->
+<section class="hero" id="sec-lp-hero">
+    <div class="hero-kicker rv">
+        <span class="kicker-pill green">Real project</span>
+        <span class="kicker-pill">Conversion Landing</span>
+        <span class="kicker-pill">B2B Lead Gen</span>
+        <span class="kicker-pill">Webflow</span>
+    </div>
+    <h1 class="hero-h1 rv d1">75 leads<br>in <em>7 days.</em></h1>
+    <p class="hero-sub rv d2">A B2B landing page built to convert cold traffic into qualified contacts. One page, five decisions, measurable results.</p>
+    <div class="hero-meta rv d3">
+        <div class="meta-cell"><span class="meta-label">Client</span><span class="meta-val">B2B Agency</span></div>
+        <div class="meta-cell"><span class="meta-label">Goal</span><span class="meta-val">B2B lead generation</span></div>
+        <div class="meta-cell"><span class="meta-label">Platform</span><span class="meta-val">Webflow</span></div>
+        <div class="meta-cell"><span class="meta-label">Result</span><span class="meta-val" style="color:var(--green);">75 leads / week</span></div>
+    </div>
+</section>
+
+<!-- CONTEXT -->
+<section class="section section-border" id="sec-lp-brief">
+    <p class="s-eyebrow rv">The brief</p>
+    <h2 class="s-title rv d1">Cold traffic from Facebook Ads.<br>No testimonials. One week to ship.</h2>
+    <p class="s-body rv d2">A B2B agency needed a landing page to convert cold traffic into qualified contacts. The audience knew their marketing wasn't working — they just didn't know who to trust. The page had to <em>speak to that frustration</em>, not pitch a product.</p>
+    <div class="context-grid">
+        <div class="ctx-card rv d1">
+            <div class="ctx-label">Target audience</div>
+            <div class="ctx-val">SMBs spending on digital marketing with inconsistent results. Business owners, not marketing professionals.</div>
+        </div>
+        <div class="ctx-card rv d2">
+            <div class="ctx-label">Traffic source</div>
+            <div class="ctx-val">Facebook Ads and organic traffic. Cold audience — most visitors had zero prior brand awareness.</div>
+        </div>
+        <div class="ctx-card rv d3">
+            <div class="ctx-label">Offer</div>
+            <div class="ctx-val">A free diagnostic guide — low-friction lead magnet that delivers value before asking for commitment.</div>
+        </div>
+        <div class="ctx-card rv d4">
+            <div class="ctx-label">Constraint</div>
+            <div class="ctx-val">No case study testimonials to use. Social proof had to come from metrics and market presence instead.</div>
+        </div>
+    </div>
+</section>
+
+<!-- ANATOMY + DECISIONS -->
+<section class="section section-border" id="sec-lp-decisions">
+    <p class="s-eyebrow rv">5 decisions that drove conversion</p>
+    <h2 class="s-title rv d1">Every element on the page<br>had a job to do.</h2>
+    <div class="anatomy-wrap">
+
+        <!-- Browser mockup -->
+        <div class="anatomy-left rv">
+            <div class="browser">
+                <div class="browser-bar">
+                    <div class="b-dot" style="background:#ff5f57;"></div>
+                    <div class="b-dot" style="background:#febc2e;"></div>
+                    <div class="b-dot" style="background:#28c840;"></div>
+                    <div class="b-url">pwdigitalsolutions.com/landing-pages/pw-client-survey</div>
+                </div>
+                <div class="browser-screen">
+
+                    <!-- EXIT INTENT POPUP (Decision 1) -->
+                    <div class="lp-section" id="lp-s1" style="position:relative;">
+                        <!-- Hero behind popup -->
+                        <div class="lp-hero" style="filter:blur(1px);">
+                            <div class="lp-hero-h">¿Vas a dejar tu ecosistema<br>a medio construir?</div>
+                            <div class="lp-hero-sub">Sé que a veces dan ganas de cerrar la pestaña…</div>
+                            <div class="lp-hero-cta">Muéstrame el camino</div>
+                        </div>
+                        <!-- Popup overlay -->
+                        <div class="lp-popup">
+                            <div class="lp-popup-box">
+                                <div class="lp-popup-title">Antes de que te vayas — aprovecha tu guía por tiempo limitado</div>
+                                <div class="lp-popup-sub">Deja de improvisar. La guía ya está lista para ti.</div>
+                                <div class="lp-popup-cta">Muéstrame el camino</div>
+                                <div class="lp-popup-no">Prefiero seguir improvisando.</div>
+                            </div>
+                        </div>
+                        <div class="section-number" style="position:absolute;top:12px;left:-12px;z-index:20;">1</div>
+                    </div>
+
+                    <!-- PRICING TIERS (Decision 2) -->
+                    <div class="lp-section" id="lp-s2" style="position:relative;">
+                        <div class="lp-pricing">
+                            <div class="lp-pricing-title">¿Cuál es tu visión?</div>
+                            <div class="lp-price-row">
+                                <div class="lp-price-card"><div class="lp-price-val">$500–800</div><div class="lp-price-name">Solo Contenido</div></div>
+                                <div class="lp-price-card featured"><div class="lp-price-val">$900–1200</div><div class="lp-price-name">Ecosistema Digital</div></div>
+                                <div class="lp-price-card"><div class="lp-price-val">$3000+</div><div class="lp-price-name">Dominio del Mercado</div></div>
+                            </div>
+                        </div>
+                        <div class="section-number" style="position:absolute;top:50%;transform:translateY(-50%);left:-12px;">2</div>
+                    </div>
+
+                    <!-- PAIN POINTS (Decision 3) -->
+                    <div class="lp-section" id="lp-s3" style="position:relative;">
+                        <div class="lp-pain">
+                            <div class="lp-pain-title">Construimos sobre datos, no suposiciones</div>
+                            <div class="lp-pain-item">⚠ Sistemas rotos</div>
+                            <div class="lp-pain-item">⚠ Agencias sin estrategia</div>
+                            <div class="lp-pain-item">⚠ Tráfico que no convierte</div>
+                            <div class="lp-pain-item">⚠ Campañas sin seguimiento</div>
+                        </div>
+                        <div class="section-number" style="position:absolute;top:50%;transform:translateY(-50%);left:-12px;">3</div>
+                    </div>
+
+                    <!-- SOCIAL PROOF (Decision 4) -->
+                    <div class="lp-section" id="lp-s4" style="position:relative;">
+                        <div class="lp-proof">
+                            <div class="lp-proof-row">
+                                <div class="lp-proof-item"><div class="lp-proof-num">4</div><div class="lp-proof-label">Países</div></div>
+                                <div class="lp-proof-item"><div class="lp-proof-num">+40%</div><div class="lp-proof-label">Tráfico orgánico</div></div>
+                                <div class="lp-proof-item"><div class="lp-proof-num">+30%</div><div class="lp-proof-label">Generación leads</div></div>
+                                <div class="lp-proof-item"><div class="lp-proof-num">+44%</div><div class="lp-proof-label">Reconocimiento</div></div>
+                            </div>
+                        </div>
+                        <div class="section-number" style="position:absolute;top:50%;transform:translateY(-50%);left:-12px;">4</div>
+                    </div>
+
+                    <!-- SCARCITY + FINAL CTA (Decision 5) -->
+                    <div class="lp-section" id="lp-s5" style="position:relative;">
+                        <div class="lp-scarcity"><div class="lp-scarcity-text">⏳ Solo 5 cupos disponibles para guías gratuitas este mes.</div></div>
+                        <div class="lp-final">
+                            <div class="lp-final-h">Tu negocio merece una infraestructura<br>que lo haga crecer de forma predecible.</div>
+                            <div class="lp-final-cta">Solicitar mi diagnóstico</div>
+                        </div>
+                        <div class="section-number" style="position:absolute;top:16px;left:-12px;">5</div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Decisions list -->
+        <div class="decisions-list rv d1">
+
+            <div class="decision-item active">
+                <div class="dec-num-badge">1</div>
+                <div class="dec-content">
+                    <div class="dec-name">Exit intent popup with a guilt-free offer</div>
+                    <div class="dec-explain">
+                        When a user moves to close the tab, a popup appears: <strong>"Before you go — claim your free guide."</strong> The copy mirrors the user's hesitation and the "Prefiero seguir improvisando" button makes saying no feel like the worse choice, without being pushy.
+                    </div>
+                    <div class="dec-tag-row">
+                        <span class="dec-chip orange">Exit intent</span>
+                        <span class="dec-chip">Behavioral trigger</span>
+                        <span class="dec-chip green">Lead capture</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="decision-item">
+                <div class="dec-num-badge">2</div>
+                <div class="dec-content">
+                    <div class="dec-name">Budget tiers that self-qualify leads</div>
+                    <div class="dec-explain">
+                        Three investment tiers ($500–800 / $900–1200 / $3000+) anchor the value before asking for contact info and let buyers self-select their budget — so the sales team gets <strong>qualified leads</strong>, not just curious visitors.
+                    </div>
+                    <div class="dec-tag-row">
+                        <span class="dec-chip orange">Price anchoring</span>
+                        <span class="dec-chip">Self-qualification</span>
+                        <span class="dec-chip">Sales enablement</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="decision-item">
+                <div class="dec-num-badge">3</div>
+                <div class="dec-content">
+                    <div class="dec-name">Pain-first copy, not feature-first</div>
+                    <div class="dec-explain">
+                        <strong>"Sistemas rotos. Agencias sin estrategia. Tráfico que no convierte."</strong> No preamble, no feature list. The visitor reads their own situation back to them — which creates more engagement than any benefit-focused headline.
+                    </div>
+                    <div class="dec-tag-row">
+                        <span class="dec-chip orange">Pain copy</span>
+                        <span class="dec-chip">Empathy trigger</span>
+                        <span class="dec-chip">B2B framing</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="decision-item">
+                <div class="dec-num-badge">4</div>
+                <div class="dec-content">
+                    <div class="dec-name">Metric-based social proof (no testimonials needed)</div>
+                    <div class="dec-explain">
+                        Without testimonials, the proof came from <strong>specific numbers</strong>: 4 countries, +40% organic traffic, +44% brand recognition. The specificity (44%, not "nearly 50%") signals real measurement, not marketing estimates.
+                    </div>
+                    <div class="dec-tag-row">
+                        <span class="dec-chip green">Social proof</span>
+                        <span class="dec-chip">Credibility</span>
+                        <span class="dec-chip">Quantified results</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="decision-item">
+                <div class="dec-num-badge">5</div>
+                <div class="dec-content">
+                    <div class="dec-name">Scarcity that's believable</div>
+                    <div class="dec-explain">
+                        <strong>"Solo 5 cupos disponibles este mes"</strong> — real scarcity, not a fake countdown. The team can only onboard a limited number of diagnoses per month. Placed right before the final CTA, it gives the visitor one last reason to act now.
+                    </div>
+                    <div class="dec-tag-row">
+                        <span class="dec-chip orange">Urgency</span>
+                        <span class="dec-chip green">Believable scarcity</span>
+                        <span class="dec-chip">Pre-CTA placement</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- METRICS -->
+<div class="metrics-section" id="sec-lp-results">
+    <p class="metrics-eyebrow rv">The result</p>
+    <h2 class="metrics-title rv d1">A page that worked<br>from day one.</h2>
+    <div class="metrics-grid">
+        <div class="met-card orange rv d1">
+            <div class="met-num orange">75</div>
+            <div class="met-label">Leads in 7 days</div>
+            <div class="met-sub">Cold B2B traffic from Facebook Ads converted into qualified contacts with name, email, and budget information.</div>
+        </div>
+        <div class="met-card green rv d2">
+            <div class="met-num green">5</div>
+            <div class="met-label">Conversion decisions</div>
+            <div class="met-sub">Every section on the page had a specific job — no decorative content. Exit intent, pricing, pain copy, proof, scarcity.</div>
+        </div>
+        <div class="met-card blue rv d3">
+            <div class="met-num blue">B2B</div>
+            <div class="met-label">Qualified lead profile</div>
+            <div class="met-sub">Budget-tier selection means each lead arrives pre-qualified. The sales team knows the prospect's investment range before the first call.</div>
+        </div>
+    </div>
+    <div class="learnings-grid rv d2">
+        <div class="learn-card">
+            <div class="learn-icon">💡</div>
+            <div class="learn-title">Pain resonates more than features</div>
+            <div class="learn-body">"Tráfico que no convierte" lands harder than "optimized paid media." Name the frustration the visitor already feels.</div>
+        </div>
+        <div class="learn-card">
+            <div class="learn-icon">⚡</div>
+            <div class="learn-title">The free offer has to feel worth taking</div>
+            <div class="learn-body">The lead magnet worked because it offered value before asking for a call. The opt-out button made declining feel like the wrong choice.</div>
+        </div>
+        <div class="learn-card">
+            <div class="learn-icon">📊</div>
+            <div class="learn-title">Specificity builds credibility</div>
+            <div class="learn-body">"+44% brand recognition" outperforms "improved brand awareness" — precise numbers imply real measurement, not marketing estimates.</div>
+        </div>
+        <div class="learn-card">
+            <div class="learn-icon">🎯</div>
+            <div class="learn-title">Let the user tell you their budget</div>
+            <div class="learn-body">Pricing tiers let prospects self-qualify before the first call. The sales team stopped spending time on unqualified leads.</div>
+        </div>
+    </div>
+</div>
+
+<!-- NEXT -->
+<div class="next-section rv" style="gap:48px;">
+    <div>
+        <div class="next-label">Up next</div>
+        <div class="next-title">GoNow</div>
+        <p style="font-size:14px;font-weight:300;color:var(--muted);max-width:340px;line-height:1.7;margin:10px 0 24px;">Urban mobility app for Quito. Designed for riders who need to book intercity buses fast, on any connection.</p>
+        <div class="next-btns">
+            <a href="../gonow/index.html" class="n-btn n-fill">View case study ↗</a>
+            <a href="../index.html" class="n-btn n-out">Back to portfolio</a>
+        </div>
+    </div>
+    <div style="width:260px;flex-shrink:0;border-radius:16px;overflow:hidden;border:1px solid var(--border);background:var(--off);">
+        <img src="../gonow/images/Home.webp" alt="GoNow app preview" style="width:100%;display:block;object-fit:cover;">
+    </div>
+</div>
+
+<footer class="site-footer">
+    <div class="footer-inner">
+        <div>
+            <a href="../index.html" class="footer-logo">EA<span>.</span></a>
+            <p class="footer-copy">© 2026 Esteban Andrade</p>
+        </div>
+        <div class="footer-links">
+            <div class="footer-col">
+                <p class="footer-col-title">Projects</p>
+                <a href="../gonow/index.html">GoNow</a>
+                <a href="../pw-digital/index.html">Pipeline Automation</a>
+                <a href="../youtube-music/index.html">YouTube Music</a>
+                <a href="index.html">Conversion Landing</a>
+            </div>
+            <div class="footer-col">
+                <p class="footer-col-title">Connect</p>
+                <a href="https://www.behance.net/esteban13" target="_blank">Behance ↗</a>
+                <a href="https://www.linkedin.com/in/estebandrade13/" target="_blank">LinkedIn ↗</a>
+                <a href="mailto:isaiandrade7.ea@gmail.com">Email</a>
+                <a href="../about.html">About</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script>
+const obs=new IntersectionObserver((e)=>{e.forEach(el=>{if(el.isIntersecting){el.target.classList.add('on');obs.unobserve(el.target);}});},{threshold:0.06,rootMargin:'0px 0px -28px 0px'});
+document.querySelectorAll('.rv').forEach(el=>obs.observe(el));
+setTimeout(()=>{document.querySelectorAll('.hero .rv').forEach(el=>el.classList.add('on'));},60);
+
+// Highlight landing page sections on decision hover
+document.querySelectorAll('.decision-item').forEach((item,i)=>{
+    item.addEventListener('mouseenter',()=>{
+        document.querySelectorAll('.decision-item').forEach(d=>d.classList.remove('active'));
+        item.classList.add('active');
+    });
+});
+
+/* Hamburger */
+const hamBtn=document.getElementById('ham-btn');
+const drawer=document.getElementById('drawer');
+const overlay=document.getElementById('overlay');
+const dclose=document.getElementById('dclose');
+function openDrawer(){hamBtn.classList.add('open');drawer.classList.add('open');overlay.classList.add('open');document.body.style.overflow='hidden';}
+function closeDrawer(){hamBtn.classList.remove('open');drawer.classList.remove('open');overlay.classList.remove('open');document.body.style.overflow='';}
+hamBtn.addEventListener('click',openDrawer);
+dclose.addEventListener('click',closeDrawer);
+overlay.addEventListener('click',closeDrawer);
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeDrawer();});
+
+/* Right sidebar */
+const rsbSecs=['sec-lp-hero','sec-lp-brief','sec-lp-decisions','sec-lp-results'];
+const rsbItems=document.querySelectorAll('.rsb-item');
+function updateRsb(){
+    let active=0;
+    rsbSecs.forEach((id,i)=>{const el=document.getElementById(id);if(el&&el.getBoundingClientRect().top<=window.innerHeight*0.45)active=i;});
+    rsbItems.forEach((item,i)=>item.classList.toggle('active',i===active));
+}
+window.addEventListener('scroll',updateRsb,{passive:true});
+rsbItems.forEach(item=>item.addEventListener('click',()=>{
+    const el=document.getElementById(item.dataset.target);
+    if(el)el.scrollIntoView({behavior:'smooth',block:'start'});
+}));
+updateRsb();
+
+/* Smart nav */
+let lastScrollLP=0;
+const siteNavLP=document.querySelector('.site-nav');
+window.addEventListener('scroll',()=>{
+    const c=window.scrollY;
+    if(c>lastScrollLP&&c>100)siteNavLP.classList.add('nav-hidden');
+    else siteNavLP.classList.remove('nav-hidden');
+    lastScrollLP=Math.max(0,c);
+},{passive:true});
+</script>
+</body>
+</html>

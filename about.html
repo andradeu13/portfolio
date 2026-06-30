@@ -1,0 +1,902 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Esteban Andrade — My Story</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --white:  #ffffff;
+            --off:    #f7f7f7;
+            --text:   #0a0a0a;
+            --muted:  #5a5a5a;
+            --light:  #a0a0a0;
+            --border: #e8e8e8;
+            --dark:   #111111;
+            --orange: #ff7e00;
+            --font-d: 'Bricolage Grotesque', sans-serif;
+            --font-b: 'Plus Jakarta Sans', sans-serif;
+            --ease:   cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: var(--font-b); background: var(--white);
+            color: var(--text); overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ── REVEAL ─────────────────────────────────────── */
+        .rv { opacity: 0; transform: translateY(22px); transition: opacity .7s var(--ease), transform .7s var(--ease); }
+        .rv.on { opacity: 1; transform: none; }
+        .d1 { transition-delay: .08s; } .d2 { transition-delay: .18s; }
+        .d3 { transition-delay: .28s; } .d4 { transition-delay: .38s; }
+
+        /* ── NAV ─────────────────────────────────────────── */
+        nav:not(.sidebar) {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+            height: 60px; padding: 0 60px;
+            background: rgba(255,255,255,.94);
+            backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border);
+            display: flex; align-items: center; justify-content: space-between;
+            transition: transform .38s var(--ease);
+        }
+        nav:not(.sidebar).nav-hidden { transform: translateY(-100%); }
+        .nav-back {
+            display: flex; align-items: center; gap: 8px;
+            font-size: 13px; font-weight: 500; color: var(--muted);
+            text-decoration: none; transition: color .2s;
+        }
+        .nav-back:hover { color: var(--text); }
+        .nav-logo {
+            font-family: var(--font-d); font-weight: 800; font-size: 18px;
+            color: var(--text); text-decoration: none; letter-spacing: -.04em;
+        }
+        .nav-logo span { color: var(--orange); }
+        .nav-work {
+            font-size: 13px; font-weight: 400; color: var(--muted);
+            text-decoration: none; transition: color .2s;
+        }
+        .nav-work:hover { color: var(--text); }
+
+        /* ── MOBILE PROGRESS BAR ─────────────────────────── */
+        .mob-progress {
+            display: none;
+            position: fixed; top: 60px; left: 0; right: 0; z-index: 150;
+            height: 3px; background: var(--border);
+        }
+        .mob-bar {
+            height: 100%; background: var(--orange);
+            width: 0%; transition: width .15s linear;
+        }
+
+        /* ── SIDEBAR PROGRESS ────────────────────────────── */
+        .sidebar {
+            position: fixed; right: 36px; top: 50%;
+            transform: translateY(-50%);
+            z-index: 100; display: flex; flex-direction: column;
+            gap: 0; align-items: flex-end;
+        }
+        .sb-item {
+            display: flex; flex-direction: row-reverse; align-items: center; gap: 12px;
+            padding: 7px 0; cursor: pointer;
+            transition: opacity .2s;
+        }
+        .sb-item:not(.active) { opacity: .35; }
+        .sb-dot {
+            width: 6px; height: 6px; border-radius: 50%;
+            background: var(--light); flex-shrink: 0;
+            transition: background .3s, width .3s var(--ease), border-radius .3s;
+        }
+        .sb-item.active .sb-dot {
+            background: var(--orange); width: 20px; border-radius: 3px;
+        }
+        .sb-label {
+            font-size: 11px; font-weight: 600; letter-spacing: .1em;
+            text-transform: uppercase; color: var(--text);
+            white-space: nowrap; opacity: 0;
+            transition: opacity .2s, transform .2s;
+            transform: translateX(4px);
+        }
+        .sb-item.active .sb-label { opacity: 1; transform: none; }
+        .sb-line {
+            width: 1px; height: 18px; background: var(--border);
+            margin-right: 9px; margin-left: 0;
+        }
+
+        /* ── HERO ────────────────────────────────────────── */
+        .hero {
+            min-height: 75vh; padding: 80px 120px 60px;
+            display: flex; flex-direction: column; justify-content: center;
+            position: relative;
+        }
+        .hero-eyebrow {
+            font-size: 11px; font-weight: 700; letter-spacing: .18em;
+            text-transform: uppercase; color: var(--light); margin-bottom: 28px;
+        }
+        .hero-h1 {
+            font-family: var(--font-d); font-weight: 800;
+            font-size: clamp(56px, 9vw, 118px);
+            letter-spacing: -.045em; line-height: .9;
+            color: var(--text); margin-bottom: 36px;
+        }
+        .hero-h1 em { color: var(--orange); font-style: normal; }
+        .hero-sub {
+            font-size: 20px; font-weight: 300; color: var(--muted);
+            max-width: 520px; line-height: 1.75;
+        }
+        .hero-scroll {
+            position: absolute; bottom: 48px; left: 120px;
+            display: flex; align-items: center; gap: 10px;
+            font-size: 11px; font-weight: 600; letter-spacing: .14em;
+            text-transform: uppercase; color: var(--light);
+        }
+        .scroll-line {
+            width: 32px; height: 1px; background: var(--border);
+            position: relative; overflow: hidden;
+        }
+        .scroll-line::after {
+            content: ''; position: absolute; left: -100%; top: 0;
+            width: 100%; height: 100%; background: var(--orange);
+            animation: sweep 1.8s ease-in-out infinite;
+        }
+        @keyframes sweep { 0% { left:-100%; } 100% { left:200%; } }
+
+        /* ── CHAPTERS ────────────────────────────────────── */
+        .chapter {
+            padding: 64px 120px;
+            border-top: 1px solid var(--border);
+            max-width: 100%;
+        }
+        .chapter-inner {
+            display: grid; grid-template-columns: 220px 1fr; gap: 64px;
+            align-items: start; max-width: 1000px;
+        }
+        .chapter-left { padding-top: 8px; }
+        .chapter-num {
+            font-family: var(--font-d); font-size: 72px; font-weight: 800;
+            letter-spacing: -.06em; line-height: 1;
+            color: transparent; -webkit-text-stroke: 1.5px var(--border);
+            margin-bottom: 16px; user-select: none;
+        }
+        .chapter-year {
+            display: inline-flex; align-items: center;
+            background: rgba(255,126,0,.08); border: 1px solid rgba(255,126,0,.2);
+            color: var(--orange); font-size: 11px; font-weight: 700;
+            letter-spacing: .1em; text-transform: uppercase;
+            padding: 4px 10px; border-radius: 100px; margin-bottom: 10px;
+        }
+        .chapter-label {
+            font-size: 12px; font-weight: 500; color: var(--light);
+            letter-spacing: .04em;
+        }
+        .chapter-right {}
+        .chapter-title {
+            font-family: var(--font-d); font-size: clamp(28px, 3vw, 40px);
+            font-weight: 700; letter-spacing: -.03em; color: var(--text);
+            margin-bottom: 20px; line-height: 1.15;
+        }
+        .chapter-body {
+            font-size: 17px; font-weight: 300; color: var(--muted);
+            line-height: 1.85; max-width: 640px;
+        }
+        .chapter-body p { margin-bottom: 18px; }
+        .chapter-body p:last-child { margin-bottom: 0; }
+        .chapter-body strong { font-weight: 600; color: var(--text); }
+        .chapter-body em { font-style: normal; color: var(--orange); font-weight: 500; }
+
+        /* Tags inside chapters */
+        .chapter-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 24px; }
+        .c-tag {
+            font-size: 11px; font-weight: 600; letter-spacing: .05em;
+            text-transform: uppercase; color: var(--muted);
+            background: var(--off); border: 1px solid var(--border);
+            padding: 4px 10px; border-radius: 100px;
+        }
+
+        /* Pull quote */
+        .pull {
+            border-left: 2.5px solid var(--orange);
+            padding-left: 20px; margin: 28px 0;
+            font-size: 18px; font-weight: 500; color: var(--text);
+            line-height: 1.65; font-family: var(--font-d); letter-spacing: -.015em;
+            max-width: 540px;
+        }
+
+        /* Metric pills inside chapters */
+        .metrics { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 24px; }
+        .metric {
+            display: flex; flex-direction: column; gap: 2px;
+            background: var(--off); border: 1px solid var(--border);
+            padding: 14px 20px; border-radius: 14px;
+        }
+        .metric-n {
+            font-family: var(--font-d); font-size: 26px; font-weight: 800;
+            letter-spacing: -.04em; color: var(--text);
+        }
+        .metric-n em { color: var(--orange); font-style: normal; }
+        .metric-l { font-size: 11px; color: var(--light); font-weight: 300; }
+
+        /* ── SUMMARY / CV ────────────────────────────────── */
+        .summary {
+            background: var(--dark); padding: 80px 120px;
+            border-top: 1px solid rgba(255,255,255,.04);
+        }
+        .sum-eyebrow {
+            font-size: 11px; font-weight: 700; letter-spacing: .18em;
+            text-transform: uppercase; color: var(--orange); margin-bottom: 16px;
+        }
+        .sum-h2 {
+            font-family: var(--font-d); font-weight: 800;
+            font-size: clamp(32px, 4vw, 56px); letter-spacing: -.04em;
+            color: var(--white); margin-bottom: 64px; line-height: .95;
+        }
+
+        .sum-grid {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 64px;
+        }
+        .sum-col {}
+        .sum-section-title {
+            font-size: 10.5px; font-weight: 700; letter-spacing: .18em;
+            text-transform: uppercase; color: rgba(255,255,255,.3);
+            margin-bottom: 24px; padding-bottom: 12px;
+            border-bottom: 1px solid rgba(255,255,255,.06);
+        }
+
+        /* Experience timeline */
+        .exp-item {
+            display: flex; gap: 18px; margin-bottom: 28px;
+            padding-bottom: 28px; border-bottom: 1px solid rgba(255,255,255,.04);
+        }
+        .exp-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+        .exp-dot-col { display: flex; flex-direction: column; align-items: center; padding-top: 5px; }
+        .exp-dot {
+            width: 8px; height: 8px; border-radius: 50%;
+            background: rgba(255,255,255,.15); flex-shrink: 0;
+        }
+        .exp-dot.current { background: var(--orange); box-shadow: 0 0 0 3px rgba(255,126,0,.18); }
+        .exp-dot-line {
+            width: 1px; flex: 1; background: rgba(255,255,255,.06);
+            margin-top: 6px; min-height: 20px;
+        }
+        .exp-content {}
+        .exp-role {
+            font-family: var(--font-d); font-size: 16px; font-weight: 700;
+            color: var(--white); letter-spacing: -.015em; margin-bottom: 2px;
+        }
+        .exp-company {
+            font-size: 13px; font-weight: 400; color: rgba(255,255,255,.5);
+        }
+        .exp-period {
+            font-size: 11px; color: rgba(255,255,255,.25); font-weight: 300;
+            margin-top: 4px;
+        }
+        .exp-desc {
+            font-size: 13px; font-weight: 300; color: rgba(255,255,255,.4);
+            line-height: 1.7; margin-top: 8px;
+        }
+
+        /* Education */
+        .edu-item {
+            margin-bottom: 22px; padding-bottom: 22px;
+            border-bottom: 1px solid rgba(255,255,255,.04);
+        }
+        .edu-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+        .edu-school {
+            font-family: var(--font-d); font-size: 15px; font-weight: 700;
+            color: var(--white); letter-spacing: -.01em; margin-bottom: 3px;
+        }
+        .edu-degree { font-size: 13px; color: rgba(255,255,255,.45); font-weight: 300; }
+        .edu-year { font-size: 11px; color: rgba(255,255,255,.22); margin-top: 4px; }
+
+        /* Skills grid */
+        .skills-grid { display: flex; flex-direction: column; gap: 18px; }
+        .skill-group {}
+        .skill-group-name {
+            font-size: 11px; font-weight: 600; letter-spacing: .1em;
+            text-transform: uppercase; color: rgba(255,255,255,.25);
+            margin-bottom: 8px;
+        }
+        .skill-pills { display: flex; flex-wrap: wrap; gap: 6px; }
+        .skill-pill {
+            font-size: 12px; font-weight: 400; color: rgba(255,255,255,.6);
+            background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.08);
+            padding: 5px 12px; border-radius: 100px;
+        }
+
+        /* Certs */
+        .cert-item {
+            display: flex; justify-content: space-between; align-items: flex-start;
+            padding: 14px 0; border-bottom: 1px solid rgba(255,255,255,.04);
+        }
+        .cert-item:first-child { padding-top: 0; }
+        .cert-item:last-child { border-bottom: none; }
+        .cert-name { font-size: 13px; font-weight: 500; color: rgba(255,255,255,.75); }
+        .cert-issuer { font-size: 11px; color: rgba(255,255,255,.28); margin-top: 3px; }
+        .cert-year {
+            font-size: 11px; color: var(--orange); font-weight: 600;
+            background: rgba(255,126,0,.08); border: 1px solid rgba(255,126,0,.2);
+            padding: 3px 9px; border-radius: 100px; flex-shrink: 0;
+        }
+
+        /* Bottom CTA */
+        .sum-cta {
+            margin-top: 64px; padding-top: 48px;
+            border-top: 1px solid rgba(255,255,255,.06);
+            display: flex; align-items: center; justify-content: space-between;
+            flex-wrap: wrap; gap: 24px;
+        }
+        .sum-cta-text {
+            font-family: var(--font-d); font-size: clamp(22px, 3vw, 32px);
+            font-weight: 700; letter-spacing: -.03em; color: var(--white);
+        }
+        .sum-btns { display: flex; gap: 10px; flex-wrap: wrap; }
+        .s-btn {
+            display: inline-flex; align-items: center; gap: 7px;
+            padding: 12px 22px; border-radius: 100px;
+            font-family: var(--font-b); font-size: 13px; font-weight: 500;
+            text-decoration: none; transition: transform .28s var(--ease), background .2s, color .2s;
+        }
+        .s-primary { background: var(--white); color: var(--dark); }
+        .s-primary:hover { background: var(--orange); color: var(--white); transform: scale(1.04); }
+        .s-ghost { background: rgba(255,255,255,.06); color: rgba(255,255,255,.65); border: 1px solid rgba(255,255,255,.1); }
+        .s-ghost:hover { background: rgba(255,255,255,.12); transform: scale(1.03); }
+
+        /* ── RESPONSIVE ──────────────────────────────────── */
+        @media (max-width: 1024px) {
+            .sidebar { display: none; }
+            .mob-progress { display: block; }
+            .chapter-inner { grid-template-columns: 1fr; gap: 28px; }
+            .chapter-num { font-size: 52px; margin-bottom: 8px; }
+            .sum-grid { grid-template-columns: 1fr; gap: 48px; }
+        }
+        @media (max-width: 680px) {
+            nav:not(.sidebar) { padding: 0 20px; }
+            .hero, .chapter, .summary { padding-left: 24px; padding-right: 24px; }
+            .hero-scroll { left: 24px; }
+            .hero { padding-top: 80px; }
+        }
+
+        /* ── FOOTER ──────────────────────────────────────── */
+        .site-footer {
+            background: #0a0a0a; border-top: 1px solid rgba(255,255,255,.06);
+            padding: 60px 120px;
+        }
+        .footer-inner {
+            display: flex; justify-content: space-between; align-items: flex-start;
+            gap: 48px; flex-wrap: wrap;
+        }
+        .footer-brand {}
+        .footer-logo {
+            font-family: var(--font-d); font-weight: 800; font-size: 20px;
+            color: var(--white); text-decoration: none; letter-spacing: -.04em;
+        }
+        .footer-logo span { color: var(--orange); }
+        .footer-copy { font-size: 12px; color: rgba(255,255,255,.25); margin-top: 8px; }
+        .footer-links { display: flex; gap: 48px; flex-wrap: wrap; }
+        .footer-col { display: flex; flex-direction: column; gap: 10px; }
+        .footer-col-title {
+            font-size: 10px; font-weight: 700; letter-spacing: .15em; text-transform: uppercase;
+            color: rgba(255,255,255,.25); margin-bottom: 4px;
+        }
+        .footer-col a {
+            font-size: 13px; color: rgba(255,255,255,.5); text-decoration: none;
+            transition: color .2s;
+        }
+        .footer-col a:hover { color: var(--white); }
+        @media (max-width: 680px) {
+            .site-footer { padding: 48px 24px; }
+            .footer-links { gap: 32px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+    <a href="index.html" class="nav-back">← Back</a>
+    <a href="index.html" class="nav-logo">EA<span>.</span></a>
+    <a href="index.html#work" class="nav-work">Work</a>
+</nav>
+
+<!-- MOBILE PROGRESS -->
+<div class="mob-progress"><div class="mob-bar" id="mob-bar"></div></div>
+
+<!-- SIDEBAR -->
+<nav class="sidebar" id="sidebar" aria-label="Chapter progress">
+    <div class="sb-item active" data-target="ch-intro">
+        <div class="sb-dot"></div>
+        <span class="sb-label">Intro</span>
+    </div>
+    <div class="sb-line"></div>
+    <div class="sb-item" data-target="ch-1">
+        <div class="sb-dot"></div>
+        <span class="sb-label">Origin</span>
+    </div>
+    <div class="sb-line"></div>
+    <div class="sb-item" data-target="ch-2">
+        <div class="sb-dot"></div>
+        <span class="sb-label">Craft</span>
+    </div>
+    <div class="sb-line"></div>
+    <div class="sb-item" data-target="ch-3">
+        <div class="sb-dot"></div>
+        <span class="sb-label">UX</span>
+    </div>
+    <div class="sb-line"></div>
+    <div class="sb-item" data-target="ch-4">
+        <div class="sb-dot"></div>
+        <span class="sb-label">PW Digital</span>
+    </div>
+    <div class="sb-line"></div>
+    <div class="sb-item" data-target="ch-5">
+        <div class="sb-dot"></div>
+        <span class="sb-label">GoNow</span>
+    </div>
+    <div class="sb-line"></div>
+    <div class="sb-item" data-target="ch-summary">
+        <div class="sb-dot"></div>
+        <span class="sb-label">Summary</span>
+    </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="ch-intro">
+    <p class="hero-eyebrow rv">My story</p>
+    <h1 class="hero-h1 rv d1">Design is<br>my <em>craft</em><br>and my<br>process<em>.</em></h1>
+    <p class="hero-sub rv d2">
+        I'm Esteban Andrade — a UX & Product Designer from Quito, Ecuador.
+        Here's how I got here.
+    </p>
+    <div class="hero-scroll rv d3">
+        <div class="scroll-line"></div>
+        Scroll to read
+    </div>
+</section>
+
+<!-- CHAPTER 01 -->
+<section class="chapter" id="ch-1">
+    <div class="chapter-inner">
+        <div class="chapter-left rv">
+            <div class="chapter-num">01</div>
+            <div class="chapter-year">2021</div>
+            <p class="chapter-label">The beginning</p>
+        </div>
+        <div class="chapter-right">
+            <h2 class="chapter-title rv d1">I started with screens,<br>not users.</h2>
+            <div class="chapter-body rv d2">
+                <p>
+                    My first design work was graphic — posters, social media assets, visual identities. I studied multimedia design and audiovisual production at the <strong>Instituto Metropolitano de Diseño</strong>, and I freelanced from day one. Clients would send a brief, I'd send back something that looked good.
+                </p>
+                <p>
+                    It worked. But something was missing. I was designing for aesthetics, not for people. I was making things look right without asking whether they were the right things to make.
+                </p>
+            </div>
+            <div class="chapter-tags rv d3">
+                <span class="c-tag">Visual Design</span>
+                <span class="c-tag">Branding</span>
+                <span class="c-tag">Freelance</span>
+                <span class="c-tag">Illustrator</span>
+                <span class="c-tag">Photoshop</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CHAPTER 02 -->
+<section class="chapter" id="ch-2">
+    <div class="chapter-inner">
+        <div class="chapter-left rv">
+            <div class="chapter-num">02</div>
+            <div class="chapter-year">2023 – 2024</div>
+            <p class="chapter-label">First real challenges</p>
+        </div>
+        <div class="chapter-right">
+            <h2 class="chapter-title rv d1">I felt the gap between<br>what looks good<br>and what actually works.</h2>
+            <div class="chapter-body rv d2">
+                <p>
+                    My internship at <strong>VSinnova</strong> put me in front of medical and tech brands — audiences with real stakes. Then at the <strong>Universidad Andina Simón Bolívar</strong>, I was designing for an institution that had to communicate clearly across a diverse audience.
+                </p>
+                <p>
+                    Both experiences pushed me to care less about my aesthetic preferences and more about whether the person on the other side understood what they were looking at. That gap — between the designer's intent and the user's reality — started to feel like the actual problem to solve.
+                </p>
+            </div>
+            <div class="chapter-tags rv d3">
+                <span class="c-tag">Social Media Design</span>
+                <span class="c-tag">Brand Consistency</span>
+                <span class="c-tag">Institutional Design</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CHAPTER 03 -->
+<section class="chapter" id="ch-3">
+    <div class="chapter-inner">
+        <div class="chapter-left rv">
+            <div class="chapter-num">03</div>
+            <div class="chapter-year">2025</div>
+            <p class="chapter-label">The UX shift</p>
+        </div>
+        <div class="chapter-right">
+            <h2 class="chapter-title rv d1">I crossed into UX and<br>something clicked.</h2>
+            <div class="chapter-body rv d2">
+                <p>
+                    At <strong>Autority</strong>, I moved properly into UI design — wireframes, prototypes, component libraries, systems thinking. I got my <strong>Google UX Design Professional Certificate</strong> while doing it. The methodology made sense to me immediately: start with the user, not the screen.
+                </p>
+                <div class="pull rv">
+                    "I wasn't just making things look good anymore. I was figuring out whether they were the right things to build."
+                </div>
+                <p>
+                    That realization changed how I approached every brief. Research before mockups. Users before aesthetics. Problems before solutions.
+                </p>
+            </div>
+            <div class="chapter-tags rv d3">
+                <span class="c-tag">UI Design</span>
+                <span class="c-tag">Wireframing</span>
+                <span class="c-tag">Prototyping</span>
+                <span class="c-tag">Figma</span>
+                <span class="c-tag">Google UX Cert</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CHAPTER 04 -->
+<section class="chapter" id="ch-4">
+    <div class="chapter-inner">
+        <div class="chapter-left rv">
+            <div class="chapter-num">04</div>
+            <div class="chapter-year">Oct 2025 – Now</div>
+            <p class="chapter-label">PW Digital</p>
+        </div>
+        <div class="chapter-right">
+            <h2 class="chapter-title rv d1">I found a problem no<br>one had thought to solve.</h2>
+            <div class="chapter-body rv d2">
+                <p>
+                    PW Digital hired me as a UI Designer. Three months later I stepped up to <strong>UX & UI Designer</strong>, working on conversion-focused experiences and mapping customer journeys for marketing campaigns.
+                </p>
+                <p>
+                    I noticed that every day, people on the team were manually downloading leads, copying them into a spreadsheet, and building the same report from scratch. Three separate steps, every single day. I built a <strong>Make pipeline</strong> that connected Monday.com to Google Sheets and generated a real-time dashboard automatically.
+                </p>
+                <p>The workflow was gone. The time came back.</p>
+            </div>
+            <div class="metrics rv d3">
+                <div class="metric">
+                    <span class="metric-n"><em>3</em> steps</span>
+                    <span class="metric-l">replaced by one pipeline</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-n"><em>1–2h</em></span>
+                    <span class="metric-l">saved per week</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-n">Real-time</span>
+                    <span class="metric-l">dashboard, zero manual entry</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CHAPTER 05 -->
+<section class="chapter" id="ch-5">
+    <div class="chapter-inner">
+        <div class="chapter-left rv">
+            <div class="chapter-num">05</div>
+            <div class="chapter-year">6 weeks</div>
+            <p class="chapter-label">Featured project</p>
+        </div>
+        <div class="chapter-right">
+            <h2 class="chapter-title rv d1">I wanted to know what it felt<br>like to build something<br>from zero.</h2>
+            <div class="chapter-body rv d2">
+                <p>
+                    <strong>GoNow</strong> was that. A public transit app for Quito — designed from 6 real user interviews over 6 weeks. I mapped pain points, ran competitive analysis, built 20+ screens across 3 design iterations.
+                </p>
+                <p>
+                    One insight from the research stood out: every app in this space buried safety features inside menus. Users mentioned safety concerns in almost every interview. So I put <strong>SOS in the tab bar</strong> — one tap, always visible, never hidden. Not a feature on the list. A decision driven by what people actually said.
+                </p>
+            </div>
+            <div class="metrics rv d3">
+                <div class="metric">
+                    <span class="metric-n"><em>6</em></span>
+                    <span class="metric-l">user interviews</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-n"><em>20+</em></span>
+                    <span class="metric-l">screens designed</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-n"><em>3</em></span>
+                    <span class="metric-l">design iterations</span>
+                </div>
+            </div>
+            <div class="chapter-tags rv d4" style="margin-top:20px;">
+                <a href="gonow/index.html" style="text-decoration:none;">
+                    <span class="c-tag" style="cursor:pointer; color:var(--orange); border-color:rgba(255,126,0,.3); background:rgba(255,126,0,.06);">
+                        View case study ↗
+                    </span>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- SUMMARY -->
+<section class="summary" id="ch-summary">
+    <p class="sum-eyebrow rv">The full picture</p>
+    <h2 class="sum-h2 rv d1">Experience<br>at a glance.</h2>
+
+    <div class="sum-grid">
+        <!-- LEFT: Experience + Education -->
+        <div class="sum-col">
+            <p class="sum-section-title rv">Experience</p>
+
+            <div class="exp-item rv d1">
+                <div class="exp-dot-col">
+                    <div class="exp-dot current"></div>
+                    <div class="exp-dot-line"></div>
+                </div>
+                <div class="exp-content">
+                    <div class="exp-role">UX & UI Designer</div>
+                    <div class="exp-company">PW Digital</div>
+                    <div class="exp-period">Dec 2025 – Present · Quito, Ecuador</div>
+                    <div class="exp-desc">User flows, journey mapping, conversion-focused UX. Built Make automation pipeline saving 1–2h/week.</div>
+                </div>
+            </div>
+
+            <div class="exp-item rv d1">
+                <div class="exp-dot-col">
+                    <div class="exp-dot"></div>
+                    <div class="exp-dot-line"></div>
+                </div>
+                <div class="exp-content">
+                    <div class="exp-role">UI Designer</div>
+                    <div class="exp-company">PW Digital</div>
+                    <div class="exp-period">Oct 2025 – Dec 2025 · Ecuador</div>
+                    <div class="exp-desc">Web and mobile interfaces, responsive layouts aligned with brand and accessibility standards.</div>
+                </div>
+            </div>
+
+            <div class="exp-item rv d2">
+                <div class="exp-dot-col">
+                    <div class="exp-dot"></div>
+                    <div class="exp-dot-line"></div>
+                </div>
+                <div class="exp-content">
+                    <div class="exp-role">Graphic & UI Designer</div>
+                    <div class="exp-company">Autority</div>
+                    <div class="exp-period">Feb 2025 – Oct 2025</div>
+                    <div class="exp-desc">Wireframes, interactive prototypes, component systems. Shifted into structured UX methodology.</div>
+                </div>
+            </div>
+
+            <div class="exp-item rv d2">
+                <div class="exp-dot-col">
+                    <div class="exp-dot"></div>
+                    <div class="exp-dot-line"></div>
+                </div>
+                <div class="exp-content">
+                    <div class="exp-role">Graphic Designer — Internship</div>
+                    <div class="exp-company">Universidad Andina Simón Bolívar</div>
+                    <div class="exp-period">May 2024 – Dec 2024</div>
+                    <div class="exp-desc">Institutional visuals and event materials strengthening brand identity across digital and print.</div>
+                </div>
+            </div>
+
+            <div class="exp-item rv d3">
+                <div class="exp-dot-col">
+                    <div class="exp-dot"></div>
+                    <div class="exp-dot-line"></div>
+                </div>
+                <div class="exp-content">
+                    <div class="exp-role">Graphic Designer — Internship</div>
+                    <div class="exp-company">VSinnova</div>
+                    <div class="exp-period">Jul 2023 – Nov 2023</div>
+                    <div class="exp-desc">Digital graphics for medical and tech brands. Social media engagement and brand consistency.</div>
+                </div>
+            </div>
+
+            <div class="exp-item rv d3">
+                <div class="exp-dot-col">
+                    <div class="exp-dot"></div>
+                </div>
+                <div class="exp-content">
+                    <div class="exp-role">UX & Visual Designer</div>
+                    <div class="exp-company">Freelance</div>
+                    <div class="exp-period">2021 – Present</div>
+                    <div class="exp-desc">End-to-end design projects: discovery to delivery. UI prototypes, branding, visual identity.</div>
+                </div>
+            </div>
+
+            <p class="sum-section-title rv" style="margin-top:40px;">Education</p>
+
+            <div class="edu-item rv d1">
+                <div class="edu-school">Universidad de Palermo</div>
+                <div class="edu-degree">Lic. Negocios del Diseño y la Comunicación</div>
+                <div class="edu-year">2025 – Present</div>
+            </div>
+            <div class="edu-item rv d2">
+                <div class="edu-school">Instituto Metropolitano de Diseño</div>
+                <div class="edu-degree">Tec. Diseño Multimedia y Producción Audiovisual</div>
+                <div class="edu-year">2021 – 2025</div>
+            </div>
+        </div>
+
+        <!-- RIGHT: Skills + Certifications -->
+        <div class="sum-col">
+            <p class="sum-section-title rv">Skills</p>
+            <div class="skills-grid rv d1">
+                <div class="skill-group">
+                    <div class="skill-group-name">UX Design</div>
+                    <div class="skill-pills">
+                        <span class="skill-pill">User Flows</span>
+                        <span class="skill-pill">Journey Mapping</span>
+                        <span class="skill-pill">Wireframing</span>
+                        <span class="skill-pill">Prototyping</span>
+                        <span class="skill-pill">Usability Testing</span>
+                    </div>
+                </div>
+                <div class="skill-group">
+                    <div class="skill-group-name">Product Thinking</div>
+                    <div class="skill-pills">
+                        <span class="skill-pill">User-Centered Design</span>
+                        <span class="skill-pill">Design Strategy</span>
+                        <span class="skill-pill">Cross-functional Collaboration</span>
+                    </div>
+                </div>
+                <div class="skill-group">
+                    <div class="skill-group-name">Design Tools</div>
+                    <div class="skill-pills">
+                        <span class="skill-pill">Figma</span>
+                        <span class="skill-pill">FigJam</span>
+                        <span class="skill-pill">Illustrator</span>
+                        <span class="skill-pill">Photoshop</span>
+                        <span class="skill-pill">After Effects</span>
+                    </div>
+                </div>
+                <div class="skill-group">
+                    <div class="skill-group-name">Process & Ops</div>
+                    <div class="skill-pills">
+                        <span class="skill-pill">Make (Automation)</span>
+                        <span class="skill-pill">HubSpot</span>
+                        <span class="skill-pill">Google Sheets</span>
+                        <span class="skill-pill">Airtable</span>
+                        <span class="skill-pill">Design Systems</span>
+                    </div>
+                </div>
+                <div class="skill-group">
+                    <div class="skill-group-name">AI Tools</div>
+                    <div class="skill-pills">
+                        <span class="skill-pill">Claude</span>
+                        <span class="skill-pill">Gemini</span>
+                        <span class="skill-pill">Copilot</span>
+                        <span class="skill-pill">Google AI Studio</span>
+                    </div>
+                </div>
+            </div>
+
+            <p class="sum-section-title rv" style="margin-top:40px;">Certifications</p>
+            <div class="rv d1">
+                <div class="cert-item">
+                    <div>
+                        <div class="cert-name">Google UX Design Professional Certificate</div>
+                        <div class="cert-issuer">Google</div>
+                    </div>
+                    <div class="cert-year">2025</div>
+                </div>
+                <div class="cert-item">
+                    <div>
+                        <div class="cert-name">Digital Marketing & Growth Hacking</div>
+                        <div class="cert-issuer">IBM</div>
+                    </div>
+                    <div class="cert-year">2025</div>
+                </div>
+            </div>
+
+            <p class="sum-section-title rv" style="margin-top:40px;">Languages</p>
+            <div class="rv d2">
+                <div class="cert-item">
+                    <div class="cert-name">Spanish</div>
+                    <div class="cert-year" style="background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.08);color:rgba(255,255,255,.5);">Native</div>
+                </div>
+                <div class="cert-item">
+                    <div class="cert-name">English</div>
+                    <div class="cert-year" style="background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.08);color:rgba(255,255,255,.5);">Intermediate</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="sum-cta rv">
+        <div class="sum-cta-text">Want to work together?</div>
+        <div class="sum-btns">
+            <a href="mailto:isaiandrade7.ea@gmail.com" class="s-btn s-primary">↗ Get in touch</a>
+            <a href="index.html#work" class="s-btn s-ghost">See my work</a>
+            <a href="https://www.behance.net/esteban13" target="_blank" class="s-btn s-ghost">Behance</a>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+    <div class="footer-inner">
+        <div class="footer-brand">
+            <a href="index.html" class="footer-logo">EA<span>.</span></a>
+            <p class="footer-copy">© 2026 Esteban Andrade</p>
+        </div>
+        <div class="footer-links">
+            <div class="footer-col">
+                <p class="footer-col-title">Projects</p>
+                <a href="gonow/index.html">GoNow</a>
+                <a href="pw-digital/index.html">Pipeline Automation</a>
+                <a href="youtube-music/index.html">YouTube Music</a>
+                <a href="pw-landing/index.html">Conversion Landing</a>
+            </div>
+            <div class="footer-col">
+                <p class="footer-col-title">Connect</p>
+                <a href="https://www.behance.net/esteban13" target="_blank">Behance</a>
+                <a href="https://www.linkedin.com/in/estebandrade13/" target="_blank">LinkedIn</a>
+                <a href="mailto:isaiandrade7.ea@gmail.com">Email</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script>
+/* ── Scroll reveal ─────────────────────────── */
+const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('on'); obs.unobserve(e.target); } });
+}, { threshold: 0.07, rootMargin: '0px 0px -28px 0px' });
+document.querySelectorAll('.rv').forEach(el => obs.observe(el));
+setTimeout(() => { document.querySelectorAll('.hero .rv').forEach(el => el.classList.add('on')); }, 60);
+
+/* ── Sidebar progress ──────────────────────── */
+const sections = ['ch-intro','ch-1','ch-2','ch-3','ch-4','ch-5','ch-summary'];
+const sbItems  = document.querySelectorAll('.sb-item');
+const mobBar   = document.getElementById('mob-bar');
+
+function updateProgress() {
+    const scrollY   = window.scrollY;
+    const docH      = document.documentElement.scrollHeight - window.innerHeight;
+    const pct       = docH > 0 ? (scrollY / docH) * 100 : 0;
+    if (mobBar) mobBar.style.width = pct + '%';
+
+    let active = 0;
+    sections.forEach((id, i) => {
+        const el = document.getElementById(id);
+        if (!el) return;
+        if (el.getBoundingClientRect().top <= window.innerHeight * 0.45) active = i;
+    });
+    sbItems.forEach((item, i) => item.classList.toggle('active', i === active));
+}
+window.addEventListener('scroll', updateProgress, { passive: true });
+updateProgress();
+
+/* ── Sidebar click nav ─────────────────────── */
+sbItems.forEach((item) => {
+    item.addEventListener('click', () => {
+        const target = document.getElementById(item.dataset.target);
+        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+});
+
+/* ── Smart nav ─────────────────────────────── */
+let lastScrollAbt = 0;
+const mainNavAbt = document.querySelector('nav:not(.sidebar)');
+window.addEventListener('scroll', () => {
+    const c = window.scrollY;
+    if (c > lastScrollAbt && c > 100) mainNavAbt.classList.add('nav-hidden');
+    else mainNavAbt.classList.remove('nav-hidden');
+    lastScrollAbt = Math.max(0, c);
+}, { passive: true });
+</script>
+</body>
+</html>
