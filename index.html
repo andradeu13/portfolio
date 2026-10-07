@@ -199,7 +199,6 @@
             transition: background .18s;
         }
         .h-cv-link:hover { background: var(--border); }
-        }
         .hb-1 { top: 20%; left: 7%; animation: float-a 5s ease-in-out infinite; }
         .hb-2 { bottom: 19%; right: 7%; animation: float-b 6s ease-in-out infinite; }
         .hb-3 { bottom: 34%; left: 6%; animation: float-a 7s ease-in-out infinite 1s; }
@@ -363,6 +362,21 @@
         }
         .card:hover .cta-arrow { background: var(--orange); transform: translate(3px,-3px); }
 
+
+        .card-featured { grid-column: 1 / -1; flex-direction: row; background: var(--dark); border-color: #222; color: #fff; }
+        .card-featured .card-visual { aspect-ratio: auto; width: 58%; background: #0b3f24; padding: 32px; align-items: center; justify-content: center; gap: 16px; }
+        .card-featured .card-visual img { display: block; height: auto; border-radius: 12px; box-shadow: 0 24px 60px rgba(0,0,0,.35); }
+        .card-featured .fv-d { width: 76%; }
+        .card-featured .fv-m { width: 18%; border-radius: 16px; }
+        .card-featured .card-body { justify-content: center; }
+        .card-featured .card-name { color: #fff; font-size: 30px; }
+        .card-featured .card-desc { color: rgba(255,255,255,.7); flex: 0; }
+        .card-featured .c-tag { background: rgba(255,255,255,.08); border-color: rgba(255,255,255,.14); color: rgba(255,255,255,.7); }
+        .card-featured .card-cta { color: #fff; }
+        .card-featured .cta-arrow { background: var(--orange); color: #111; }
+        .feat-badge { position: absolute; top: 16px; left: 16px; background: #c6f36e; color: #111; font-size: 10px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; padding: 4px 10px; border-radius: 100px; }
+        .card-featured:hover { border-color: #3a3a3a; }
+
         /* ── ABOUT ───────────────────────────────────────── */
         .about {
             padding: 100px 60px;
@@ -480,6 +494,8 @@
             .hero { grid-template-columns: 1fr; }
             .hero-right { display: none; }
             .cards { grid-template-columns: 1fr; }
+            .card-featured { flex-direction: column; }
+            .card-featured .card-visual { width: 100%; }
             .about-grid { grid-template-columns: 1fr; gap: 44px; }
         }
         @media (min-width: 681px) { .hamburger { display: none; } }
@@ -489,6 +505,9 @@
             .hamburger { display: flex; }
             .hero-left, .work, .about, .contact { padding-left: 24px; padding-right: 24px; }
             .hero-stats { gap: 24px; }
+            .card-visual { aspect-ratio: auto; min-height: 260px; padding: 28px 0; }
+            .pw-flow { flex-wrap: wrap; justify-content: center; row-gap: 8px; padding: 0 16px; }
+            .hero-h1 { font-size: clamp(56px, 17vw, 80px); }
             .site-footer { padding: 40px 24px; }
             .footer-inner { flex-direction: column; gap: 32px; }
             .footer-links { gap: 24px; }
@@ -506,6 +525,7 @@
         <li class="nav-dropdown">
             <a href="#work">Projects <span class="drop-arrow">▾</span></a>
             <div class="nav-drop-menu">
+                <a href="iguana/index.html">Iguana Panel</a>
                 <a href="gonow/index.html">GoNow</a>
                 <a href="pw-digital/index.html">Pipeline Automation</a>
                 <a href="youtube-music/index.html">YouTube Music</a>
@@ -539,6 +559,7 @@
     <div class="drawer-divider"></div>
     <p class="drawer-section-title">Projects</p>
     <nav class="drawer-nav">
+        <a href="iguana/index.html">Iguana Panel</a>
         <a href="gonow/index.html">GoNow</a>
         <a href="pw-digital/index.html">Pipeline Automation</a>
         <a href="youtube-music/index.html">YouTube Music</a>
@@ -586,7 +607,7 @@
                 <span class="stat-l">saved weekly via automation</span>
             </div>
             <div class="stat">
-                <span class="stat-n">4</span>
+                <span class="stat-n">5</span>
                 <span class="stat-l">case studies</span>
             </div>
         </div>
@@ -622,10 +643,32 @@
             <p class="s-label">Selected work</p>
             <h2 class="s-h2">Projects</h2>
         </div>
-        <span class="s-count">04 case studies</span>
+        <span class="s-count">05 case studies</span>
     </div>
 
     <div class="cards">
+        <!-- Iguana Panel (featured) -->
+        <a href="iguana/index.html" class="card card-featured rv d1">
+            <div class="card-visual" style="position:relative;">
+                <span class="feat-badge">New · Live demo</span>
+                <img class="fv-d" src="iguana/images/iguana-desktop-inicio.webp" width="1280" height="800" alt="Iguana admin panel on desktop showing next appointment and money collected today">
+                <img class="fv-m" src="iguana/images/iguana-mobile-calendario.webp" width="780" height="1688" alt="Iguana admin panel on mobile showing the daily calendar">
+            </div>
+            <div class="card-body">
+                <div class="card-tags">
+                    <span class="c-tag">Dashboard</span>
+                    <span class="c-tag">Design System</span>
+                    <span class="c-tag">Mobile-first</span>
+                </div>
+                <h3 class="card-name">Iguana Panel</h3>
+                <p class="card-desc">An admin dashboard for service businesses: appointments, clients, money and an AI assistant in one place. Built on its own design system, with an interactive demo you can try.</p>
+                <div class="card-cta">
+                    View case study
+                    <div class="cta-arrow">↗</div>
+                </div>
+            </div>
+        </a>
+
         <!-- GoNow -->
         <a href="gonow/index.html" class="card rv d1">
             <div class="card-visual cv-gonow">
@@ -812,6 +855,7 @@
         <div class="footer-links">
             <div class="footer-col">
                 <p class="footer-col-title">Projects</p>
+                <a href="iguana/index.html">Iguana Panel</a>
                 <a href="gonow/index.html">GoNow</a>
                 <a href="pw-digital/index.html">Pipeline Automation</a>
                 <a href="youtube-music/index.html">YouTube Music</a>
