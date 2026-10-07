@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iguana Panel · Esteban Andrade</title>
+    <meta name="description" content="Case study: Panel Iguana, an admin dashboard for appointments, clients, money and an AI assistant for service businesses. Interactive demo and design system.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+
+        :root {
+            --white:  #ffffff;
+            --off:    #f7f7f7;
+            --text:   #0a0a0a;
+            --muted:  #5a5a5a;
+            --light:  #a0a0a0;
+            --border: #e8e8e8;
+            --dark:   #0f0f0f;
+            --card:   #181818;
+            --card2:  #202020;
+            --orange: #ff7e00;
+            --green:  #22c55e;
+            --red:    #ef4444;
+            --font-d: 'Bricolage Grotesque', sans-serif;
+            --font-b: 'Plus Jakarta Sans', sans-serif;
+            --ease:   cubic-bezier(0.16,1,0.3,1);
+        }
+
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: var(--font-b); background: var(--dark);
+            color: var(--white); overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ── REVEAL ─────────────────────────────────────── */
+        .rv { opacity:0; transform:translateY(20px); transition:opacity .65s var(--ease),transform .65s var(--ease); }
+        .rv.on { opacity:1; transform:none; }
+        .d1{transition-delay:.08s} .d2{transition-delay:.18s}
+        .d3{transition-delay:.28s} .d4{transition-delay:.38s}
+
+        /* ── NAV ─────────────────────────────────────────── */
+        nav.site-nav {
+            position:fixed; top:0; left:0; right:0; z-index:100;
+            height:60px; padding:0 48px;
+            background:rgba(15,15,15,.92);
+            backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px);
+            border-bottom:1px solid rgba(255,255,255,.06);
+            display:flex; align-items:center; justify-content:space-between;
+            transition: transform .38s var(--ease);
+        }
+        nav.site-nav.nav-hidden { transform: translateY(-100%); }
+        .back-link {
+            display:inline-flex; align-items:center; gap:7px;
+            font-size:13px; color:rgba(255,255,255,.35); text-decoration:none;
+            transition:color .2s; padding:80px 80px 0;
+        }
+        .back-link:hover { color:var(--white); }
+        .nav-logo {
+            font-family:var(--font-d); font-weight:800; font-size:17px;
+            color:var(--white); text-decoration:none; letter-spacing:-.04em;
+        }
+        .nav-logo span { color:var(--orange); }
+        .nav-back {
+            font-size:13px; font-weight:400; color:rgba(255,255,255,.4);
+            text-decoration:none; transition:color .2s; display:flex; align-items:center; gap:7px;
+        }
+        .nav-back:hover { color:var(--white); }
+        .nav-right { display:flex; gap:24px; align-items:center; }
+        .nav-tag {
+            font-size:11px; font-weight:600; letter-spacing:.1em; text-transform:uppercase;
+            color:var(--orange); background:rgba(255,126,0,.08); border:1px solid rgba(255,126,0,.2);
+            padding:4px 11px; border-radius:100px;
+        }
+
+        /* ── HERO ────────────────────────────────────────── */
+        .hero {
+            min-height:100vh; padding:120px 80px 80px;
+            display:flex; flex-direction:column; justify-content:center;
+            position:relative; overflow:hidden;
+        }
+        .hero::before {
+            content:''; position:absolute; top:-100px; right:-100px;
+            width:600px; height:600px;
+            background:radial-gradient(circle, rgba(255,126,0,.07) 0%, transparent 65%);
+            pointer-events:none;
+        }
+        .hero-kicker {
+            display:flex; gap:8px; align-items:center; margin-bottom:32px; flex-wrap:wrap;
+        }
+        .kicker-tag {
+            font-size:11px; font-weight:700; letter-spacing:.14em; text-transform:uppercase;
+            padding:4px 12px; border-radius:100px;
+            background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.1);
+            color:rgba(255,255,255,.5);
+        }
+        .hero-h1 {
+            font-family:var(--font-d); font-weight:800;
+            font-size:clamp(48px,8vw,104px); letter-spacing:-.045em;
+            line-height:.9; color:var(--white); max-width:880px; margin-bottom:32px;
+        }
+        .hero-h1 em { color:var(--orange); font-style:normal; }
+        .hero-sub {
+            font-size:18px; font-weight:300; color:rgba(255,255,255,.5);
+            max-width:560px; line-height:1.8; margin-bottom:52px;
+        }
+
+        /* Hero meta grid */
+        .hero-meta {
+            display:grid; grid-template-columns:repeat(4, 1fr); gap:1px;
+            background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.06);
+            border-radius:16px; overflow:hidden; max-width:860px;
+        }
+        .meta-cell {
+            background:rgba(255,255,255,.02); padding:22px 24px;
+            display:flex; flex-direction:column; gap:6px;
+        }
+        .meta-label {
+            font-size:10px; font-weight:700; letter-spacing:.14em;
+            text-transform:uppercase; color:rgba(255,255,255,.25);
+        }
+        .meta-val {
+            font-family:var(--font-d); font-size:15px; font-weight:600;
+            color:rgba(255,255,255,.8); letter-spacing:-.01em;
+        }
+
+        /* ── SECTION HEADERS ─────────────────────────────── */
+        .section { padding:80px 80px; }
+        .section-border { border-top:1px solid rgba(255,255,255,.06); }
+        .s-eyebrow {
+            font-size:10.5px; font-weight:700; letter-spacing:.18em;
+            text-transform:uppercase; color:rgba(255,255,255,.25); margin-bottom:12px;
+        }
+        .s-title {
+            font-family:var(--font-d); font-weight:700;
+            font-size:clamp(28px,3.5vw,44px); letter-spacing:-.035em;
+            color:var(--white); line-height:1.1; margin-bottom:20px;
+        }
+        .s-body {
+            font-size:16px; font-weight:300; color:rgba(255,255,255,.5);
+            line-height:1.85; max-width:640px;
+        }
+        .s-body strong { font-weight:600; color:rgba(255,255,255,.85); }
+        .s-body em { font-style:normal; color:var(--orange); font-weight:500; }
+        /* ── NEXT PROJECT ────────────────────────────────── */
+        .next-section {
+            padding:80px; border-top:1px solid rgba(255,255,255,.06);
+            display:flex; align-items:center; justify-content:space-between; gap:32px; flex-wrap:wrap;
+        }
+        .next-label { font-size:11px; font-weight:700; letter-spacing:.16em; text-transform:uppercase; color:rgba(255,255,255,.25); margin-bottom:10px; }
+        .next-title {
+            font-family:var(--font-d); font-size:clamp(24px,3vw,36px);
+            font-weight:700; letter-spacing:-.03em; color:var(--white);
+        }
+        .next-btns { display:flex; gap:10px; flex-wrap:wrap; flex-shrink:0; }
+        .n-btn {
+            display:inline-flex; align-items:center; gap:7px;
+            padding:12px 22px; border-radius:100px;
+            font-size:13px; font-weight:500; text-decoration:none; letter-spacing:.01em;
+            transition:transform .28s var(--ease), background .2s;
+        }
+        .n-primary { background:var(--white); color:var(--dark); }
+        .n-primary:hover { background:var(--orange); color:var(--white); transform:scale(1.04); }
+        .n-ghost { background:rgba(255,255,255,.06); color:rgba(255,255,255,.6); border:1px solid rgba(255,255,255,.1); }
+        .n-ghost:hover { background:rgba(255,255,255,.1); transform:scale(1.03); }
+
+        /* ── HAMBURGER ───────────────────────────────────── */
+        .hamburger {
+            display:flex; flex-direction:column; gap:5px; cursor:pointer;
+            padding:8px; background:none; border:none; z-index:200;
+        }
+        .hamburger span {
+            display:block; width:20px; height:1.5px; background:rgba(255,255,255,.7);
+            border-radius:2px; transition:transform .38s var(--ease), opacity .22s;
+            transform-origin:center;
+        }
+        .hamburger.open span:nth-child(1) { transform:translateY(6.5px) rotate(45deg); }
+        .hamburger.open span:nth-child(2) { opacity:0; transform:scaleX(0); }
+        .hamburger.open span:nth-child(3) { transform:translateY(-6.5px) rotate(-45deg); }
+
+        /* ── DRAWER ──────────────────────────────────────── */
+        .drawer-overlay {
+            position:fixed; inset:0; z-index:300; background:rgba(0,0,0,.5);
+            opacity:0; pointer-events:none; transition:opacity .35s var(--ease);
+            backdrop-filter:blur(3px); -webkit-backdrop-filter:blur(3px);
+        }
+        .drawer-overlay.open { opacity:1; pointer-events:all; }
+        .drawer {
+            position:fixed; top:0; right:0; bottom:0; z-index:400;
+            width:320px; max-width:90vw; background:#fff;
+            transform:translateX(100%); transition:transform .45s var(--ease);
+            padding:80px 32px 40px; display:flex; flex-direction:column; overflow-y:auto;
+            box-shadow:-16px 0 48px rgba(0,0,0,.2);
+        }
+        .drawer.open { transform:translateX(0); }
+        .drawer-close {
+            position:absolute; top:20px; right:20px;
+            background:var(--off); border:1px solid var(--border); border-radius:100px;
+            width:36px; height:36px; display:flex; align-items:center; justify-content:center;
+            cursor:pointer; font-size:13px; color:var(--muted); transition:background .2s;
+        }
+        .drawer-close:hover { background:var(--border); }
+        .drawer-label { font-size:10px; font-weight:700; letter-spacing:.16em; text-transform:uppercase; color:var(--orange); margin-bottom:18px; }
+        .drawer-nav { display:flex; flex-direction:column; margin-bottom:28px; }
+        .drawer-nav a {
+            font-family:var(--font-d); font-size:24px; font-weight:700;
+            letter-spacing:-.03em; color:#0a0a0a; text-decoration:none;
+            padding:8px 0; border-bottom:1px solid #e8e8e8; line-height:1.2;
+            transition:color .2s, padding-left .3s var(--ease);
+        }
+        .drawer-nav a:last-child { border-bottom:none; }
+        .drawer-nav a:hover { color:var(--orange); padding-left:6px; }
+        .drawer-current { color:var(--orange) !important; }
+        .drawer-divider { height:1px; background:#e8e8e8; margin:4px 0 20px; }
+        .drawer-section-title { font-size:10px; font-weight:700; letter-spacing:.16em; text-transform:uppercase; color:#a0a0a0; margin-bottom:10px; }
+        .drawer-social-row { display:flex; flex-direction:column; gap:0; }
+        .drawer-social-link {
+            font-size:14px; font-weight:500; color:#5a5a5a; text-decoration:none;
+            transition:color .2s; padding:8px 0; border-bottom:1px solid #e8e8e8;
+        }
+        .drawer-social-link:last-child { border-bottom:none; }
+        .drawer-social-link:hover { color:var(--orange); }
+
+        /* ── RIGHT SIDEBAR ───────────────────────────────── */
+        .right-sidebar {
+            position:fixed; right:36px; top:50%; transform:translateY(-50%);
+            z-index:90; display:flex; flex-direction:column; gap:0; align-items:flex-end;
+        }
+        .rsb-item {
+            display:flex; flex-direction:row-reverse; align-items:center; gap:10px;
+            padding:6px 0; cursor:pointer; transition:opacity .2s;
+        }
+        .rsb-item:not(.active) { opacity:.3; }
+        .rsb-dot {
+            width:6px; height:6px; border-radius:50%; background:rgba(255,255,255,.4); flex-shrink:0;
+            transition:background .3s var(--ease), width .3s var(--ease), border-radius .3s;
+        }
+        .rsb-item.active .rsb-dot { background:var(--orange); width:20px; border-radius:3px; }
+        .rsb-label {
+            font-size:10px; font-weight:700; letter-spacing:.1em; text-transform:uppercase;
+            white-space:nowrap; opacity:0; transition:opacity .2s, transform .2s;
+            transform:translateX(4px); background:rgba(255,255,255,.92); color:#111;
+            padding:2px 7px; border-radius:4px; box-shadow:0 1px 6px rgba(0,0,0,.2);
+        }
+        .rsb-item.active .rsb-label { opacity:1; transform:none; }
+        .rsb-line { width:1px; height:16px; background:rgba(255,255,255,.1); margin-right:9px; }
+
+        /* ── SITE FOOTER ─────────────────────────────────── */
+        .site-footer { background:#0a0a0a; border-top:1px solid rgba(255,255,255,.06); padding:60px 80px; }
+        .footer-inner { display:flex; justify-content:space-between; align-items:flex-start; gap:48px; flex-wrap:wrap; }
+        .footer-logo { font-family:var(--font-d); font-weight:800; font-size:20px; color:#fff; text-decoration:none; letter-spacing:-.04em; }
+        .footer-logo span { color:var(--orange); }
+        .footer-copy { font-size:12px; color:rgba(255,255,255,.25); margin-top:8px; }
+        .footer-links { display:flex; gap:48px; flex-wrap:wrap; }
+        .footer-col { display:flex; flex-direction:column; gap:10px; }
+        .footer-col-title { font-size:10px; font-weight:700; letter-spacing:.15em; text-transform:uppercase; color:rgba(255,255,255,.25); margin-bottom:4px; }
+        .footer-col a { font-size:13px; color:rgba(255,255,255,.5); text-decoration:none; transition:color .2s; }
+        .footer-col a:hover { color:#fff; }
+
+
+        .back-link { display:inline-flex; align-items:center; gap:7px; font-size:13px; color:rgba(255,255,255,.55); text-decoration:none; transition:color .2s; padding:80px 80px 0; }
+        .back-link:hover { color:var(--white); }
+        .hero { min-height:auto; padding:40px 80px 80px; display:flex; flex-direction:column; position:relative; overflow:hidden; }
+        .hero-kicker { display:flex; gap:8px; margin-bottom:28px; flex-wrap:wrap; }
+        .kicker-tag { font-size:11px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; padding:4px 12px; border-radius:100px; background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.1); color:rgba(255,255,255,.6); }
+        .hero-h1 { font-family:var(--font-d); font-weight:800; font-size:clamp(44px,8vw,104px); letter-spacing:-.045em; line-height:.92; color:var(--white); max-width:880px; margin-bottom:28px; }
+        .hero-h1 em { color:var(--orange); font-style:normal; }
+        .hero-sub { font-size:18px; font-weight:300; color:rgba(255,255,255,.6); max-width:620px; line-height:1.8; margin-bottom:44px; }
+        .hero-meta { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:1px; background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.06); border-radius:16px; overflow:hidden; max-width:860px; }
+        .meta-cell { background:rgba(255,255,255,.02); padding:20px 22px; display:flex; flex-direction:column; gap:6px; min-width:0; }
+        .meta-label { font-size:10px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:rgba(255,255,255,.45); }
+        .meta-val { font-family:var(--font-d); font-size:15px; font-weight:600; color:rgba(255,255,255,.85); letter-spacing:-.01em; }
+        .s-eyebrow { color:rgba(255,255,255,.45); }
+        .s-body { color:rgba(255,255,255,.62); }
+        .shot { border-radius:18px; overflow:hidden; border:1px solid rgba(255,255,255,.1); background:#111; }
+        .shot img { display:block; width:100%; height:auto; }
+        .shot-cap { font-size:12px; color:rgba(255,255,255,.5); margin-top:10px; line-height:1.6; }
+        .hero-shots { display:grid; grid-template-columns:minmax(0,1fr) 200px; gap:20px; align-items:end; margin-top:56px; max-width:1100px; }
+        .grid-3 { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:14px; margin-top:36px; }
+        .grid-2 { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px; margin-top:36px; }
+        .card-d { background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.09); border-radius:16px; padding:24px; min-width:0; }
+        .card-d h3 { font-family:var(--font-d); font-size:18px; font-weight:700; letter-spacing:-.02em; color:var(--white); margin-bottom:8px; }
+        .card-d p { font-size:14px; font-weight:300; color:rgba(255,255,255,.62); line-height:1.75; }
+        .card-d .tag { display:inline-block; font-size:10px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--orange); margin-bottom:12px; }
+        .card-d code, .s-body code { font-family:'JetBrains Mono',ui-monospace,monospace; font-size:12px; background:rgba(255,255,255,.08); padding:2px 6px; border-radius:6px; color:rgba(255,255,255,.85); }
+        /* design system */
+        .sw-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:12px; margin-top:28px; }
+        .sw { border-radius:14px; overflow:hidden; border:1px solid rgba(255,255,255,.1); background:rgba(255,255,255,.03); }
+        .sw-chip { height:64px; }
+        .sw-meta { padding:10px 12px; font-size:12px; color:rgba(255,255,255,.7); line-height:1.5; }
+        .sw-meta b { display:block; color:var(--white); font-weight:600; }
+        .sw-meta span { font-family:'JetBrains Mono',ui-monospace,monospace; font-size:11px; color:rgba(255,255,255,.5); }
+        .ds-panel { background:#f1f1ee; border-radius:20px; padding:28px; margin-top:28px; color:#121212; font-family:'Plus Jakarta Sans',sans-serif; }
+        .ds-row { display:flex; gap:10px; flex-wrap:wrap; align-items:center; }
+        .ds-row + .ds-row { margin-top:18px; }
+        .ds-lbl { font-size:10px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:#6c716d; width:100%; margin-bottom:-4px; }
+        .ib { font:600 14px 'Plus Jakarta Sans',sans-serif; padding:11px 20px; border-radius:100px; border:1px solid transparent; }
+        .ib-primary { background:#0b3f24; color:#fff; } .ib-lime { background:#c6f36e; color:#121212; } .ib-line { background:#fff; border-color:rgba(18,18,18,.18); color:#121212; }
+        .ip { font:600 12px 'Plus Jakarta Sans',sans-serif; padding:4px 11px; border-radius:100px; }
+        .ip-ok { background:#dff5c4; color:#0a5a2d; } .ip-warn { background:#fdf1d8; color:#7a5200; } .ip-danger { background:#fce9e7; color:#b3261e; }
+        .ic { font:700 12px 'Plus Jakarta Sans',sans-serif; padding:4px 10px; border-radius:100px; }
+        .ic-up { background:#dff5c4; color:#0a5a2d; } .ic-down { background:#fce9e7; color:#b3261e; }
+        .ds-card { background:#fff; border-radius:20px; padding:18px 20px; box-shadow:0 10px 30px rgba(18,18,18,.08); min-width:220px; }
+        .ds-card small { font:500 11px 'JetBrains Mono',monospace; color:#6c716d; letter-spacing:.06em; text-transform:uppercase; }
+        .ds-card strong { display:block; font:800 30px 'Plus Jakarta Sans',sans-serif; letter-spacing:-.03em; margin-top:4px; }
+        .type-spec { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px; margin-top:28px; }
+        .rules { list-style:none; margin-top:28px; display:grid; gap:10px; }
+        .rules li { background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.08); border-radius:12px; padding:14px 18px; font-size:14px; font-weight:300; color:rgba(255,255,255,.68); line-height:1.7; }
+        .rules li b { color:var(--white); font-weight:600; }
+        /* demo */
+        .demo-tabs { display:flex; gap:8px; flex-wrap:wrap; margin:28px 0 14px; }
+        .demo-tab { font:600 13px 'Plus Jakarta Sans',sans-serif; padding:9px 16px; border-radius:100px; border:1px solid rgba(255,255,255,.14); background:rgba(255,255,255,.05); color:rgba(255,255,255,.7); cursor:pointer; transition:background .2s,color .2s; }
+        .demo-tab:hover { background:rgba(255,255,255,.1); }
+        .demo-tab[aria-pressed="true"] { background:var(--orange); color:#111; border-color:var(--orange); }
+        .demo-tab:focus-visible, .n-btn:focus-visible, a:focus-visible { outline:2px solid var(--orange); outline-offset:3px; }
+        .demo-frames { display:grid; grid-template-columns:minmax(0,1fr) 300px; gap:20px; align-items:start; }
+        .frame { border-radius:18px; overflow:hidden; border:1px solid rgba(255,255,255,.12); background:#f1f1ee; }
+        .frame iframe { display:block; width:100%; border:0; background:#f1f1ee; }
+        .frame-desktop iframe { height:620px; }
+        .frame-mobile { border-radius:34px; border:7px solid #222; }
+        .frame-mobile iframe { height:560px; }
+        .frame-label { font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:rgba(255,255,255,.45); margin-bottom:10px; font-weight:700; }
+        .note { margin-top:28px; font-size:13px; color:rgba(255,255,255,.55); line-height:1.7; max-width:680px; border-left:2px solid var(--orange); padding-left:16px; }
+        .soon { margin-top:36px; border:1px dashed rgba(255,255,255,.2); border-radius:18px; padding:28px; max-width:760px; }
+        .soon h3 { font-family:var(--font-d); font-size:20px; font-weight:700; color:var(--white); margin-bottom:8px; letter-spacing:-.02em; }
+        .soon p { font-size:14px; font-weight:300; color:rgba(255,255,255,.6); line-height:1.8; }
+        .soon ul { margin:14px 0 0 18px; color:rgba(255,255,255,.6); font-size:14px; line-height:1.9; font-weight:300; }
+        .next-label { color:rgba(255,255,255,.5); }
+        .rsb-label { color:#111; }
+        @media(max-width:1024px) { .right-sidebar { display:none; } }
+        @media(max-width:960px) { .hero-meta { grid-template-columns:repeat(2,minmax(0,1fr)); } .grid-3 { grid-template-columns:1fr; } .demo-frames { grid-template-columns:1fr; } .frame-mobile { max-width:320px; } .hero-shots { grid-template-columns:1fr; } .hero-shots .shot-m { max-width:200px; } }
+        @media(max-width:680px) {
+            nav.site-nav { padding:0 20px; }
+            .hero, .section, .next-section { padding-left:24px; padding-right:24px; }
+            .back-link { padding:60px 24px 0; }
+            .grid-2, .type-spec { grid-template-columns:1fr; }
+            .frame-desktop iframe { height:520px; }
+            .site-footer { padding:40px 24px; }
+            .footer-inner { flex-direction:column; gap:32px; }
+            .footer-links { gap:24px; }
+            .next-section { flex-direction:column-reverse; }
+            .next-section > div:last-child { width:100% !important; }
+        }
+        @media (prefers-reduced-motion: reduce) { .rv { transition:none; opacity:1; transform:none; } html { scroll-behavior:auto; } }
+    </style>
+</head>
+<body>
+
+<nav class="site-nav" aria-label="Main">
+    <a href="../index.html" class="nav-logo" aria-label="Home">EA<span>.</span></a>
+    <div class="nav-right">
+        <span class="nav-tag">Dashboard · Design System</span>
+        <button class="hamburger" id="ham-btn" aria-label="Open menu" aria-expanded="false" aria-controls="drawer">
+            <span></span><span></span><span></span>
+        </button>
+    </div>
+</nav>
+
+<div class="drawer-overlay" id="overlay"></div>
+<aside class="drawer" id="drawer" aria-label="Menu">
+    <button class="drawer-close" id="dclose" aria-label="Close menu">✕</button>
+    <p class="drawer-label">Navigation</p>
+    <nav class="drawer-nav" aria-label="Pages">
+        <a href="../index.html">Home</a>
+        <a href="../about.html">About me</a>
+    </nav>
+    <div class="drawer-divider"></div>
+    <p class="drawer-section-title">Projects</p>
+    <nav class="drawer-nav" aria-label="Projects">
+        <a href="index.html" class="drawer-current">Iguana Panel</a>
+        <a href="../gonow/index.html">GoNow</a>
+        <a href="../pw-digital/index.html">Pipeline Automation</a>
+        <a href="../youtube-music/index.html">YouTube Music</a>
+        <a href="../pw-landing/index.html">Conversion Landing</a>
+    </nav>
+    <div class="drawer-divider"></div>
+    <p class="drawer-section-title">Connect</p>
+    <div class="drawer-social-row">
+        <a href="https://www.behance.net/esteban13" target="_blank" rel="noopener noreferrer" class="drawer-social-link">Behance ↗</a>
+        <a href="https://www.linkedin.com/in/estebandrade13/" target="_blank" rel="noopener noreferrer" class="drawer-social-link">LinkedIn ↗</a>
+        <a href="mailto:isaiandrade7.ea@gmail.com" class="drawer-social-link">Email</a>
+    </div>
+</aside>
+
+<aside class="right-sidebar" id="right-sb" aria-label="Sections">
+    <div class="rsb-item active" data-target="sec-overview"><div class="rsb-dot"></div><span class="rsb-label">Overview</span></div><div class="rsb-line"></div>
+    <div class="rsb-item" data-target="sec-context"><div class="rsb-dot"></div><span class="rsb-label">Context</span></div><div class="rsb-line"></div>
+    <div class="rsb-item" data-target="sec-decisions"><div class="rsb-dot"></div><span class="rsb-label">Decisions</span></div><div class="rsb-line"></div>
+    <div class="rsb-item" data-target="sec-system"><div class="rsb-dot"></div><span class="rsb-label">Design system</span></div><div class="rsb-line"></div>
+    <div class="rsb-item" data-target="sec-demo"><div class="rsb-dot"></div><span class="rsb-label">Live demo</span></div><div class="rsb-line"></div>
+    <div class="rsb-item" data-target="sec-research"><div class="rsb-dot"></div><span class="rsb-label">Research</span></div>
+</aside>
+
+<a href="../index.html" class="back-link">← Portfolio</a>
+
+<main>
+<section class="hero" id="sec-overview">
+    <div class="hero-kicker rv">
+        <span class="kicker-tag">Iguana Panel</span>
+        <span class="kicker-tag">Dashboard</span>
+        <span class="kicker-tag">Design System</span>
+        <span class="kicker-tag">2026</span>
+    </div>
+    <h1 class="hero-h1 rv d1">One panel for<br>the whole <em>business.</em></h1>
+    <p class="hero-sub rv d2">
+        An admin dashboard for service businesses in Ecuador: appointments, clients, money and an AI assistant in a single place,
+        designed mobile-first and built on its own small design system.
+    </p>
+    <div class="hero-meta rv d3">
+        <div class="meta-cell"><span class="meta-label">Product</span><span class="meta-val">Admin panel</span></div>
+        <div class="meta-cell"><span class="meta-label">Stack</span><span class="meta-val">HTML · CSS · JS</span></div>
+        <div class="meta-cell"><span class="meta-label">Language</span><span class="meta-val">Spanish (EC)</span></div>
+        <div class="meta-cell"><span class="meta-label">Views</span><span class="meta-val">6 + dialogs</span></div>
+    </div>
+    <div class="hero-shots rv d4">
+        <figure class="shot"><img src="images/iguana-desktop-inicio.webp" width="1280" height="800" alt="Iguana panel home on desktop: next appointment, money collected today and monthly profit"></figure>
+        <figure class="shot shot-m"><img src="images/iguana-mobile-calendario.webp" width="780" height="1688" alt="Iguana panel on mobile: daily calendar timeline with bottom tab bar"></figure>
+    </div>
+</section>
+
+<section class="section section-border" id="sec-context">
+    <p class="s-eyebrow rv">Context</p>
+    <h2 class="s-title rv d1">Run the day, not the software</h2>
+    <p class="s-body rv d2">
+        Owners of small service businesses (salons, barbers, studios) juggle their agenda, who has paid, what they spent and the
+        messages from clients, often between appointments and from a phone. <strong>Iguana Panel</strong> brings those four jobs into one
+        interface: <em>Appointments, Clients, Money and an AI Assistant</em> that answers clients on WhatsApp.
+    </p>
+    <div class="grid-3">
+        <div class="card-d rv"><span class="tag">Inicio</span><h3>What matters today</h3><p>Next appointment with a countdown, money collected and spent today, what is still owed, and the month versus the previous one.</p></div>
+        <div class="card-d rv d1"><span class="tag">Calendario</span><h3>Daily timeline first</h3><p>Week strip plus a day timeline as the main view. The month view is one tap away. On mobile you swipe between days.</p></div>
+        <div class="card-d rv d2"><span class="tag">Dinero</span><h3>Income, expenses, profit</h3><p>Summary, income and expense views, with every change versus the previous period shown as an arrow and a label.</p></div>
+    </div>
+    <div class="grid-3" style="margin-top:14px;">
+        <div class="card-d rv"><span class="tag">Clientes</span><h3>Directory and history</h3><p>Search, client history and quick actions to message them.</p></div>
+        <div class="card-d rv d1"><span class="tag">Asistente</span><h3>AI assistant setup</h3><p>Configure the assistant that replies on WhatsApp, with a floating shortcut to open the chat.</p></div>
+        <div class="card-d rv d2"><span class="tag">Ajustes</span><h3>Services, hours, rules</h3><p>Services, opening hours and booking rules in one place. Invoicing is marked "Soon".</p></div>
+    </div>
+</section>
+
+<section class="section section-border" id="sec-decisions">
+    <p class="s-eyebrow rv">Design decisions</p>
+    <h2 class="s-title rv d1">Decisions you can see in the product</h2>
+    <p class="s-body rv d2">Each decision below is visible in the interface and in the code, so you can check it in the demo.</p>
+    <div class="grid-2">
+        <div class="card-d rv"><span class="tag">Hierarchy</span><h3>Daily calendar as the main view</h3><p>The day is the unit of work, so the timeline leads and the current or next appointment is highlighted. The upcoming-appointment banner was later made shorter to leave more room for the day.</p></div>
+        <div class="card-d rv d1"><span class="tag">Clarity</span><h3>Never color alone</h3><p>Every change versus the previous period is an arrow plus text ("9% more", "34% less"), so meaning does not depend on green or red.</p></div>
+        <div class="card-d rv"><span class="tag">Mobile</span><h3>Sidebar becomes a tab bar</h3><p>On phones the left navigation turns into a bottom bar with the main views and a "More" dialog, respecting safe areas on notched devices.</p></div>
+        <div class="card-d rv d1"><span class="tag">Navigation</span><h3>Every view has its own address</h3><p>Routes like <code>#/inicio</code> or <code>#/dinero/resumen</code> keep the back button and direct links working.</p></div>
+        <div class="card-d rv"><span class="tag">Accessibility</span><h3>Keyboard and screen readers</h3><p>Skip link, labelled landmarks, native <code>dialog</code> elements and a tab order that follows the visual order.</p></div>
+        <div class="card-d rv d1"><span class="tag">Prototyping</span><h3>Design mode with sample data</h3><p>A small demo API replaces the backend so the whole interface can be reviewed by opening one file, with special views for sign-in and admin.</p></div>
+    </div>
+</section>
+
+<section class="section section-border" id="sec-system">
+    <p class="s-eyebrow rv">Design system</p>
+    <h2 class="s-title rv d1">A small system, defined in tokens</h2>
+    <p class="s-body rv d2">
+        The whole interface is built from a short list of tokens declared once in <code>styles.css</code>: color, shape, a 4/8 spacing scale,
+        two typefaces, layers and layout measures. Components only consume tokens, so a change in one place changes the whole panel.
+    </p>
+
+    <div class="sw-grid rv"><div class="sw"><div class="sw-chip" style="background:#f1f1ee"></div><div class="sw-meta"><b>Background</b><span>--bg · #f1f1ee</span></div></div><div class="sw"><div class="sw-chip" style="background:#ffffff"></div><div class="sw-meta"><b>Surface</b><span>--surface · #ffffff</span></div></div><div class="sw"><div class="sw-chip" style="background:#121212"></div><div class="sw-meta"><b>Ink</b><span>--ink · #121212</span></div></div><div class="sw"><div class="sw-chip" style="background:#0c7a3e"></div><div class="sw-meta"><b>Green</b><span>--green · #0c7a3e</span></div></div><div class="sw"><div class="sw-chip" style="background:#0b3f24"></div><div class="sw-meta"><b>Deep</b><span>--deep · #0b3f24</span></div></div><div class="sw"><div class="sw-chip" style="background:#c6f36e"></div><div class="sw-meta"><b>Lime</b><span>--lime · #c6f36e</span></div></div><div class="sw"><div class="sw-chip" style="background:#0c7a3e"></div><div class="sw-meta"><b>Income</b><span>--income · #0c7a3e</span></div></div><div class="sw"><div class="sw-chip" style="background:#e0701f"></div><div class="sw-meta"><b>Expense</b><span>--expense · #e0701f</span></div></div><div class="sw"><div class="sw-chip" style="background:#0a5a2d"></div><div class="sw-meta"><b>OK</b><span>--ok · #0a5a2d</span></div></div><div class="sw"><div class="sw-chip" style="background:#7a5200"></div><div class="sw-meta"><b>Warning</b><span>--warn · #7a5200</span></div></div><div class="sw"><div class="sw-chip" style="background:#b3261e"></div><div class="sw-meta"><b>Danger</b><span>--danger · #b3261e</span></div></div></div>
+
+    <div class="type-spec">
+        <div class="card-d rv"><span class="tag">Typography</span><h3>Plus Jakarta Sans + JetBrains Mono</h3><p>Plus Jakarta Sans (400–800) for interface and numbers; JetBrains Mono for times, dates and small labels, which makes schedules scan faster.</p></div>
+        <div class="card-d rv d1"><span class="tag">Shape &amp; space</span><h3>Radii 14 · 20 · 28 · pill</h3><p>Spacing steps 4 · 8 · 12 · 16 · 24 · 32 · 48 px. One icon set with a single 1.75 stroke for the whole panel.</p></div>
+    </div>
+
+    <div class="ds-panel rv" role="img" aria-label="Examples of buttons, status pills, change badges and a stat card from the Iguana design system">
+        <div class="ds-row"><span class="ds-lbl">Buttons</span><span class="ib ib-primary">Ver detalle</span><span class="ib ib-lime">Cobrar una cita</span><span class="ib ib-line">WhatsApp</span></div>
+        <div class="ds-row"><span class="ds-lbl">Payment status</span><span class="ip ip-ok">Pagado</span><span class="ip ip-warn">Pago parcial</span><span class="ip ip-danger">Sin pagar</span></div>
+        <div class="ds-row"><span class="ds-lbl">Change vs previous period (arrow + text)</span><span class="ic ic-up">▲ 9% más</span><span class="ic ic-down">▼ 34% menos</span></div>
+        <div class="ds-row"><span class="ds-lbl">Stat card</span><div class="ds-card"><small>Cobrado hoy</small><strong>$55,00</strong></div></div>
+    </div>
+
+    <ul class="rules">
+        <li><b>Color is never the only signal.</b> Status and change always carry text or an arrow.</li>
+        <li><b>Semantic colors are reserved.</b> Green = income and success, orange = expense, red = danger. They are not used for decoration.</li>
+        <li><b>Touch first.</b> Primary controls stay at least 44 px tall on mobile and layouts adapt at tablet, phone and 320–380 px widths.</li>
+        <li><b>One source of truth.</b> Tokens first, then components, then views.</li>
+    </ul>
+</section>
+
+<section class="section section-border" id="sec-demo">
+    <p class="s-eyebrow rv">Live demo</p>
+    <h2 class="s-title rv d1">Try the panel</h2>
+    <p class="s-body rv d2">This is the real interface running on sample data. Nothing is saved and it reloads to the start. The interface is in Spanish, as its users are.</p>
+    <div class="demo-tabs" role="group" aria-label="Choose a view">
+        <button class="demo-tab" data-hash="#/inicio" aria-pressed="true">Inicio</button>
+        <button class="demo-tab" data-hash="#/calendario" aria-pressed="false">Calendario</button>
+        <button class="demo-tab" data-hash="#/clientes" aria-pressed="false">Clientes</button>
+        <button class="demo-tab" data-hash="#/dinero/resumen" aria-pressed="false">Dinero</button>
+        <button class="demo-tab" data-hash="#/asistente" aria-pressed="false">Asistente IA</button>
+    </div>
+    <div class="demo-frames">
+        <div>
+            <p class="frame-label">Desktop</p>
+            <div class="frame frame-desktop"><iframe id="demo-d" src="demo/index.html#/inicio" title="Iguana panel demo, desktop" loading="lazy"></iframe></div>
+        </div>
+        <div>
+            <p class="frame-label">Mobile</p>
+            <div class="frame frame-mobile"><iframe id="demo-m" src="demo/index.html#/inicio" title="Iguana panel demo, mobile" loading="lazy"></iframe></div>
+        </div>
+    </div>
+    <p class="note">Open the <a href="demo/index.html" target="_blank" rel="noopener" style="color:var(--orange)">full-screen demo ↗</a> to see the layout switch from sidebar to bottom tab bar as you resize the window.</p>
+</section>
+
+<section class="section section-border" id="sec-research">
+    <p class="s-eyebrow rv">Research</p>
+    <h2 class="s-title rv d1">Pain points and customer journey</h2>
+    <div class="soon rv d2">
+        <h3>Being documented</h3>
+        <p>The user research behind the panel is being written up as part of this case study. It will cover:</p>
+        <ul>
+            <li>The pain points of owners and how each one maps to a decision above</li>
+            <li>The customer journey from booking to payment</li>
+            <li>Results after launch</li>
+        </ul>
+    </div>
+</section>
+</main>
+
+<div class="next-section rv" style="gap:48px;">
+    <div>
+        <div class="next-label">Up next</div>
+        <div class="next-title">GoNow</div>
+        <p style="font-size:14px;color:rgba(255,255,255,.55);max-width:340px;line-height:1.7;margin:10px 0 24px;">Public transit app for Quito, built from user interviews. Route planning, QR payments and a one-tap SOS.</p>
+        <div class="next-btns">
+            <a href="../gonow/index.html" class="n-btn n-primary">View case study ↗</a>
+            <a href="../index.html" class="n-btn n-ghost">Back to portfolio</a>
+        </div>
+    </div>
+    <div style="width:260px;flex-shrink:0;border-radius:16px;overflow:hidden;border:1px solid rgba(255,255,255,.08);background:#1a1a1a;">
+        <img src="../gonow/images/Home.webp" alt="GoNow app preview" width="260" height="560" loading="lazy" style="width:100%;height:auto;display:block;object-fit:cover;">
+    </div>
+</div>
+
+<footer class="site-footer">
+    <div class="footer-inner">
+        <div>
+            <a href="../index.html" class="footer-logo">EA<span>.</span></a>
+            <p class="footer-copy" style="color:rgba(255,255,255,.5)">© 2026 Esteban Andrade</p>
+        </div>
+        <div class="footer-links">
+            <div class="footer-col">
+                <p class="footer-col-title">Projects</p>
+                <a href="index.html">Iguana Panel</a>
+                <a href="../gonow/index.html">GoNow</a>
+                <a href="../pw-digital/index.html">Pipeline Automation</a>
+                <a href="../youtube-music/index.html">YouTube Music</a>
+                <a href="../pw-landing/index.html">Conversion Landing</a>
+            </div>
+            <div class="footer-col">
+                <p class="footer-col-title">Connect</p>
+                <a href="https://www.behance.net/esteban13" target="_blank" rel="noopener noreferrer">Behance ↗</a>
+                <a href="https://www.linkedin.com/in/estebandrade13/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
+                <a href="mailto:isaiandrade7.ea@gmail.com">Email</a>
+                <a href="../about.html">About</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script>
+document.documentElement.classList.add('js');
+const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('on'); obs.unobserve(e.target); } });
+}, { threshold: 0.06, rootMargin: '0px 0px -30px 0px' });
+document.querySelectorAll('.rv').forEach(el => obs.observe(el));
+setTimeout(() => { document.querySelectorAll('.hero .rv').forEach(el => el.classList.add('on')); }, 60);
+
+const hamBtn = document.getElementById('ham-btn'), drawer = document.getElementById('drawer'),
+      overlay = document.getElementById('overlay'), dclose = document.getElementById('dclose');
+function openDrawer() { hamBtn.classList.add('open'); hamBtn.setAttribute('aria-expanded','true'); drawer.classList.add('open'); overlay.classList.add('open'); document.body.style.overflow='hidden'; dclose.focus(); }
+function closeDrawer() { hamBtn.classList.remove('open'); hamBtn.setAttribute('aria-expanded','false'); drawer.classList.remove('open'); overlay.classList.remove('open'); document.body.style.overflow=''; }
+hamBtn.addEventListener('click', openDrawer);
+dclose.addEventListener('click', closeDrawer);
+overlay.addEventListener('click', closeDrawer);
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeDrawer(); });
+
+const rsbSecs = ['sec-overview','sec-context','sec-decisions','sec-system','sec-demo','sec-research'];
+const rsbItems = document.querySelectorAll('.rsb-item');
+function updateRsb() {
+    let active = 0;
+    rsbSecs.forEach((id, i) => { const el = document.getElementById(id); if (el && el.getBoundingClientRect().top <= window.innerHeight * 0.45) active = i; });
+    rsbItems.forEach((item, i) => item.classList.toggle('active', i === active));
+}
+window.addEventListener('scroll', updateRsb, { passive: true });
+rsbItems.forEach(item => item.addEventListener('click', () => { const el = document.getElementById(item.dataset.target); if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' }); }));
+updateRsb();
+
+/* Demo tabs: set the hash of both iframes */
+const demoFrames = [document.getElementById('demo-d'), document.getElementById('demo-m')];
+document.querySelectorAll('.demo-tab').forEach(btn => btn.addEventListener('click', () => {
+    document.querySelectorAll('.demo-tab').forEach(b => b.setAttribute('aria-pressed', String(b === btn)));
+    demoFrames.forEach(f => { try { f.contentWindow.location.hash = btn.dataset.hash; } catch (e) { f.src = 'demo/index.html' + btn.dataset.hash; } });
+}));
+
+let lastScroll = 0;
+const siteNav = document.querySelector('.site-nav');
+window.addEventListener('scroll', () => {
+    const c = window.scrollY;
+    if (c > lastScroll && c > 100) siteNav.classList.add('nav-hidden'); else siteNav.classList.remove('nav-hidden');
+    lastScroll = Math.max(0, c);
+}, { passive: true });
+</script>
+</body>
+</html>
