@@ -65,3 +65,21 @@
   .jp-head h4 { font-size:20px; }
 }
 @media (prefers-reduced-motion:reduce){ .jp-panel,.jp-hint::before{animation:none} .jp-n{transition:none} }
+
+/* Closed by default: cues that it is interactive */
+.jp-empty { grid-row:2; grid-column:1/-1; margin-top:18px; display:flex; align-items:center; justify-content:center; gap:12px; padding:18px; border:1px dashed var(--jp-line); border-radius:16px; color:var(--jp-mute); font-size:14px; text-align:center; }
+.jp-empty b { color:var(--jp-fg); }
+.jp-arrow { font-size:20px; color:var(--jp-or); animation:jpBob 1.4s ease-in-out infinite; }
+@keyframes jpBob { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-6px)} }
+.jp.has-open .jp-empty { display:none; }
+.jp:not(.touched) .jp-nodes > li:first-of-type .jp-n { animation:jpRing 1.8s infinite; border-color:var(--jp-or); }
+@keyframes jpRing { 0%{box-shadow:0 0 0 6px var(--jp-bg),0 0 0 6px rgba(255,126,0,.55)} 100%{box-shadow:0 0 0 6px var(--jp-bg),0 0 0 20px rgba(255,126,0,0)} }
+.jp-node:hover .jp-l { color:var(--jp-or); }
+@media (max-width:760px){
+  .jp-empty { display:none; }
+  .jp-node::after { content:'+'; order:3; flex:none; width:28px; height:28px; border-radius:50%; border:1px solid var(--jp-line); display:grid; place-items:center; font-weight:700; color:var(--jp-or); }
+  .jp-node[aria-expanded="true"]::after { content:'\2212'; background:var(--jp-or); color:#111; border-color:var(--jp-or); }
+  .jp-node .jp-e { margin-left:auto; }
+}
+@media (prefers-reduced-motion:reduce){ .jp-arrow,.jp:not(.touched) .jp-nodes > li:first-of-type .jp-n{animation:none} }
+@media (max-width:760px){ .jp { overflow:hidden; } .jp-node { min-width:0; } .jp-node .jp-l { min-width:0; } }

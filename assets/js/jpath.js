@@ -6,6 +6,8 @@
     function show(i, allowClose) {
       var cur = nodes.findIndex(function (n) { return n.getAttribute('aria-expanded') === 'true'; });
       var close = allowClose && mq.matches && cur === i;
+      jp.classList.toggle('has-open', !close);
+      if (!close) jp.classList.add('touched');
       nodes.forEach(function (n, k) {
         var on = !close && k === i;
         n.setAttribute('aria-expanded', on ? 'true' : 'false');
@@ -25,6 +27,5 @@
         var i = +b.dataset.to; show(i); if (mq.matches) nodes[i].scrollIntoView({ behavior: 'smooth', block: 'center' });
       });
     });
-    show(0);
   });
 })();
