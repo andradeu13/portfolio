@@ -5,3 +5,5 @@ wrangler.jsonc
 node_modules
 .wrangler
 *.md
+package.json
+package-lock.json
