@@ -4,11 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Haru, personal financial coach · Esteban Andrade</title>
-    <meta name="description" content="UX design challenge: a personal finance app that interprets money for the user. Problem, hypothesis, journey, three key screens and UI decisions.">
+    <meta name="description" content="UX design challenge: a personal finance app that interprets money for the user. Problem, hypothesis, flow, three key screens and UI decisions.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../assets/css/case.css">
+    <link rel="stylesheet" href="../assets/css/jpath.css">
     <noscript><style>.rv{opacity:1!important;transform:none!important}</style></noscript>
 </head>
 <body>
@@ -33,7 +34,7 @@
     </nav>
     <div class="drawer-divider"></div>
     <p class="drawer-section-title">Projects</p>
-    <nav class="drawer-nav" aria-label="Projects"><a href="../iguana/index.html">Iguana Panel</a><a href="../lepetit/index.html">Le Petit</a><a href="../haru/index.html" class="drawer-current">Haru</a><a href="../gonow/index.html">GoNow</a><a href="../youtube-music/index.html">YouTube Music</a></nav>
+    <nav class="drawer-nav" aria-label="Projects"><a href="../iguana/index.html">Iguana Panel</a><a href="../lepetit/index.html">Le Petit Paradis</a><a href="../haru/index.html" class="drawer-current">Haru</a><a href="../gonow/index.html">GoNow</a><a href="../youtube-music/index.html">YouTube Music</a></nav>
     <div class="drawer-divider"></div>
     <p class="drawer-section-title">Connect</p>
     <div class="drawer-social-row">
@@ -43,102 +44,60 @@
     </div>
 </aside>
 
-<aside class="right-sidebar" id="right-sb" aria-label="Sections"><div class="rsb-item active" data-target="sec-overview"><div class="rsb-dot"></div><span class="rsb-label">Overview</span></div><div class="rsb-line"></div><div class="rsb-item" data-target="sec-context"><div class="rsb-dot"></div><span class="rsb-label">Problem</span></div><div class="rsb-line"></div><div class="rsb-item" data-target="sec-empathize"><div class="rsb-dot"></div><span class="rsb-label">Empathize</span></div><div class="rsb-line"></div><div class="rsb-item" data-target="sec-define"><div class="rsb-dot"></div><span class="rsb-label">Define</span></div><div class="rsb-line"></div><div class="rsb-item" data-target="sec-journey"><div class="rsb-dot"></div><span class="rsb-label">Journey</span></div><div class="rsb-line"></div><div class="rsb-item" data-target="sec-lateral"><div class="rsb-dot"></div><span class="rsb-label">Lateral</span></div><div class="rsb-line"></div><div class="rsb-item" data-target="sec-screens"><div class="rsb-dot"></div><span class="rsb-label">Screens</span></div><div class="rsb-line"></div><div class="rsb-item" data-target="sec-decisions"><div class="rsb-dot"></div><span class="rsb-label">Decisions</span></div><div class="rsb-line"></div><div class="rsb-item" data-target="sec-ui"><div class="rsb-dot"></div><span class="rsb-label">UI</span></div><div class="rsb-line"></div><div class="rsb-item" data-target="sec-next"><div class="rsb-dot"></div><span class="rsb-label">Next</span></div></aside>
+<aside class="right-sidebar" id="right-sb" aria-label="Sections"><div class="rsb-item active" data-target="sec-overview"><div class="rsb-dot"></div><span class="rsb-label">Overview</span></div><div class="rsb-line"></div><div class="rsb-item" data-target="sec-context"><div class="rsb-dot"></div><span class="rsb-label">Problem</span></div><div class="rsb-line"></div><div class="rsb-item" data-target="sec-approach"><div class="rsb-dot"></div><span class="rsb-label">Approach</span></div><div class="rsb-line"></div><div class="rsb-item" data-target="sec-screens"><div class="rsb-dot"></div><span class="rsb-label">Screens</span></div><div class="rsb-line"></div><div class="rsb-item" data-target="sec-ui"><div class="rsb-dot"></div><span class="rsb-label">UI</span></div></aside>
 
 <a href="../index.html" class="back-link">← Portfolio</a>
 
 <main>
 <section class="hero" id="sec-overview">
-    <div class="hero-kicker rv"><span class="kicker-tag">Haru</span><span class="kicker-tag">Fintech</span><span class="kicker-tag">Mobile app</span><span class="kicker-tag">UX design challenge</span></div>
+    <div class="hero-kicker rv"><span class="kicker-tag">Haru</span><span class="kicker-tag">Fintech</span><span class="kicker-tag">UX challenge</span></div>
     <h1 class="hero-h1 rv d1">A financial coach,<br><em>not a bank.</em></h1>
-    <p class="hero-sub rv d2">A UX challenge to redesign a personal finance app so people understand where their money goes without doing the work. Haru reads the money for the user and says what it means and what to do next.</p>
-    <div class="hero-meta rv d3"><div class="meta-cell"><span class="meta-label">Type</span><span class="meta-val">UX design challenge</span></div><div class="meta-cell"><span class="meta-label">Platform</span><span class="meta-val">Mobile app</span></div><div class="meta-cell"><span class="meta-label">Role</span><span class="meta-val">UX / UI design</span></div><div class="meta-cell"><span class="meta-label">Focus</span><span class="meta-val">Clarity, motivation, trust</span></div></div>
-    <div class="phones rv d4" style="margin-top:56px;justify-content:flex-start;">
- <figure><img src="images/haru-home.webp" width="700" height="1350" alt="Haru home screen: safe margin to spend $180, savings goal $100, and alerts for credit card, subscriptions and a goal exceeded"></figure>
- <figure><img src="images/haru-insights.webp" width="700" height="1293" alt="Haru insights screen: expense control by category and spending by day of the week"></figure>
- <figure><img src="images/haru-plan.webp" width="700" height="1328" alt="Haru plan screen: available after expenses $250 and active recommendations"></figure>
-</div>
+    <p class="hero-sub rv d2">A UX challenge: a personal finance app that reads the money for the user, so they stop doing the work.</p>
+    <div class="hero-meta rv d3"><div class="meta-cell"><span class="meta-label">Type</span><span class="meta-val">UX design challenge</span></div><div class="meta-cell"><span class="meta-label">Platform</span><span class="meta-val">Mobile app</span></div><div class="meta-cell"><span class="meta-label">Role</span><span class="meta-val">UX / UI design</span></div><div class="meta-cell"><span class="meta-label">Focus</span><span class="meta-val">Clarity, trust</span></div></div>
+    
 </section>
 <section class="section section-border" id="sec-context">
     <p class="s-eyebrow rv">The problem</p>
-    <h2 class="s-title rv d1">What we found when talking to users</h2>
-    <p class="s-body rv d2">The challenge started from three findings. They look different but are the same friction: the app asks the user to do the work of understanding their own money.</p>
+    <h2 class="s-title rv d1">What users told us</h2>
+    
 <div class="grid-3">
- <div class="card-d rv"><span class="tag">Finding 1</span><h3>They can’t see where the money goes</h3><p>“No entienden en qué se va su dinero.” Numbers exist but meaning doesn’t.</p></div>
- <div class="card-d rv d1"><span class="tag">Finding 2</span><h3>Nobody wants to categorise by hand</h3><p>“No quieren categorizar gastos a mano.” Manual tagging is a chore that gets abandoned.</p></div>
- <div class="card-d rv d2"><span class="tag">Finding 3</span><h3>Numbers without insight</h3><p>“Sienten que la app solo tira números, sin insight.” Data is dumped, not interpreted.</p></div>
+ <div class="card-d rv"><span class="tag">01</span><h3>Where did it go?</h3><p>They can’t see where their money goes.</p></div>
+ <div class="card-d rv d1"><span class="tag">02</span><h3>No manual tagging</h3><p>Nobody wants to categorize by hand.</p></div>
+ <div class="card-d rv d2"><span class="tag">03</span><h3>Numbers, no insight</h3><p>The app shows data but explains nothing.</p></div>
 </div>
-<p class="quote rv">The problem isn’t a lack of features. It’s <em>the effort the user is asked to make.</em></p>
-<div class="grid-3" style="margin-top:36px">
- <div class="card-d rv"><span class="tag">Goal</span><h3>Understand at a glance</h3><p>Let the user know their situation in a few seconds.</p></div>
- <div class="card-d rv d1"><span class="tag">Goal</span><h3>Motivate healthy habits</h3><p>Encourage, without scaring or shaming.</p></div>
- <div class="card-d rv d2"><span class="tag">Goal</span><h3>Look reliable, not generic</h3><p>Feel like a trustworthy coach, not another banking template.</p></div>
-</div><div class="dt-steps rv"><div class="dt-step"><i>01</i><b>Empathize</b><span>Who is the user and what do they feel?</span></div><div class="dt-step"><i>02</i><b>Define</b><span>Which pain points matter most?</span></div><div class="dt-step"><i>03</i><b>Ideate</b><span>How might we remove each one?</span></div><div class="dt-step"><i>04</i><b>Prototype</b><span>Turn decisions into interface</span></div><div class="dt-step"><i>05</i><b>Test</b><span>How will we know it works?</span></div></div>
+<p class="quote rv">The problem isn’t missing features. It’s <em>the effort asked of the user.</em></p>
 </section>
-<section class="section section-border" id="sec-empathize">
-    <p class="s-eyebrow rv">01 · Empathize</p>
-    <h2 class="s-title rv d1">Who it is for, and what she lives with</h2>
-    <p class="s-body rv d2">The persona is a design synthesis of the three findings, a working hypothesis to validate with more interviews. It is not presented as research data.</p>
-<div class="persona rv"><div class="persona-card"><div class="avatar" aria-hidden="true">M</div><h3>Mariana, 28</h3><p class="role">Employed, uses a credit card and a few subscriptions, wants to save but doesn’t track.</p><dl><div><dt>Goal</dt><dd>Save a bit each month without becoming an accountant.</dd></div><div><dt>Context</dt><dd>Checks her phone in short moments: waiting, commuting, after a purchase.</dd></div><div><dt>Fear</dt><dd>Finding out too late that she overspent, or being judged by an app.</dd></div><div><dt>Habit</dt><dd>Opens banking apps, sees a list of movements, closes them.</dd></div></dl></div><div class="empathy"><div class="cell"><h4>Thinks</h4><ul><li>Where did my money go this month?</li><li>Can I spend this today and still save?</li><li>I don’t have time to tag every purchase.</li></ul></div><div class="cell"><h4>Feels</h4><ul><li>Guilt when she sees the totals</li><li>Overwhelmed by charts without a message</li><li>Motivated by small wins</li></ul></div><div class="cell"><h4>Says</h4><ul><li>“No sé en qué gasto tanto.”</li><li>“¿Cuánto puedo gastar esta semana?”</li></ul></div><div class="cell"><h4>Does</h4><ul><li>Skips manual tagging</li><li>Ignores notifications that only repeat numbers</li><li>Reacts to clear, specific suggestions</li></ul></div></div></div>
-</section>
-<section class="section section-border" id="sec-define">
-    <p class="s-eyebrow rv">02 · Define</p>
-    <h2 class="s-title rv d1">Hypothesis and assumptions</h2>
-    <p class="s-body rv d2">The three findings share a root cause, so the answer is to remove work, not add screens.</p>
-<p class="quote rv">“If Haru interprets the money for the user, the user <em>no longer has to interpret it themselves.</em>”</p>
-<div class="grid-2">
- <div class="card-d rv"><span class="tag">Insight without asking</span><h3>Home surfaces a pattern on its own</h3><p>An unusual expense, progress toward the goal, a payment due: shown as a message, without the user having to search for it.</p></div>
- <div class="card-d rv d1"><span class="tag">Assumptions of the exercise</span><h3>What is given and what is hypothesis</h3><p><b>Given by the brief:</b> read-only access to accounts and cards. <b>Design hypothesis:</b> which patterns are worth showing without being asked.</p></div>
-</div><div class="pain-list"><div class="pain rv"><div class="stage">Understand</div><div><h4>No clear picture of the month</h4><p>A list of transactions doesn’t tell her whether she is doing well.</p></div><div class="hmw"><b>How might we…</b>answer “how am I doing?” in a few seconds?</div></div><div class="pain rv"><div class="stage">Record</div><div><h4>Manual categorisation</h4><p>Tagging each expense is a chore people abandon.</p></div><div class="hmw"><b>How might we…</b>categorise automatically and ask only when unsure?</div></div><div class="pain rv"><div class="stage">Interpret</div><div><h4>Numbers without meaning</h4><p>A chart with no message leaves her to guess the reason.</p></div><div class="hmw"><b>How might we…</b>explain why spending is high in plain words?</div></div><div class="pain rv"><div class="stage">Act</div><div><h4>Not knowing what to do</h4><p>Even with insight, she doesn’t know the next step.</p></div><div class="hmw"><b>How might we…</b>turn each insight into one concrete action?</div></div><div class="pain rv"><div class="stage">Trust</div><div><h4>Generic, banking-like feel</h4><p>Heavy security badges and cold tone make it feel like every other app.</p></div><div class="hmw"><b>How might we…</b>earn trust through calm, consistency and honesty?</div></div></div>
-</section>
-<section class="section section-border" id="sec-journey">
-    <p class="s-eyebrow rv">03 · Simplified journey</p>
-    <h2 class="s-title rv d1">Each section answers a different need</h2>
-    <p class="s-body rv d2">The flow is deliberately short: Home gives the state, Insights gives the reason, Plan gives the action, and each returns to Home.</p>
-<div class="flow rv"><span class="node">User opens Haru</span><span class="arr" aria-hidden="true">→</span><span class="node hot">Home: How am I in 5 seconds?</span><span class="arr" aria-hidden="true">→</span><span class="node hot">Tap an insight → Insights: why is this happening?</span><span class="arr" aria-hidden="true">→</span><span class="node hot">Tap a goal → Plan: what do I do now?</span><span class="arr" aria-hidden="true">→</span><span class="node">Back to Home</span></div><div class="journey rv"><div class="journey-scroll"><div class="journey-grid" style="--cols:5"><div class="jh"></div><div class="jstage">Open</div><div class="jstage">Understand</div><div class="jstage">Investigate</div><div class="jstage">Act</div><div class="jstage">Return</div><div class="jh">Goal</div><div class="">See how I’m doing</div><div class="">Know if I can spend</div><div class="">Understand the cause</div><div class="">Do the right thing</div><div class="">Build a habit</div><div class="jh">Does</div><div class="">Opens Haru</div><div class="">Reads the safe margin and alerts</div><div class="">Taps an insight to see why</div><div class="">Taps a goal to see the plan</div><div class="">Comes back after a purchase or a notification</div><div class="jh">Thinks</div><div class="">“Am I okay this week?”</div><div class="">“How much can I spend?”</div><div class="">“Why is this so high?”</div><div class="">“What should I do now?”</div><div class="">“It’s helping me, I’ll keep going.”</div><div class="jh">Feels</div><div class="emo"><i style="background:#facc15"></i>Slightly anxious</div><div class="emo"><i style="background:#4ade80"></i>Relieved</div><div class="emo"><i style="background:#facc15"></i>Curious</div><div class="emo"><i style="background:#4ade80"></i>In control</div><div class="emo"><i style="background:#4ade80"></i>Motivated</div><div class="jh">Pain point</div><div class="jpain">Dense dashboards</div><div class="jpain">Raw numbers, no meaning</div><div class="jpain">No explanation</div><div class="jpain">Too many options</div><div class="jpain">Reminders that nag</div><div class="jh">Design response</div><div class="jopp">Home answers in about 5 seconds</div><div class="jopp">Safe-to-spend margin as the hero number</div><div class="jopp">Insights: categories, weekday patterns, explanation</div><div class="jopp">Plan: safe margin and concrete recommendations</div><div class="jopp">Payment reminders and calm tone</div></div></div></div><p class="journey-hint">Scroll sideways to see every stage. The coloured dot in “Feels” marks the emotional high and low points.</p>
-</section>
-<section class="section section-border" id="sec-lateral">
-    <p class="s-eyebrow rv">04 · Lateral thinking</p>
-    <h2 class="s-title rv d1">Questioning what the brief takes for granted</h2>
-    <p class="s-body rv d2">Before designing screens, I challenged the assumptions behind the brief. These three ideas shaped the product.</p>
-<div class="dec-list">
- <div class="dec rv" style="grid-template-columns:70px 1fr;"><div><small>01</small></div><div><h4>Connecting accounts is a data mechanism, not a screen.</h4><p>The user should not spend an onboarding step on it, or see it as the product. It is plumbing.</p></div></div>
- <div class="dec rv d1" style="grid-template-columns:70px 1fr;"><div><small>02</small></div><div><h4>What makes Haru different is how it interprets spending, not how it records it.</h4><p>Recording is a commodity. Interpretation is the coaching.</p></div></div>
- <div class="dec rv d2" style="grid-template-columns:70px 1fr;"><div><small>03</small></div><div><h4>Payment reminders are the easiest piece to underestimate, and one of the most valuable.</h4><p>Avoiding interest and late fees is a concrete, immediate benefit that earns trust.</p></div></div>
+<section class="section section-border" id="sec-approach">
+    <p class="s-eyebrow rv">Approach</p>
+    <h2 class="s-title rv d1">Hypothesis and flow</h2>
+    
+<p class="s-body rv">“If Haru interprets the money for the user, the user <em>no longer has to.</em>”</p><div class="flow rv"><span class="node">Open Haru</span><span class="arr" aria-hidden="true">→</span><span class="node hot">Home: how am I in 5 seconds?</span><span class="arr" aria-hidden="true">→</span><span class="node hot">Insights: why is this happening?</span><span class="arr" aria-hidden="true">→</span><span class="node hot">Plan: what do I do now?</span><span class="arr" aria-hidden="true">→</span><span class="node">Back to Home</span></div><div class="grid-3">
+ <div class="card-d rv"><span class="tag">Lateral thinking</span><h3>Connecting accounts is plumbing</h3><p>It’s a data mechanism, not a screen.</p></div>
+ <div class="card-d rv d1"><span class="tag">Lateral thinking</span><h3>Interpretation is the product</h3><p>Recording spending is a commodity.</p></div>
+ <div class="card-d rv d2"><span class="tag">Lateral thinking</span><h3>Reminders earn trust</h3><p>Avoiding late fees is concrete value.</p></div>
 </div>
+<p class="one-line rv">Assumption of the exercise: read-only access to accounts and cards.</p>
 </section>
 <section class="section section-border" id="sec-screens">
-    <p class="s-eyebrow rv">05 · Key screens</p>
+    <p class="s-eyebrow rv">Key screens</p>
     <h2 class="s-title rv d1">3 screens, 3 questions</h2>
-    <p class="s-body rv d2">Each screen is responsible for a single question, so the user never has to decide where to look.</p>
+    
 <div class="phones">
- <figure><img src="images/haru-home.webp" width="700" height="1350" alt="Haru home screen" loading="lazy"><figcaption><b>Home</b>How am I doing in 5 seconds?<br>Safe margin to spend ($180 this week without touching the $100 goal) and the alerts that truly need attention: credit card payment, three subscriptions that add up to $35/month, a goal exceeded by $150.</figcaption></figure>
- <figure><img src="images/haru-insights.webp" width="700" height="1293" alt="Haru insights screen" loading="lazy"><figcaption><b>Insights</b>Why is this happening?<br>“Haru procesó tus gastos” (3 need validation), spending by category as fillable capsules, a weekday pattern and a plain sentence: “Otros” is as big as food, mostly small frequent purchases.</figcaption></figure>
- <figure><img src="images/haru-plan.webp" width="700" height="1328" alt="Haru plan screen" loading="lazy"><figcaption><b>Plan</b>What do I do now?<br>“Disponible tras tus gastos” ($250), inside the programmed saving, and active recommendations: pay the card to reduce interest, cut entertainment spending.</figcaption></figure>
+ <figure class="rv"><img src="images/haru-home.webp" width="700" height="1350" alt="Haru home screen" loading="lazy"><figcaption><b>Home</b>How am I in 5 seconds?<br>Safe margin to spend and the alerts that need attention.</figcaption></figure>
+ <figure class="rv d1"><img src="images/haru-insights.webp" width="700" height="1293" alt="Haru insights screen" loading="lazy"><figcaption><b>Insights</b>Why is this happening?<br>Categories, weekday pattern and a plain-language note.</figcaption></figure>
+ <figure class="rv d2"><img src="images/haru-plan.webp" width="700" height="1328" alt="Haru plan screen" loading="lazy"><figcaption><b>Plan</b>What do I do now?<br>Money available after expenses and concrete recommendations.</figcaption></figure>
 </div>
 </section>
-<section class="section section-border" id="sec-decisions">
-    <p class="s-eyebrow rv">06 · Decisions</p>
-    <h2 class="s-title rv d1">From insight to interface</h2>
-    <p class="s-body rv d2">Same structure as my other cases: the pain point, the principle, and how it would be validated. As a design challenge, validation is a proposed plan.</p>
-<div class="dec-list"><div class="dec rv"><div><small>Home</small><h4>Safe margin as the hero number</h4></div><div><small>Pain point it answers</small><p>Needs one number that answers “can I spend?”, not a list.</p></div><div><small>UX principle</small><span class="pr">Visual hierarchy</span><span class="pr">Cognitive load</span></div><div><small>How to validate</small><p>5-second test: can users say whether they are okay?</p></div></div><div class="dec rv"><div><small>Home</small><h4>Alerts as cards with one action each (“Revisar”)</h4></div><div><small>Pain point it answers</small><p>Insights that can’t be acted on feel like nagging.</p></div><div><small>UX principle</small><span class="pr">Affordance</span><span class="pr">One primary action</span></div><div><small>How to validate</small><p>Tap-through on alerts; completion of the linked action.</p></div></div><div class="dec rv"><div><small>Insights</small><h4>“Haru procesó tus gastos · 3 requieren validación”</h4></div><div><small>Pain point it answers</small><p>Manual categorisation is abandoned; asking only on doubt keeps control.</p></div><div><small>UX principle</small><span class="pr">Automation with human in the loop</span><span class="pr">Transparency</span></div><div><small>How to validate</small><p>Share of expenses auto-categorised correctly; validation rate.</p></div></div><div class="dec rv"><div><small>Insights</small><h4>Category capsules and weekday pattern instead of a table</h4></div><div><small>Pain point it answers</small><p>Numbers alone don’t explain behaviour.</p></div><div><small>UX principle</small><span class="pr">Pre-attentive processing</span><span class="pr">Chunking</span></div><div><small>How to validate</small><p>Comprehension test: “what explains your spending?”.</p></div></div><div class="dec rv"><div><small>Insights</small><h4>A plain-language insight under each visual</h4></div><div><small>Pain point it answers</small><p>Charts without a message leave interpretation to the user.</p></div><div><small>UX principle</small><span class="pr">Plain language</span><span class="pr">Meaning over data</span></div><div><small>How to validate</small><p>Do users repeat the insight in their own words?</p></div></div><div class="dec rv"><div><small>Plan</small><h4>Available after expenses, tied to the savings goal</h4></div><div><small>Pain point it answers</small><p>Spending freedom should be framed against what she wants to save.</p></div><div><small>UX principle</small><span class="pr">Goal-gradient</span><span class="pr">Positive framing</span></div><div><small>How to validate</small><p>Habit: weekly return rate; goal adherence.</p></div></div><div class="dec rv"><div><small>Plan</small><h4>Concrete, actionable recommendations</h4></div><div><small>Pain point it answers</small><p>Insights without a next step don’t change behaviour.</p></div><div><small>UX principle</small><span class="pr">Actionable feedback</span><span class="pr">Reduce decision effort</span></div><div><small>How to validate</small><p>Recommendations acted on per week.</p></div></div></div>
-</section>
 <section class="section section-border" id="sec-ui">
-    <p class="s-eyebrow rv">07 · UI</p>
-    <h2 class="s-title rv d1">The design communicates calm, not anxiety</h2>
-    <p class="s-body rv d2">Visual choices serve the idea of a coach: friendly, steady and honest.</p>
-<div class="grid-2">
- <div class="card-d rv"><span class="tag">Mixed radii</span><h3>Capsules for actions, straighter corners for cards</h3><p>Avoids the generic “everything rounded” look and signals what is tappable.</p></div>
- <div class="card-d rv d1"><span class="tag">Same components</span><h3>Home, Insights and Plan share cards and type</h3><p>Consistency builds trust: the user learns the interface once.</p></div>
- <div class="card-d rv"><span class="tag">Real charts</span><h3>Donut, bars and capsules by category</h3><p>Never loose numbers; every figure has a visual form and a sentence.</p></div>
- <div class="card-d rv d1"><span class="tag">Trust by absence</span><h3>No “maximum security” badges or forced seals</h3><p>Reliability comes from clear language and calm design, not decoration.</p></div>
-</div><ul class="checks rv"><li><b>Tone:</b> calm, not anxious. Alerts say what happened and what to do, without blame.</li><li><b>Colour:</b> soft green and yellow for positive and neutral states; warmer tones only for what needs attention.</li></ul>
-</section>
-<section class="section section-border" id="sec-next">
-    <p class="s-eyebrow rv">Next steps</p>
-    <h2 class="s-title rv d1">What I would do next</h2>
+    <p class="s-eyebrow rv">UI</p>
+    <h2 class="s-title rv d1">Calm, not anxious</h2>
     
-<ul class="checks rv"><li><b>Validate the persona</b> with 5–8 interviews and a 5-second test on Home.</li><li><b>Test the interpretation:</b> do insights match what users believe explains their spending?</li><li><b>Prototype notifications and payment reminders</b>, the piece I think is most undervalued.</li><li><b>Define success metrics</b> before building: weekly return rate, recommendations acted on, validation rate.</li></ul><p class="disclaimer rv"><b>About this case.</b> This is a design challenge and concept, not a launched product. There are no usage metrics. The persona and journey are design syntheses to be validated.</p>
+<div class="grid-2">
+ <div class="card-d rv"><span class="tag">Mixed radii</span><h3>Capsules for actions, straighter cards</h3></div>
+ <div class="card-d rv d1"><span class="tag">Same components</span><h3>Home, Insights, Plan share one system</h3></div>
+ <div class="card-d rv"><span class="tag">Real charts</span><h3>Never loose numbers</h3></div>
+ <div class="card-d rv d1"><span class="tag">Trust by absence</span><h3>No forced security seals</h3></div>
+</div><p class="disclaimer rv">Design challenge and concept, not a launched product. No usage metrics.</p>
 </section>
 </main>
 
@@ -146,7 +105,7 @@
     <div>
         <div class="next-label">Up next</div>
         <div class="next-title">GoNow</div>
-        <p style="font-size:14px;color:rgba(255,255,255,.55);max-width:340px;line-height:1.7;margin:10px 0 24px;">Public transit app for Quito, built from user interviews. Route planning, QR payments and a one-tap SOS.</p>
+        <p style="font-size:14px;color:rgba(255,255,255,.55);max-width:340px;line-height:1.7;margin:10px 0 24px;">Public transit app for Quito, built from user interviews.</p>
         <div class="next-btns">
             <a href="../gonow/index.html" class="n-btn n-primary">View case study ↗</a>
             <a href="../index.html" class="n-btn n-ghost">Back to portfolio</a>
@@ -165,7 +124,7 @@
         </div>
         <div class="footer-links">
             <div class="footer-col">
-                <p class="footer-col-title">Projects</p><a href="../iguana/index.html">Iguana Panel</a><a href="../lepetit/index.html">Le Petit</a><a href="../haru/index.html">Haru</a><a href="../gonow/index.html">GoNow</a><a href="../youtube-music/index.html">YouTube Music</a>
+                <p class="footer-col-title">Projects</p><a href="../iguana/index.html">Iguana Panel</a><a href="../lepetit/index.html">Le Petit Paradis</a><a href="../haru/index.html">Haru</a><a href="../gonow/index.html">GoNow</a><a href="../youtube-music/index.html">YouTube Music</a>
             </div>
             <div class="footer-col">
                 <p class="footer-col-title">Connect</p>
@@ -179,5 +138,6 @@
 </footer>
 
 <script src="../assets/js/case.js"></script>
+<script src="../assets/js/jpath.js"></script>
 </body>
 </html>

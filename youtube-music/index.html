@@ -57,24 +57,10 @@
         .disclaimer strong{color:var(--text);font-weight:600;}
 
         /* DEVICE SHOWCASE */
-        .device-showcase{padding:0 80px 80px;display:flex;align-items:flex-end;gap:32px;overflow-x:auto;}
-        .mac-frame{position:relative;flex:0 0 auto;width:min(640px,70vw);}
-        .mac-frame-body{background:#d4d4d4;border-radius:14px 14px 0 0;padding:20px 20px 0;box-shadow:0 20px 60px rgba(0,0,0,.18);}
-        .mac-screen{background:#0f0f0f;border-radius:8px 8px 0 0;overflow:hidden;aspect-ratio:16/10;}
-        .mac-screen img{width:100%;height:100%;object-fit:cover;object-position:top;display:block;}
-        .mac-notch{width:50px;height:10px;background:#aaa;border-radius:0 0 8px 8px;margin:0 auto;margin-top:-1px;}
-        .mac-base{height:10px;background:#c0c0c0;border-radius:0 0 4px 4px;}
-        .mac-stand{width:40%;height:8px;background:#b0b0b0;margin:0 auto;border-radius:0 0 4px 4px;}
-        .iphone-frame{position:relative;flex:0 0 auto;width:140px;margin-bottom:20px;}
-        .iphone-body{background:#1a1a1a;border-radius:32px;padding:10px;box-shadow:0 20px 60px rgba(0,0,0,.3);}
-        .iphone-notch{width:50px;height:18px;background:#000;border-radius:0 0 10px 10px;margin:0 auto 4px;position:relative;z-index:2;}
-        .iphone-screen{background:#000;border-radius:22px;overflow:hidden;aspect-ratio:9/19.5;}
-        .iphone-screen img{width:100%;height:100%;object-fit:cover;object-position:top;display:block;}
-        .iphone-btn{width:3px;height:36px;background:#2a2a2a;border-radius:2px;position:absolute;right:-3px;top:80px;}
+        .device-showcase{padding:0 80px 80px;display:flex;align-items:flex-end;justify-content:center;gap:clamp(12px,3vw,40px);}
+        .device-showcase img{display:block;width:min(300px,29vw);height:auto;}
         @media(max-width:680px){
-            .device-showcase{padding:0 24px 48px;gap:20px;}
-            .mac-frame{width:min(500px,85vw);}
-            .iphone-frame{width:110px;}
+            .device-showcase{padding:0 24px 48px;}
         }
 
         /* SECTION */
@@ -113,14 +99,7 @@
         .phones-arrow-icon{font-size:18px;color:var(--border);}
 
         /* IMAGE PLACEHOLDERS */
-        .phone-ph{
-            width:220px;height:454px;border-radius:38px;flex-shrink:0;
-            border:2px dashed;display:flex;align-items:center;justify-content:center;
-            overflow:hidden;position:relative;
-        }
-        .before-ph{border-color:rgba(255,0,0,.35);background:rgba(255,0,0,.04);}
-        .after-ph{border-color:rgba(22,163,74,.35);background:rgba(22,163,74,.04);}
-        .phone-ph img{width:100%;height:100%;object-fit:cover;border-radius:36px;display:block;}
+        .mock-img{display:block;width:220px;height:auto;flex-shrink:0;}
         .ph-empty{text-align:center;padding:24px;pointer-events:none;}
         .ph-icon{display:block;font-size:28px;margin-bottom:12px;opacity:.25;}
         .ph-label{display:block;font-size:11px;font-weight:700;color:var(--text);margin-bottom:8px;letter-spacing:-.01em;}
@@ -215,7 +194,7 @@
             .phones-compare{gap:12px;}
             .audit-grid,.results-grid{grid-template-columns:1fr;}
             .hero-meta{grid-template-columns:1fr 1fr;}
-            .phone-ph{width:160px;height:330px;}
+            .mock-img{width:160px;}
         }
         @media(max-width:680px){
             nav.site-nav{padding:0 20px;}
@@ -223,7 +202,7 @@
             .back-link{padding:60px 24px 0;}
             .phones-compare{flex-wrap:wrap;justify-content:center;}
             .phones-arrow{display:none;}
-            .phone-ph{width:48%;height:auto;aspect-ratio:220/454;}
+            .mock-img{width:46%;}
             .next-section{flex-direction:column-reverse;}
             .next-section > div:last-child{width:100% !important;}
             .site-footer{padding:40px 24px;}
@@ -231,6 +210,7 @@
             .footer-links{gap:24px;}
         }
     </style>
+    <link rel="stylesheet" href="../assets/css/jpath.css">
 </head>
 <body>
 
@@ -297,7 +277,7 @@
         <span class="kicker-pill">Mobile</span>
     </div>
     <h1 class="hero-h1 rv d1">YouTube Music<br><em>Redesigned.</em></h1>
-    <p class="hero-sub rv d2">Three UX problems that make daily use frustrating — and three design decisions that fix them.</p>
+    <p class="hero-sub rv d2">Three UX problems that make daily use frustrating, and three design decisions that fix them.</p>
     <div class="hero-meta rv d3">
         <div class="meta-cell">
             <span class="meta-label">Type</span>
@@ -320,38 +300,9 @@
 
 <!-- DEVICE SHOWCASE -->
 <div class="device-showcase">
-    <!-- MacBook — Home -->
-    <div class="mac-frame rv">
-        <div class="mac-frame-body">
-            <div class="mac-screen">
-                <img src="Home-web.webp" alt="YouTube Music redesign — web home">
-            </div>
-        </div>
-        <div class="mac-notch"></div>
-        <div class="mac-base"></div>
-        <div class="mac-stand"></div>
-    </div>
-    <!-- iPhone 13 — Home -->
-    <div class="iphone-frame rv d1">
-        <div class="iphone-btn"></div>
-        <div class="iphone-body">
-            <div class="iphone-notch"></div>
-            <div class="iphone-screen">
-                <img src="Home.webp" alt="YouTube Music redesign — mobile home">
-            </div>
-        </div>
-    </div>
-    <!-- MacBook — Player -->
-    <div class="mac-frame rv d2" style="width:min(520px,55vw);">
-        <div class="mac-frame-body">
-            <div class="mac-screen">
-                <img src="Player-web.webp" alt="YouTube Music redesign — web player">
-            </div>
-        </div>
-        <div class="mac-notch"></div>
-        <div class="mac-base"></div>
-        <div class="mac-stand"></div>
-    </div>
+    <img class="rv" src="Home.webp" width="994" height="1820" alt="YouTube Music redesign, home screen with filter chips and recommended section">
+    <img class="rv d1" src="Library.webp" width="1118" height="2126" alt="YouTube Music redesign, library screen with tab filters">
+    <img class="rv d2" src="Player.webp" width="1026" height="1866" alt="YouTube Music redesign, now playing screen">
 </div>
 
 <div class="disclaimer rv" style="margin-bottom:0;">
@@ -362,12 +313,12 @@
 <section class="section section-border" id="sec-yt-problems">
     <p class="s-eyebrow rv">Why YouTube Music</p>
     <h2 class="s-title rv d1">A powerful product held back<br>by three daily frustrations.</h2>
-    <p class="s-body rv d2">YouTube Music has the biggest catalog of any streaming app — but the interface was unattractive, cluttered, and made it hard to enjoy even simple actions like finding or searching music. Users found the hierarchy confusing across both web and mobile. I redesigned it with <strong>a cleaner layout, clearer icons, and a modern color palette</strong> that feels simple, accessible, and visually engaging.</p>
+    <p class="s-body rv d2">YouTube Music has the biggest catalog of any streaming app, but the interface was unattractive, cluttered, and made it hard to enjoy even simple actions like finding or searching music. Users found the hierarchy confusing across both web and mobile. I redesigned it with <strong>a cleaner layout, clearer icons, and a modern color palette</strong> that feels simple, accessible, and visually engaging.</p>
     <div class="audit-grid">
         <div class="audit-card rv d1">
             <div class="audit-num">Problem 01</div>
             <div class="audit-title">Interface is cluttered, no clear priority</div>
-            <div class="audit-desc">Both the mobile and web interfaces dump too much on screen at once. No visual hierarchy, no filters, no clear entry point — users felt overwhelmed.</div>
+            <div class="audit-desc">Both the mobile and web interfaces dump too much on screen at once. No visual hierarchy, no filters, no clear entry point, users felt overwhelmed.</div>
         </div>
         <div class="audit-card rv d2">
             <div class="audit-num">Problem 02</div>
@@ -390,30 +341,22 @@
             <div class="dec-tag">Home Discovery</div>
             <h2 class="dec-title">Clean the home screen hierarchy.</h2>
             <p class="dec-body">
-                The original home dumped everything at once — no clear priority, no visual breathing room. The redesign introduces <strong>filter chips</strong> (All / Music / Playlist) so users immediately narrow scope, and restructures content into clear sections: Recommended first (large card), then Recently Played as a scannable list. The information hierarchy now matches how people actually use the app.
+                The original home dumped everything at once, no clear priority, no visual breathing room. The redesign introduces <strong>filter chips</strong> (All / Music / Playlist) so users immediately narrow scope, and restructures content into clear sections: Recommended first (large card), then Recently Played as a scannable list. The information hierarchy now matches how people actually use the app.
             </p>
         </div>
         <div class="decision-right rv d2">
             <div class="phones-compare">
-                <!-- BEFORE: Home — original YT Music (no screenshot) -->
+                <!-- BEFORE: Home, original YT Music (no screenshot) -->
                 <div class="phone-wrap">
                     <span class="phone-label before">Before</span>
-                    <div class="phone-ph before-ph">
-                        <div class="ph-empty">
-                            <span class="ph-icon">📱</span>
-                            <span class="ph-label">Original</span>
-                            <span class="ph-note">YouTube Music<br>home — 2024</span>
-                        </div>
-                    </div>
+                    <img class="mock-img" src="Before-Home.webp" width="720" height="1280" loading="lazy" alt="Original YouTube Music home screen">
                     <span class="problem-badge">Cluttered, no visual hierarchy</span>
                 </div>
                 <div class="phones-arrow"><span class="phones-arrow-icon">→</span></div>
                 <!-- AFTER: Home -->
                 <div class="phone-wrap">
                     <span class="phone-label after">After</span>
-                    <div class="phone-ph after-ph">
-                        <img src="Home.webp" alt="YouTube Music home — redesign" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block;">
-                    </div>
+                    <img class="mock-img" src="Home.webp" width="994" height="1820" loading="lazy" alt="YouTube Music redesign home screen">
                     <span class="solution-badge">Cleaner hierarchy, clear filters</span>
                 </div>
             </div>
@@ -429,7 +372,7 @@
             <div class="dec-tag">Library</div>
             <h2 class="dec-title">One library. Four clear categories.</h2>
             <p class="dec-body">
-                The current library dumps everything together — music playlists, auto-mixes, music videos, and uploads in a single scrollable list. The redesign adds <strong>tab-based filtering</strong> at the top: Songs, Albums, Artists, Playlists, Videos. The user picks their mode and sees only what's relevant. Simple, obvious, fast.
+                The current library dumps everything together, music playlists, auto-mixes, music videos, and uploads in a single scrollable list. The redesign adds <strong>tab-based filtering</strong> at the top: Songs, Albums, Artists, Playlists, Videos. The user picks their mode and sees only what's relevant. Simple, obvious, fast.
             </p>
         </div>
         <div class="decision-right rv d2">
@@ -437,18 +380,14 @@
                 <!-- BEFORE: Library -->
                 <div class="phone-wrap">
                     <span class="phone-label before">Before</span>
-                    <div class="phone-ph before-ph">
-                        <img src="Search.webp" alt="YouTube Music search — original" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block;">
-                    </div>
+                    <img class="mock-img" src="Before-Library.webp" width="720" height="1280" loading="lazy" alt="Original YouTube Music library screen">
                     <span class="problem-badge">All content types mixed</span>
                 </div>
                 <div class="phones-arrow"><span class="phones-arrow-icon">→</span></div>
                 <!-- AFTER: Library -->
                 <div class="phone-wrap">
                     <span class="phone-label after">After</span>
-                    <div class="phone-ph after-ph">
-                        <img src="Library.webp" alt="YouTube Music library — redesign" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block;">
-                    </div>
+                    <img class="mock-img" src="Library.webp" width="1118" height="2126" loading="lazy" alt="YouTube Music redesign library screen">
                     <span class="solution-badge">Tab filter → instant clarity</span>
                 </div>
             </div>
@@ -464,36 +403,60 @@
             <div class="dec-tag">Now Playing</div>
             <h2 class="dec-title">Make the player screen earn its space.</h2>
             <p class="dec-body">
-                The current player uses most of the screen for album art and leaves the bottom empty. Queue, lyrics, and related tracks are hidden behind gestures users don't know exist. The redesign compacts the art slightly and surfaces an <strong>"Up Next" mini-queue</strong> and <strong>quick-action buttons</strong> (lyrics, share) directly on the screen — no hidden gestures required.
+                The current player uses most of the screen for album art and leaves the bottom empty. Queue, lyrics, and related tracks are hidden behind gestures users don't know exist. The redesign compacts the art slightly and surfaces an <strong>"Up Next" mini-queue</strong> and <strong>quick-action buttons</strong> (lyrics, share) directly on the screen, no hidden gestures required.
             </p>
         </div>
         <div class="decision-right rv d2">
             <div class="phones-compare">
-                <!-- BEFORE: Player — original YT Music (no screenshot) -->
+                <!-- BEFORE: Player, original YT Music (no screenshot) -->
                 <div class="phone-wrap">
                     <span class="phone-label before">Before</span>
-                    <div class="phone-ph before-ph">
-                        <div class="ph-empty">
-                            <span class="ph-icon">📱</span>
-                            <span class="ph-label">Original</span>
-                            <span class="ph-note">YouTube Music<br>player — 2024</span>
-                        </div>
-                    </div>
+                    <img class="mock-img" src="Before-Player.webp" width="720" height="1280" loading="lazy" alt="Original YouTube Music now playing screen">
                     <span class="problem-badge">Empty space, hidden queue</span>
                 </div>
                 <div class="phones-arrow"><span class="phones-arrow-icon">→</span></div>
                 <!-- AFTER: Player -->
                 <div class="phone-wrap">
                     <span class="phone-label after">After</span>
-                    <div class="phone-ph after-ph">
-                        <img src="Player.webp" alt="YouTube Music player — redesign" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block;">
-                    </div>
+                    <img class="mock-img" src="Player.webp" width="1026" height="1866" loading="lazy" alt="YouTube Music redesign player screen">
                     <span class="solution-badge">Queue + actions always visible</span>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+<section class="section section-border" id="sec-yt-journey"><p class="s-tag rv">Customer journey</p><h2 class="s-h2 rv d1">From opening the app to loving it</h2><div class="jp jp--light rv" data-jp><p class="jp-hint">Tap a stop on the path</p><ol class="jp-nodes" style="--n:5"><svg class="jp-road" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><path d="M0 21.0 C5.0 21.0 5.0 21.0 10.0 21.0 C20.0 21.0 20.0 61.0 30.0 61.0 C40.0 61.0 40.0 21.0 50.0 21.0 C60.0 21.0 60.0 61.0 70.0 61.0 C80.0 61.0 80.0 21.0 90.0 21.0 C95.0 21.0 95.0 21.0 100 21.0"/></svg><li style="--i:1;--c:#facc15;--m:0.5"><button type="button" class="jp-node" id="jpn-0" aria-expanded="false" aria-controls="jpp-0"><span class="jp-n">1</span><span class="jp-l">Awareness</span><span class="jp-e">Open</span></button>
+<div class="jp-panel" id="jpp-0" role="region" aria-labelledby="jpn-0"><div class="jp-head"><span class="jp-step">Stage 1 of 5</span><h4>Awareness</h4><span class="jp-mood"><i></i>Open</span><p class="jp-goal">A listener opens the app wanting something to play.</p></div>
+<div class="jp-grid"><div class="jp-c"><h5>Does</h5><ul><li>Opens YouTube Music</li><li>Scrolls the home looking for a hook</li><li>Decides what to listen to</li></ul><p class="t">Touchpoints: Home</p></div>
+<div class="jp-c"><h5>Thinks</h5><p class="q">“What do I want to listen to?”</p></div>
+<div class="jp-c bad"><h5>Pain point</h5><p>The interface is cluttered with no clear priority.</p><p class="hmw"><b>HMW</b> give the home one clear entry point?</p></div>
+<div class="jp-c good"><h5>Design response</h5><p>Filter chips on top and a clear recommended section.</p><div class="jp-chips"><span>Visual hierarchy</span><span>Hick’s law</span></div></div></div>
+<div class="jp-foot"><span class="jp-measure"><b>Measure:</b> Time to first play</span><button type="button" class="jp-next" data-to="1">Next: Consideration →</button></div></div></li><li style="--i:2;--c:#f87171;--m:0.35"><button type="button" class="jp-node" id="jpn-1" aria-expanded="false" aria-controls="jpp-1"><span class="jp-n">2</span><span class="jp-l">Consideration</span><span class="jp-e">Overwhelmed</span></button>
+<div class="jp-panel" id="jpp-1" role="region" aria-labelledby="jpn-1"><div class="jp-head"><span class="jp-step">Stage 2 of 5</span><h4>Consideration</h4><span class="jp-mood"><i></i>Overwhelmed</span><p class="jp-goal">She compares and searches but the hierarchy confuses her.</p></div>
+<div class="jp-grid"><div class="jp-c"><h5>Does</h5><ul><li>Searches for an artist or a song</li><li>Scrolls through mixed content</li><li>Backs out and tries again</li></ul><p class="t">Touchpoints: Home, search</p></div>
+<div class="jp-c"><h5>Thinks</h5><p class="q">“Why is this so hard to scan?”</p></div>
+<div class="jp-c bad"><h5>Pain point</h5><p>Too much on screen at once, no filters.</p><p class="hmw"><b>HMW</b> make scanning effortless?</p></div>
+<div class="jp-c good"><h5>Design response</h5><p>A cleaner layout, clearer icons and a modern, accessible palette.</p><div class="jp-chips"><span>Less clutter</span><span>Recognition</span></div></div></div>
+<div class="jp-foot"><span class="jp-measure"><b>Measure:</b> Searches per play</span><button type="button" class="jp-next" data-to="2">Next: Decision →</button></div></div></li><li style="--i:3;--c:#facc15;--m:0.4"><button type="button" class="jp-node" id="jpn-2" aria-expanded="false" aria-controls="jpp-2"><span class="jp-n">3</span><span class="jp-l">Decision</span><span class="jp-e">Lost</span></button>
+<div class="jp-panel" id="jpp-2" role="region" aria-labelledby="jpn-2"><div class="jp-head"><span class="jp-step">Stage 3 of 5</span><h4>Decision</h4><span class="jp-mood"><i></i>Lost</span><p class="jp-goal">She picks what to play from her own library.</p></div>
+<div class="jp-grid"><div class="jp-c"><h5>Does</h5><ul><li>Opens Library</li><li>Scrolls a flat list</li><li>Hunts for one playlist or podcast</li></ul><p class="t">Touchpoints: Library</p></div>
+<div class="jp-c"><h5>Thinks</h5><p class="q">“Where is my playlist in all of this?”</p></div>
+<div class="jp-c bad"><h5>Pain point</h5><p>Songs, albums, playlists, videos and podcasts live in one flat list.</p><p class="hmw"><b>HMW</b> let her filter by type in one tap?</p></div>
+<div class="jp-c good"><h5>Design response</h5><p>Tab filters by content type at the top of Library.</p><div class="jp-chips"><span>Categorization</span><span>Fewer taps</span></div></div></div>
+<div class="jp-foot"><span class="jp-measure"><b>Measure:</b> Taps to reach a playlist</span><button type="button" class="jp-next" data-to="3">Next: Retention →</button></div></div></li><li style="--i:4;--c:#4ade80;--m:0.8"><button type="button" class="jp-node" id="jpn-3" aria-expanded="false" aria-controls="jpp-3"><span class="jp-n">4</span><span class="jp-l">Retention</span><span class="jp-e">Immersed</span></button>
+<div class="jp-panel" id="jpp-3" role="region" aria-labelledby="jpn-3"><div class="jp-head"><span class="jp-step">Stage 4 of 5</span><h4>Retention</h4><span class="jp-mood"><i></i>Immersed</span><p class="jp-goal">She listens, and wants the controls and queue close.</p></div>
+<div class="jp-grid"><div class="jp-c"><h5>Does</h5><ul><li>Controls playback</li><li>Checks the queue and lyrics</li><li>Keeps listening</li></ul><p class="t">Touchpoints: Now Playing</p></div>
+<div class="jp-c"><h5>Thinks</h5><p class="q">“Where are the lyrics and the queue?”</p></div>
+<div class="jp-c bad"><h5>Pain point</h5><p>Album art takes 60% of the screen and queue and lyrics are buried.</p><p class="hmw"><b>HMW</b> use the whole screen for what she needs?</p></div>
+<div class="jp-c good"><h5>Design response</h5><p>A rebalanced player with queue, lyrics and related content within reach.</p><div class="jp-chips"><span>Space for controls</span><span>Findability</span></div></div></div>
+<div class="jp-foot"><span class="jp-measure"><b>Measure:</b> Queue and lyrics usage</span><button type="button" class="jp-next" data-to="4">Next: Advocacy →</button></div></div></li><li style="--i:5;--c:#4ade80;--m:0.7"><button type="button" class="jp-node" id="jpn-4" aria-expanded="false" aria-controls="jpp-4"><span class="jp-n">5</span><span class="jp-l">Advocacy</span><span class="jp-e">Fan</span></button>
+<div class="jp-panel" id="jpp-4" role="region" aria-labelledby="jpn-4"><div class="jp-head"><span class="jp-step">Stage 5 of 5</span><h4>Advocacy</h4><span class="jp-mood"><i></i>Fan</span><p class="jp-goal">She shares what she found. A hypothesis to validate.</p></div>
+<div class="jp-grid"><div class="jp-c"><h5>Does</h5><ul><li>Shares a playlist</li><li>Recommends the app to a friend</li></ul><p class="t">Touchpoints: Share sheet, word of mouth</p></div>
+<div class="jp-c"><h5>Thinks</h5><p class="q">“This feels so much better, look.”</p></div>
+<div class="jp-c bad"><h5>Pain point</h5><p>A confusing app is rarely recommended.</p><p class="hmw"><b>HMW</b> make sharing feel natural?</p></div>
+<div class="jp-c good"><h5>Design response</h5><p>A consistent, clear system on every screen makes the app easier to love.</p><div class="jp-chips"><span>Consistency</span></div></div></div>
+<div class="jp-foot"><span class="jp-measure"><b>Measure:</b> Shares per active user</span></div></div></li><div class="jp-empty"><span class="jp-arrow" aria-hidden="true">↑</span><p><b>Pick a stop on the path.</b> Each one opens what happens, what hurts and how the design responds.</p></div></ol><p class="jp-note">Design synthesis from my own audit of the app. A personal concept, not user research. English only.</p></div></section>
 
 <!-- SUMMARY -->
 <section class="section section-border">
@@ -522,7 +485,7 @@
 <section class="section section-border" id="sec-yt-takeaway">
     <p class="s-eyebrow rv">Takeaway</p>
     <h2 class="s-title rv d1">Great catalogs deserve<br>better navigation.</h2>
-    <p class="s-body rv d2">The most valuable thing this project reinforced: <strong>UX problems are rarely about missing features.</strong> YouTube Music has lyrics, has a queue, has discovery algorithms — but they're all buried. The redesign doesn't add anything new. It surfaces what's already there, in the moment users actually want it. That's the job.</p>
+    <p class="s-body rv d2">The most valuable thing this project reinforced: <strong>UX problems are rarely about missing features.</strong> YouTube Music has lyrics, has a queue, has discovery algorithms, but they're all buried. The redesign doesn't add anything new. It surfaces what's already there, in the moment users actually want it. That's the job.</p>
 </section>
 
 <!-- NEXT -->
@@ -567,6 +530,7 @@
     </div>
 </footer>
 
+<script src="../assets/js/jpath.js"></script>
 <script>
 const obs=new IntersectionObserver((e)=>{e.forEach(el=>{if(el.isIntersecting){el.target.classList.add('on');obs.unobserve(el.target);}});},{threshold:0.06,rootMargin:'0px 0px -28px 0px'});
 document.querySelectorAll('.rv').forEach(el=>obs.observe(el));
