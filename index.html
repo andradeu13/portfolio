@@ -289,6 +289,8 @@
             display: flex; align-items: center; justify-content: center;
             overflow: hidden; position: relative;
         }
+        .card-cover img { width:100%; height:100%; object-fit:cover; display:block; transition:transform .6s var(--ease); }
+        .card:hover .card-cover img { transform:scale(1.04); }
         .cv-gonow { background: #f2f2f2; gap: 0; }
         .cv-gonow img {
             height: 108%; width: auto;
@@ -504,6 +506,7 @@
             .hero-left, .work, .about, .contact { padding-left: 24px; padding-right: 24px; }
             .hero-stats { gap: 24px; }
             .card-visual { aspect-ratio: auto; min-height: 260px; padding: 28px 0; }
+            .card-visual.card-cover { aspect-ratio: 3/2; min-height: 0; padding: 0; }
             .hero-h1 { font-size: clamp(38px, 11.5vw, 56px); }
             .site-footer { padding: 40px 24px; }
             .footer-inner { flex-direction: column; gap: 32px; }
@@ -659,9 +662,7 @@
 
         <!-- Le Petit Paradis -->
         <a href="lepetit/index.html" class="card rv d2">
-            <div class="card-visual" style="background:#eef3fb;">
-                <img src="lepetit/images/home.webp" width="640" height="1138" alt="Le Petit Paradis store home on mobile" style="height:108%;width:auto;object-fit:contain;filter:drop-shadow(0 18px 44px rgba(0,0,0,.18));">
-            </div>
+            <div class="card-visual card-cover"><img src="lepetit/images/cover.webp" width="1500" height="1000" alt="Le Petit Paradis store screens on mobile: product, home and checkout" loading="lazy"></div>
             <div class="card-body">
                 <div class="card-tags">
                     <span class="c-tag">E-commerce</span>
@@ -679,9 +680,7 @@
 
         <!-- Haru -->
         <a href="haru/index.html" class="card rv d3">
-            <div class="card-visual" style="background:#f1f1ec;">
-                <img src="haru/images/haru-home.webp" width="700" height="1350" alt="Haru app home screen showing a safe margin to spend" style="height:108%;width:auto;object-fit:contain;filter:drop-shadow(0 18px 44px rgba(0,0,0,.18));">
-            </div>
+            <div class="card-visual card-cover"><img src="haru/images/cover.webp" width="1500" height="1000" alt="Haru app screens: insights, home and plan" loading="lazy"></div>
             <div class="card-body">
                 <div class="card-tags">
                     <span class="c-tag">Fintech</span>
@@ -699,9 +698,7 @@
 
         <!-- GoNow -->
         <a href="gonow/index.html" class="card rv d4">
-            <div class="card-visual cv-gonow">
-                <img src="gonow/images/Home.webp" alt="GoNow app screen">
-            </div>
+            <div class="card-visual card-cover"><img src="gonow/images/cover.webp" width="1500" height="1000" alt="GoNow app screens: choose route, home and QR ticket" loading="lazy"></div>
             <div class="card-body">
                 <div class="card-tags">
                     <span class="c-tag">UX / UI</span>
@@ -719,9 +716,7 @@
 
         <!-- YouTube Music Redesign -->
         <a href="youtube-music/index.html" class="card rv d1">
-            <div class="card-visual" style="background:#f1f1ee;">
-                <img src="youtube-music/Home.webp" width="994" height="1820" alt="YouTube Music redesign home screen" style="height:108%;width:auto;object-fit:contain;filter:drop-shadow(0 18px 44px rgba(0,0,0,.2));">
-            </div>
+            <div class="card-visual card-cover"><img src="youtube-music/cover.webp" width="1500" height="1000" alt="YouTube Music redesign screens: library, home and now playing" loading="lazy"></div>
             <div class="card-body">
                 <div class="card-tags">
                     <span class="c-tag">UX Audit</span>

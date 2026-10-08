@@ -358,6 +358,7 @@
             .footer-links { gap: 32px; }
         }
     </style>
+    <link rel="stylesheet" href="../assets/css/jpath.css">
 </head>
 <body>
 
@@ -543,6 +544,38 @@
 </section>
 
 <!-- DESIGN DECISIONS -->
+<section class="sec" id="journey"><p class="s-tag rv">Customer journey</p><h2 class="s-h2 rv d1">From need to daily habit</h2><div class="jp jp--light rv" data-jp><p class="jp-hint">Tap a stop on the path</p><ol class="jp-nodes" style="--n:5"><svg class="jp-road" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><path d="M0 21.0 C5.0 21.0 5.0 21.0 10.0 21.0 C20.0 21.0 20.0 61.0 30.0 61.0 C40.0 61.0 40.0 21.0 50.0 21.0 C60.0 21.0 60.0 61.0 70.0 61.0 C80.0 61.0 80.0 21.0 90.0 21.0 C95.0 21.0 95.0 21.0 100 21.0"/></svg><li style="--i:1;--c:#facc15;--m:0.45"><button type="button" class="jp-node" id="jpn-0" aria-expanded="false" aria-controls="jpp-0"><span class="jp-n">1</span><span class="jp-l">Awareness</span><span class="jp-e">Unsure</span></button>
+<div class="jp-panel" id="jpp-0" role="region" aria-labelledby="jpn-0"><div class="jp-head"><span class="jp-step">Stage 1 of 5</span><h4>Awareness</h4><span class="jp-mood"><i></i>Unsure</span><p class="jp-goal">A commuter has to get somewhere and does not know the best bus combination.</p></div>
+<div class="jp-grid"><div class="jp-c"><h5>Does</h5><ul><li>Asks family or neighbours</li><li>Searches maps that barely cover local buses</li><li>Relies on local knowledge or trial and error</li></ul><p class="t">Touchpoints: Word of mouth, generic map apps</p></div>
+<div class="jp-c"><h5>Thinks</h5><p class="q">“Which bus do I take and where do I switch?”</p></div>
+<div class="jp-c bad"><h5>Pain point</h5><p>No single reliable source of route information.</p><p class="hmw"><b>HMW</b> give local route knowledge to anyone?</p></div>
+<div class="jp-c good"><h5>Design response</h5><p>Route planning as the first thing on the home screen.</p><div class="jp-chips"><span>Recognition over recall</span><span>Fewer steps</span></div></div></div>
+<div class="jp-foot"><span class="jp-measure"><b>Measure:</b> Routes searched per new user</span><button type="button" class="jp-next" data-to="1">Next: Consideration →</button></div></div></li><li style="--i:2;--c:#facc15;--m:0.5"><button type="button" class="jp-node" id="jpn-1" aria-expanded="false" aria-controls="jpp-1"><span class="jp-n">2</span><span class="jp-l">Consideration</span><span class="jp-e">Doubtful</span></button>
+<div class="jp-panel" id="jpp-1" role="region" aria-labelledby="jpn-1"><div class="jp-head"><span class="jp-step">Stage 2 of 5</span><h4>Consideration</h4><span class="jp-mood"><i></i>Doubtful</span><p class="jp-goal">She compares options and also worries about the trip itself.</p></div>
+<div class="jp-grid"><div class="jp-c"><h5>Does</h5><ul><li>Compares route options and transfers</li><li>Estimates time to the stop</li><li>Thinks about safety at that hour</li></ul><p class="t">Touchpoints: Choose route screen</p></div>
+<div class="jp-c"><h5>Thinks</h5><p class="q">“Is it safe to travel now?”</p></div>
+<div class="jp-c bad"><h5>Pain point</h5><p>Interviewees, especially women and students, described feeling unsafe.</p><p class="hmw"><b>HMW</b> make the trip feel safe before it starts?</p></div>
+<div class="jp-c good"><h5>Design response</h5><p>Clear route options, plus a persistent one-tap SOS reachable from any screen.</p><div class="jp-chips"><span>Safety first</span><span>Visibility</span></div></div></div>
+<div class="jp-foot"><span class="jp-measure"><b>Measure:</b> SOS discoverability in tests</span><button type="button" class="jp-next" data-to="2">Next: Decision →</button></div></div></li><li style="--i:3;--c:#f87171;--m:0.3"><button type="button" class="jp-node" id="jpn-2" aria-expanded="false" aria-controls="jpp-2"><span class="jp-n">3</span><span class="jp-l">Decision</span><span class="jp-e">Rushed</span></button>
+<div class="jp-panel" id="jpp-2" role="region" aria-labelledby="jpn-2"><div class="jp-head"><span class="jp-step">Stage 3 of 5</span><h4>Decision</h4><span class="jp-mood"><i></i>Rushed</span><p class="jp-goal">She boards and pays, usually in a crowd.</p></div>
+<div class="jp-grid"><div class="jp-c"><h5>Does</h5><ul><li>Walks to the stop and boards</li><li>Looks for exact change</li><li>Pays cash to the driver</li></ul><p class="t">Touchpoints: Bus stop, bus door</p></div>
+<div class="jp-c"><h5>Thinks</h5><p class="q">“Do I have the exact change? Is my bag safe?”</p></div>
+<div class="jp-c bad"><h5>Pain point</h5><p>Cash-only payment slows boarding and raises theft exposure.</p><p class="hmw"><b>HMW</b> remove cash from the boarding moment?</p></div>
+<div class="jp-c good"><h5>Design response</h5><p>QR payment reachable from home, designed for fewer than 3 steps.</p><div class="jp-chips"><span>Fitts’s law</span><span>Fewer steps</span></div></div></div>
+<div class="jp-foot"><span class="jp-measure"><b>Measure:</b> Steps and seconds to pay</span><button type="button" class="jp-next" data-to="3">Next: Retention →</button></div></div></li><li style="--i:4;--c:#4ade80;--m:0.8"><button type="button" class="jp-node" id="jpn-3" aria-expanded="false" aria-controls="jpp-3"><span class="jp-n">4</span><span class="jp-l">Retention</span><span class="jp-e">Safe</span></button>
+<div class="jp-panel" id="jpp-3" role="region" aria-labelledby="jpn-3"><div class="jp-head"><span class="jp-step">Stage 4 of 5</span><h4>Retention</h4><span class="jp-mood"><i></i>Safe</span><p class="jp-goal">The trip works, so the app becomes part of the daily routine.</p></div>
+<div class="jp-grid"><div class="jp-c"><h5>Does</h5><ul><li>Follows the live route</li><li>Keeps the ticket and SOS at hand</li><li>Repeats the same flow tomorrow</li></ul><p class="t">Touchpoints: Live route, ticket, bottom navigation</p></div>
+<div class="jp-c"><h5>Thinks</h5><p class="q">“This is easier than guessing.”</p></div>
+<div class="jp-c bad"><h5>Pain point</h5><p>Switching between route, payment and safety adds load.</p><p class="hmw"><b>HMW</b> keep everything one tap away?</p></div>
+<div class="jp-c good"><h5>Design response</h5><p>Bottom navigation with 4 core sections; accessible high-contrast visual system.</p><div class="jp-chips"><span>Consistency</span><span>Accessibility</span></div></div></div>
+<div class="jp-foot"><span class="jp-measure"><b>Measure:</b> Weekly active riders</span><button type="button" class="jp-next" data-to="4">Next: Advocacy →</button></div></div></li><li style="--i:5;--c:#4ade80;--m:0.7"><button type="button" class="jp-node" id="jpn-4" aria-expanded="false" aria-controls="jpp-4"><span class="jp-n">5</span><span class="jp-l">Advocacy</span><span class="jp-e">Recommending</span></button>
+<div class="jp-panel" id="jpp-4" role="region" aria-labelledby="jpn-4"><div class="jp-head"><span class="jp-step">Stage 5 of 5</span><h4>Advocacy</h4><span class="jp-mood"><i></i>Recommending</span><p class="jp-goal">She tells others. A hypothesis to validate.</p></div>
+<div class="jp-grid"><div class="jp-c"><h5>Does</h5><ul><li>Shows the app to family</li><li>Recommends it to classmates or coworkers</li></ul><p class="t">Touchpoints: Word of mouth</p></div>
+<div class="jp-c"><h5>Thinks</h5><p class="q">“You should install this, it has an SOS button.”</p></div>
+<div class="jp-c bad"><h5>Pain point</h5><p>A safety feature is hard to trust until someone vouches for it.</p><p class="hmw"><b>HMW</b> let trust travel by word of mouth?</p></div>
+<div class="jp-c good"><h5>Design response</h5><p>A clear differentiator (the SOS) that is easy to explain in one sentence.</p><div class="jp-chips"><span>Differentiation</span></div></div></div>
+<div class="jp-foot"><span class="jp-measure"><b>Measure:</b> Installs from referrals</span></div></div></li></ol><p class="jp-note">Design synthesis from the 6 interviews and the research findings. A map, not new data. English only.</p></div></section>
+
 <section class="sec" id="design">
     <p class="s-tag rv" data-i18n="s04-tag">04 · Design Decisions</p>
     <h2 class="s-h2 rv d1" data-i18n="s04-h2">Four decisions grounded in what users actually told me.</h2>
@@ -707,6 +740,7 @@
     </div>
 </footer>
 
+<script src="../assets/js/jpath.js"></script>
 <script>
 /* ── TRANSLATIONS ─────────────────────────────────────────── */
 const T = {

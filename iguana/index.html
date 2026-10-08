@@ -9,6 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../assets/css/case.css">
+    <link rel="stylesheet" href="../assets/css/jpath.css">
     <noscript><style>.rv{opacity:1!important;transform:none!important}</style></noscript>
 </head>
 <body>
@@ -81,7 +82,37 @@
     <p class="s-eyebrow rv">Customer journey</p>
     <h2 class="s-title rv d1">A day in the life</h2>
     
-<div class="jg rv" role="group" aria-label="Customer journey with emotion curve"><svg class="jg-curve" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><polyline points="10.00,46.00 30.00,38.00 50.00,58.00 70.00,62.00 90.00,22.00" fill="none" stroke="#ff7e00" stroke-width="2.5" vector-effect="non-scaling-stroke" stroke-linejoin="round"/></svg><ol class="jg-stages" style="--n:5"><li class="jg-st" style="--m:0.55;--c:#facc15"><div class="jg-lane"><span class="jg-dot"></span></div><span class="jg-name">Morning</span><span class="jg-emo">Planning</span><span class="jg-pain">Scattered agenda</span><span class="jg-fix">Day view first</span></li><li class="jg-st" style="--m:0.65;--c:#facc15"><div class="jg-lane"><span class="jg-dot"></span></div><span class="jg-name">Between clients</span><span class="jg-emo">Rushed</span><span class="jg-pain">Small screen, no time</span><span class="jg-fix">Countdown, highlight</span></li><li class="jg-st" style="--m:0.4;--c:#facc15"><div class="jg-lane"><span class="jg-dot"></span></div><span class="jg-name">Payment</span><span class="jg-emo">Careful</span><span class="jg-pain">Forgotten balances</span><span class="jg-fix">Status pills, total owed</span></li><li class="jg-st" style="--m:0.35;--c:#f87171"><div class="jg-lane"><span class="jg-dot"></span></div><span class="jg-name">Messages</span><span class="jg-emo">Interrupted</span><span class="jg-pain">Constant questions</span><span class="jg-fix">AI assistant on WhatsApp</span></li><li class="jg-st" style="--m:0.85;--c:#4ade80"><div class="jg-lane"><span class="jg-dot"></span></div><span class="jg-name">End of day</span><span class="jg-emo">In control</span><span class="jg-pain">Money in many places</span><span class="jg-fix">Collected, spent, profit</span></li></ol></div>
+<div class="jp rv" data-jp><p class="jp-hint">Tap a stop on the path</p><ol class="jp-nodes" style="--n:5"><svg class="jp-road" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><path d="M0 21.0 C5.0 21.0 5.0 21.0 10.0 21.0 C20.0 21.0 20.0 61.0 30.0 61.0 C40.0 61.0 40.0 21.0 50.0 21.0 C60.0 21.0 60.0 61.0 70.0 61.0 C80.0 61.0 80.0 21.0 90.0 21.0 C95.0 21.0 95.0 21.0 100 21.0"/></svg><li style="--i:1;--c:#facc15;--m:0.4"><button type="button" class="jp-node" id="jpn-0" aria-expanded="false" aria-controls="jpp-0"><span class="jp-n">1</span><span class="jp-l">Awareness</span><span class="jp-e">Overloaded</span></button>
+<div class="jp-panel" id="jpp-0" role="region" aria-labelledby="jpn-0"><div class="jp-head"><span class="jp-step">Stage 1 of 5</span><h4>Awareness</h4><span class="jp-mood"><i></i>Overloaded</span><p class="jp-goal">Daniela notices her agenda, payments and chats live in too many places.</p></div>
+<div class="jp-grid"><div class="jp-c"><h5>Does</h5><ul><li>Keeps appointments in a notebook and the phone</li><li>Tracks who paid in chats and notes</li><li>Looks for something simpler</li></ul><p class="t">Touchpoints: Notebook, WhatsApp, spreadsheet</p></div>
+<div class="jp-c"><h5>Thinks</h5><p class="q">“I lose track of who paid and what is next.”</p></div>
+<div class="jp-c bad"><h5>Pain point</h5><p>Scattered information across tools.</p><p class="hmw"><b>HMW</b> make “my day” one glance?</p></div>
+<div class="jp-c good"><h5>Design response</h5><p>One home screen: next appointment, money collected today and what is owed.</p><div class="jp-chips"><span>Visual hierarchy</span><span>Glanceability</span></div></div></div>
+<div class="jp-foot"><span class="jp-measure"><b>Measure:</b> Time to find the next appointment</span><button type="button" class="jp-next" data-to="1">Next: Consideration →</button></div></div></li><li style="--i:2;--c:#facc15;--m:0.6"><button type="button" class="jp-node" id="jpn-1" aria-expanded="false" aria-controls="jpp-1"><span class="jp-n">2</span><span class="jp-l">Consideration</span><span class="jp-e">Curious</span></button>
+<div class="jp-panel" id="jpp-1" role="region" aria-labelledby="jpn-1"><div class="jp-head"><span class="jp-step">Stage 2 of 5</span><h4>Consideration</h4><span class="jp-mood"><i></i>Curious</span><p class="jp-goal">She wants to know if she will understand it in seconds.</p></div>
+<div class="jp-grid"><div class="jp-c"><h5>Does</h5><ul><li>Opens the live demo, no sign up</li><li>Looks for her day first</li><li>Checks it on her phone</li></ul><p class="t">Touchpoints: Demo, mobile browser</p></div>
+<div class="jp-c"><h5>Thinks</h5><p class="q">“Will this be as heavy as the other panels?”</p></div>
+<div class="jp-c bad"><h5>Pain point</h5><p>Dashboards built for analysts, with heavy menus.</p><p class="hmw"><b>HMW</b> show value before asking for any effort?</p></div>
+<div class="jp-c good"><h5>Design response</h5><p>Daily calendar as the main view, demo mode with sample data, sidebar that becomes a bottom tab bar on mobile.</p><div class="jp-chips"><span>Thumb zone</span><span>Progressive disclosure</span></div></div></div>
+<div class="jp-foot"><span class="jp-measure"><b>Measure:</b> Demo to sign up rate</span><button type="button" class="jp-next" data-to="2">Next: Decision →</button></div></div></li><li style="--i:3;--c:#4ade80;--m:0.7"><button type="button" class="jp-node" id="jpn-2" aria-expanded="false" aria-controls="jpp-2"><span class="jp-n">3</span><span class="jp-l">Decision</span><span class="jp-e">Confident</span></button>
+<div class="jp-panel" id="jpp-2" role="region" aria-labelledby="jpn-2"><div class="jp-head"><span class="jp-step">Stage 3 of 5</span><h4>Decision</h4><span class="jp-mood"><i></i>Confident</span><p class="jp-goal">She starts using it in the middle of a working day.</p></div>
+<div class="jp-grid"><div class="jp-c"><h5>Does</h5><ul><li>Reads the next appointment and its countdown</li><li>Marks a payment, full or partial</li><li>Reads changes as arrow plus text</li></ul><p class="t">Touchpoints: Home, calendar, appointment detail</p></div>
+<div class="jp-c"><h5>Thinks</h5><p class="q">“I only have seconds between clients.”</p></div>
+<div class="jp-c bad"><h5>Pain point</h5><p>Partial payments are easy to forget on a small screen.</p><p class="hmw"><b>HMW</b> keep every balance visible without extra taps?</p></div>
+<div class="jp-c good"><h5>Design response</h5><p>Payment status pill on every appointment, total owed in Home, change shown as arrow plus text, never colour alone.</p><div class="jp-chips"><span>Visibility of status</span><span>Redundant cues</span></div></div></div>
+<div class="jp-foot"><span class="jp-measure"><b>Measure:</b> Taps to register a payment</span><button type="button" class="jp-next" data-to="3">Next: Retention →</button></div></div></li><li style="--i:4;--c:#4ade80;--m:0.85"><button type="button" class="jp-node" id="jpn-3" aria-expanded="false" aria-controls="jpp-3"><span class="jp-n">4</span><span class="jp-l">Retention</span><span class="jp-e">In control</span></button>
+<div class="jp-panel" id="jpp-3" role="region" aria-labelledby="jpn-3"><div class="jp-head"><span class="jp-step">Stage 4 of 5</span><h4>Retention</h4><span class="jp-mood"><i></i>In control</span><p class="jp-goal">It becomes the daily habit, from morning to end of day.</p></div>
+<div class="jp-grid"><div class="jp-c"><h5>Does</h5><ul><li>Checks collected, spent and profit at day end</li><li>Compares the month with the last one</li><li>Lets the AI assistant answer clients on WhatsApp</li></ul><p class="t">Touchpoints: Money view, assistant, settings</p></div>
+<div class="jp-c"><h5>Thinks</h5><p class="q">“Now I know how my day really went.”</p></div>
+<div class="jp-c bad"><h5>Pain point</h5><p>Constant client questions and money in many places.</p><p class="hmw"><b>HMW</b> give her the evening back?</p></div>
+<div class="jp-c good"><h5>Design response</h5><p>Money summary with income and expenses, and an AI assistant on WhatsApp for repeated questions.</p><div class="jp-chips"><span>Consistency</span><span>Automation</span></div></div></div>
+<div class="jp-foot"><span class="jp-measure"><b>Measure:</b> Weekly active use, assistant resolved chats</span><button type="button" class="jp-next" data-to="4">Next: Advocacy →</button></div></div></li><li style="--i:5;--c:#4ade80;--m:0.7"><button type="button" class="jp-node" id="jpn-4" aria-expanded="false" aria-controls="jpp-4"><span class="jp-n">5</span><span class="jp-l">Advocacy</span><span class="jp-e">Proud</span></button>
+<div class="jp-panel" id="jpp-4" role="region" aria-labelledby="jpn-4"><div class="jp-head"><span class="jp-step">Stage 5 of 5</span><h4>Advocacy</h4><span class="jp-mood"><i></i>Proud</span><p class="jp-goal">She recommends it to other business owners. A hypothesis to validate.</p></div>
+<div class="jp-grid"><div class="jp-c"><h5>Does</h5><ul><li>Shows it to a colleague</li><li>Adds a team member</li><li>Asks for the next view she needs</li></ul><p class="t">Touchpoints: Word of mouth, WhatsApp</p></div>
+<div class="jp-c"><h5>Thinks</h5><p class="q">“You should try this, it is simple.”</p></div>
+<div class="jp-c bad"><h5>Pain point</h5><p>A tool that is hard to explain is hard to recommend.</p><p class="hmw"><b>HMW</b> make the product easy to describe in one sentence?</p></div>
+<div class="jp-c good"><h5>Design response</h5><p>A documented design system keeps every new screen consistent, accessible and quick to ship.</p><div class="jp-chips"><span>Design system</span><span>Accessibility</span></div></div></div>
+<div class="jp-foot"><span class="jp-measure"><b>Measure:</b> Invites sent, retention after 30 days</span></div></div></li></ol><p class="jp-note">Design synthesis built from the product itself. Not interview data; to be validated with real users.</p></div>
 </section>
 <section class="section section-border" id="sec-decisions">
     <p class="s-eyebrow rv">Key decisions</p>
@@ -181,5 +212,6 @@
 </footer>
 
 <script src="../assets/js/case.js"></script>
+<script src="../assets/js/jpath.js"></script>
 </body>
 </html>
