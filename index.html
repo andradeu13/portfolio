@@ -210,8 +210,8 @@
         }
         .hero-h1 {
             font-family: var(--font-d); font-weight: 800;
-            font-size: clamp(68px, 11vw, 136px);
-            letter-spacing: -.045em; line-height: .9;
+            font-size: clamp(44px, 5.6vw, 84px);
+            letter-spacing: -.045em; line-height: .98;
             color: var(--text); max-width: 960px; margin-bottom: 36px;
         }
         .hero-h1 em { color: var(--orange); font-style: normal; }
@@ -298,32 +298,6 @@
         }
         .card:hover .cv-gonow img { transform: translateY(-6px) scale(1.03); }
 
-        .cv-pw { background: #111; flex-direction: column; gap: 20px; }
-        .pw-flow {
-            display: flex; align-items: center; gap: 0;
-            padding: 0 32px;
-        }
-        .pw-node {
-            background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1);
-            border-radius: 8px; padding: 8px 14px;
-            font-family: var(--font-b); font-size: 11px; font-weight: 500;
-            color: rgba(255,255,255,.4); white-space: nowrap; flex-shrink: 0;
-        }
-        .pw-node.lit {
-            background: rgba(255,126,0,.1); border-color: rgba(255,126,0,.3);
-            color: var(--orange);
-        }
-        .pw-arr { color: rgba(255,255,255,.18); font-size: 14px; padding: 0 7px; flex-shrink: 0; }
-        .pw-arr.lit { color: var(--orange); }
-        .pw-metric {
-            font-family: var(--font-d); font-size: 38px; font-weight: 800;
-            color: var(--white); letter-spacing: -.04em;
-        }
-        .pw-metric em { color: var(--orange); font-style: normal; }
-        .pw-metric-sub {
-            font-size: 12px; color: rgba(255,255,255,.3); font-weight: 300;
-            text-align: center; margin-top: -14px;
-        }
         .card-badge {
             position: absolute; top: 16px; right: 16px;
             background: rgba(22,163,74,.14); border: 1px solid rgba(22,163,74,.28);
@@ -376,6 +350,39 @@
         .card-featured .cta-arrow { background: var(--orange); color: #111; }
         .feat-badge { position: absolute; top: 16px; left: 16px; background: #c6f36e; color: #111; font-size: 10px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; padding: 4px 10px; border-radius: 100px; }
         .card-featured:hover { border-color: #3a3a3a; }
+
+        .lp-steps { display:flex; align-items:center; gap:6px; font-size:11px; font-weight:600; flex-wrap:wrap; justify-content:center; }
+        .lp-s { padding:5px 10px; border-radius:100px; background:#fff; color:#9a8f93; border:1px solid #f0dde1; }
+        .lp-s.on { background:#e9546b; color:#fff; border-color:#e9546b; }
+        .lp-a { color:#c9a9b0; }
+        .lp-box { width:100%; max-width:300px; background:#fff; border:1px solid #f0dde1; border-radius:14px; padding:6px 14px; }
+        .lp-row { display:flex; justify-content:space-between; font-size:12px; padding:7px 0; border-bottom:1px solid #f6e9ec; color:#4a3f43; }
+        .lp-row:last-child { border-bottom:0; }
+        .lp-wa { background:#25d366; color:#fff; font-size:12px; font-weight:700; padding:8px 16px; border-radius:100px; }
+        .how { padding: 100px 60px; background: var(--dark); color:#fff; }
+        .how .s-label { color: rgba(255,255,255,.55); }
+        .how .s-h2 { color:#fff; }
+        .how-sub { font-size:16px; font-weight:300; color:rgba(255,255,255,.65); max-width:640px; line-height:1.8; margin:18px 0 40px; }
+        .how-steps { display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:12px; }
+        .how-step { border:1px solid rgba(255,255,255,.12); border-radius:16px; padding:20px; background:rgba(255,255,255,.03); min-width:0; }
+        .how-step i { font-style:normal; font-size:11px; font-weight:700; letter-spacing:.14em; color:var(--orange); display:block; margin-bottom:10px; }
+        .how-step b { display:block; font-family:var(--font-d); font-size:18px; margin-bottom:6px; }
+        .how-step span { font-size:13px; line-height:1.65; color:rgba(255,255,255,.62); font-weight:300; }
+        .ds { padding: 100px 60px; }
+        .ds-grid { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:48px; align-items:center; }
+        .ds p { font-size:16px; font-weight:300; color:var(--muted); line-height:1.85; margin-bottom:18px; }
+        .ds ul { list-style:none; display:grid; gap:10px; margin:22px 0 28px; }
+        .ds li { font-size:14.5px; color:var(--text); line-height:1.6; padding-left:22px; position:relative; }
+        .ds li::before { content:'✓'; position:absolute; left:0; color:var(--orange); font-weight:700; }
+        .ds-tokens { background:var(--off); border:1px solid var(--border); border-radius:22px; padding:28px; }
+        .ds-tokens h3 { font-family:var(--font-d); font-size:20px; letter-spacing:-.02em; margin-bottom:6px; }
+        .ds-tokens > p { font-size:13px; margin-bottom:18px; }
+        .sw-row { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:18px; }
+        .sw-row span { width:44px; height:44px; border-radius:12px; border:1px solid rgba(0,0,0,.08); }
+        .ds-chips { display:flex; flex-wrap:wrap; gap:8px; }
+        .ds-chips span { font-size:12px; font-weight:600; padding:6px 12px; border-radius:100px; background:#fff; border:1px solid var(--border); }
+        @media (max-width:960px) { .how-steps { grid-template-columns:repeat(2,minmax(0,1fr)); } .ds-grid { grid-template-columns:1fr; } }
+        @media (max-width:680px) { .how, .ds { padding-left:24px; padding-right:24px; } .how-steps { grid-template-columns:1fr; } }
 
         /* ── ABOUT ───────────────────────────────────────── */
         .about {
@@ -506,8 +513,7 @@
             .hero-left, .work, .about, .contact { padding-left: 24px; padding-right: 24px; }
             .hero-stats { gap: 24px; }
             .card-visual { aspect-ratio: auto; min-height: 260px; padding: 28px 0; }
-            .pw-flow { flex-wrap: wrap; justify-content: center; row-gap: 8px; padding: 0 16px; }
-            .hero-h1 { font-size: clamp(56px, 17vw, 80px); }
+            .hero-h1 { font-size: clamp(38px, 11.5vw, 56px); }
             .site-footer { padding: 40px 24px; }
             .footer-inner { flex-direction: column; gap: 32px; }
             .footer-links { gap: 24px; }
@@ -526,10 +532,10 @@
             <a href="#work">Projects <span class="drop-arrow">▾</span></a>
             <div class="nav-drop-menu">
                 <a href="iguana/index.html">Iguana Panel</a>
+                <a href="lepetit/index.html">Le Petit</a>
+                <a href="haru/index.html">Haru</a>
                 <a href="gonow/index.html">GoNow</a>
-                <a href="pw-digital/index.html">Pipeline Automation</a>
                 <a href="youtube-music/index.html">YouTube Music</a>
-                <a href="pw-landing/index.html">Conversion Landing</a>
             </div>
         </li>
     </ul>
@@ -560,10 +566,10 @@
     <p class="drawer-section-title">Projects</p>
     <nav class="drawer-nav">
         <a href="iguana/index.html">Iguana Panel</a>
+                <a href="lepetit/index.html">Le Petit</a>
+                <a href="haru/index.html">Haru</a>
         <a href="gonow/index.html">GoNow</a>
-        <a href="pw-digital/index.html">Pipeline Automation</a>
         <a href="youtube-music/index.html">YouTube Music</a>
-        <a href="pw-landing/index.html">Conversion Landing</a>
     </nav>
     <div class="drawer-divider"></div>
     <p class="drawer-section-title">Connect</p>
@@ -578,14 +584,13 @@
 <section class="hero">
     <div class="hero-left">
         <div class="hero-main">
-            <p class="hero-eyebrow rv">UX & Product Designer, Quito, Ecuador</p>
-            <h1 class="hero-h1 rv d1">Esteban<br>Andrade<em>.</em></h1>
+            <p class="hero-eyebrow rv">Esteban Andrade · UX & Product Designer · Quito, Ecuador</p>
+            <h1 class="hero-h1 rv d1">Products people <em>trust</em> and keep using.</h1>
             <p class="hero-sub rv d2">
-                I design digital products grounded in real user research,
-                working across UX, product strategy, and process automation.
+                I turn real pain points into e-commerce, dashboards and fintech experiences, from research and customer journeys to design systems and the final screen.
             </p>
             <div class="hero-btns rv d3">
-                <a href="#work" class="btn btn-fill">View my work</a>
+                <a href="#work" class="btn btn-fill">See case studies</a>
                 <a href="about.html" class="btn btn-out">About me</a>
             </div>
             <div class="hero-cv rv d4">
@@ -595,43 +600,32 @@
         </div>
         <div class="hero-stats rv d4">
             <div class="stat">
-                <span class="stat-n"><em>3+</em></span>
-                <span class="stat-l">years in design</span>
-            </div>
-            <div class="stat">
-                <span class="stat-n">75</span>
-                <span class="stat-l">leads generated</span>
-            </div>
-            <div class="stat">
-                <span class="stat-n"><em>1–2h</em></span>
-                <span class="stat-l">saved weekly via automation</span>
-            </div>
-            <div class="stat">
-                <span class="stat-n">5</span>
+                <span class="stat-n"><em>5</em></span>
                 <span class="stat-l">case studies</span>
+            </div>
+            <div class="stat">
+                <span class="stat-n">3</span>
+                <span class="stat-l">product types</span>
+            </div>
+            <div class="stat">
+                <span class="stat-n"><em>6</em></span>
+                <span class="stat-l">GoNow interviews</span>
             </div>
         </div>
     </div>
     <!-- Hero visual -->
     <div class="hero-right">
-        <div class="h-badge h-cv-badge hb-3 rv d2">
-            <span class="h-cv-label">↓ Download CV</span>
-            <div class="h-cv-links">
-                <a href="CV_Esteban_Andrade_ES.pdf" download class="h-cv-link">ES</a>
-                <a href="CV_Esteban_Andrade_EN.pdf" download class="h-cv-link">EN</a>
-            </div>
-        </div>
         <div class="hero-phone rv d1">
             <div class="h-island"></div>
-            <img src="gonow/images/Home.webp" alt="GoNow app — urban mobility">
+            <img src="iguana/images/iguana-mobile-inicio.webp" width="780" height="1688" alt="Iguana panel on mobile: next appointment and money collected today">
         </div>
         <div class="h-badge h-metric hb-1 rv d3">
-            <span class="h-bn">75</span>
-            <span class="h-bl">leads generated</span>
+            <span class="h-bn">Pain points</span>
+            <span class="h-bl">to design decisions</span>
         </div>
         <div class="h-badge h-metric hb-2 rv d4">
-            <span class="h-bn"><em>1–2h</em></span>
-            <span class="h-bl">saved per week</span>
+            <span class="h-bn"><em>Journeys</em></span>
+            <span class="h-bl">and design systems</span>
         </div>
     </div>
 </section>
@@ -669,8 +663,56 @@
             </div>
         </a>
 
+        <!-- Le Petit -->
+        <a href="lepetit/index.html" class="card rv d2">
+            <div class="card-visual" style="background:#fdf2f4; flex-direction:column; gap:12px; padding:0 8%;">
+                <div class="lp-steps" aria-hidden="true">
+                    <span class="lp-s on">1 Contacto</span><span class="lp-a">→</span><span class="lp-s on">2 Envío</span><span class="lp-a">→</span><span class="lp-s">3 Pago</span>
+                </div>
+                <div class="lp-box" aria-hidden="true">
+                    <div class="lp-row"><span>Quito y valles</span><b>Gratis</b></div>
+                    <div class="lp-row"><span>Resto de Pichincha</span><b>$3.50</b></div>
+                    <div class="lp-row"><span>Nacional</span><b>$6</b></div>
+                </div>
+                <span class="lp-wa" aria-hidden="true">Comprar por WhatsApp</span>
+            </div>
+            <div class="card-body">
+                <div class="card-tags">
+                    <span class="c-tag">E-commerce</span>
+                    <span class="c-tag">Customer Journey</span>
+                    <span class="c-tag">Mobile-first</span>
+                </div>
+                <h3 class="card-name">Le Petit</h3>
+                <p class="card-desc">A children’s clothing store for Ecuador, designed around trust: age-based categories, real stock per size, a short checkout and WhatsApp as a safety net.</p>
+                <div class="card-cta">
+                    View case study
+                    <div class="cta-arrow">↗</div>
+                </div>
+            </div>
+        </a>
+
+        <!-- Haru -->
+        <a href="haru/index.html" class="card rv d3">
+            <div class="card-visual" style="background:#f1f1ec;">
+                <img src="haru/images/haru-home.webp" width="700" height="1350" alt="Haru app home screen showing a safe margin to spend" style="height:108%;width:auto;object-fit:contain;filter:drop-shadow(0 18px 44px rgba(0,0,0,.18));">
+            </div>
+            <div class="card-body">
+                <div class="card-tags">
+                    <span class="c-tag">Fintech</span>
+                    <span class="c-tag">UX Challenge</span>
+                    <span class="c-tag">Insights</span>
+                </div>
+                <h3 class="card-name">Haru</h3>
+                <p class="card-desc">A financial coach, not a bank. A design challenge on turning money data into insight and action, with three screens that each answer one question.</p>
+                <div class="card-cta">
+                    View case study
+                    <div class="cta-arrow">↗</div>
+                </div>
+            </div>
+        </a>
+
         <!-- GoNow -->
-        <a href="gonow/index.html" class="card rv d1">
+        <a href="gonow/index.html" class="card rv d4">
             <div class="card-visual cv-gonow">
                 <img src="gonow/images/Home.webp" alt="GoNow app screen">
             </div>
@@ -689,39 +731,8 @@
             </div>
         </a>
 
-        <!-- PW Digital Automation -->
-        <a href="pw-digital/index.html" class="card rv d2">
-            <div class="card-visual cv-pw">
-                <div class="card-badge">↓ 1–2h / week</div>
-                <div class="pw-metric"><em>3</em> steps<br><span style="font-size:22px;color:rgba(255,255,255,.18)">→</span> <em>1</em> pipeline</div>
-                <p class="pw-metric-sub">3 manual steps replaced by one automated flow</p>
-                <div class="pw-flow">
-                    <div class="pw-node">Facebook</div>
-                    <div class="pw-arr lit">→</div>
-                    <div class="pw-node lit">Make</div>
-                    <div class="pw-arr lit">→</div>
-                    <div class="pw-node">Sheets</div>
-                    <div class="pw-arr">→</div>
-                    <div class="pw-node">Dashboard</div>
-                </div>
-            </div>
-            <div class="card-body">
-                <div class="card-tags">
-                    <span class="c-tag">Product Ops</span>
-                    <span class="c-tag">Automation</span>
-                    <span class="c-tag">Dashboard</span>
-                </div>
-                <h3 class="card-name">Pipeline Automation</h3>
-                <p class="card-desc">Replaced a 3-step manual lead workflow with one automated pipeline using Make. Real-time dashboard, no more data entry, 1 to 2 hours saved per week.</p>
-                <div class="card-cta">
-                    View case study
-                    <div class="cta-arrow">↗</div>
-                </div>
-            </div>
-        </a>
-
         <!-- YouTube Music Redesign -->
-        <a href="youtube-music/index.html" class="card rv d3">
+        <a href="youtube-music/index.html" class="card rv d1">
             <div class="card-visual" style="background:#0f0f0f; flex-direction:column; gap:14px;">
                 <div style="display:flex; align-items:center; gap:12px;">
                     <div style="width:42px;height:42px;background:#FF0000;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;">▶</div>
@@ -761,43 +772,45 @@
             </div>
         </a>
 
-        <!-- PW Digital Landing Page -->
-        <a href="pw-landing/index.html" class="card rv d4">
-            <div class="card-visual" style="background:#0a0a0a; flex-direction:column; gap:10px; justify-content:center;">
-                <div style="text-align:center;">
-                    <div style="font-family:'Bricolage Grotesque',sans-serif;font-size:56px;font-weight:800;letter-spacing:-.05em;color:#22c55e;line-height:1;">75</div>
-                    <div style="font-size:12px;color:rgba(255,255,255,.3);font-weight:300;margin-top:2px;">leads in 7 days</div>
-                </div>
-                <div style="display:flex;justify-content:center;gap:10px;padding:0 20px;">
-                    <div style="flex:1;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);border-radius:8px;padding:8px;text-align:center;">
-                        <div style="font-size:11px;font-weight:700;color:rgba(255,126,0,.7);">$500–800</div>
-                        <div style="font-size:8.5px;color:rgba(255,255,255,.25);margin-top:2px;">Contenido</div>
-                    </div>
-                    <div style="flex:1;background:rgba(255,126,0,.08);border:1.5px solid rgba(255,126,0,.3);border-radius:8px;padding:8px;text-align:center;">
-                        <div style="font-size:11px;font-weight:700;color:rgba(255,126,0,.9);">$900–1200</div>
-                        <div style="font-size:8.5px;color:rgba(255,255,255,.4);margin-top:2px;">Ecosistema ✦</div>
-                    </div>
-                    <div style="flex:1;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);border-radius:8px;padding:8px;text-align:center;">
-                        <div style="font-size:11px;font-weight:700;color:rgba(255,126,0,.7);">$3000+</div>
-                        <div style="font-size:8.5px;color:rgba(255,255,255,.25);margin-top:2px;">Dominio</div>
-                    </div>
-                </div>
-                <div style="text-align:center;font-size:10px;color:rgba(34,197,94,.5);font-weight:600;letter-spacing:.08em;text-transform:uppercase;">⏳ Solo 5 cupos disponibles</div>
+    </div>
+</section>
+
+<!-- HOW I WORK -->
+<section class="how" id="process">
+    <p class="s-label rv">Process</p>
+    <h2 class="s-h2 rv d1">How I work</h2>
+    <p class="how-sub rv d2">Every case follows the same design-thinking chain, so a decision on screen can always be traced back to a pain point and a principle.</p>
+    <div class="how-steps rv d3">
+        <div class="how-step"><i>01</i><b>Empathize</b><span>Interviews, personas, empathy maps and the real context of use.</span></div>
+        <div class="how-step"><i>02</i><b>Define</b><span>Pain points by stage of the journey, written as “How might we…”.</span></div>
+        <div class="how-step"><i>03</i><b>Ideate</b><span>Customer journeys, flows and decisions tied to UX principles.</span></div>
+        <div class="how-step"><i>04</i><b>Prototype</b><span>UI built on a system of tokens and reusable components.</span></div>
+        <div class="how-step"><i>05</i><b>Test</b><span>A plan to measure each decision, with metrics and experiments.</span></div>
+    </div>
+</section>
+
+<!-- DESIGN SYSTEMS -->
+<section class="ds" id="design-systems">
+    <div class="ds-grid">
+        <div>
+            <p class="s-label rv">Design systems</p>
+            <h2 class="s-h2 rv d1" style="margin-bottom:18px;">Consistency is a product feature</h2>
+            <p class="rv d2">A design system is how a product stays coherent as it grows. In my cases it shows up as tokens, components with states and written rules that explain when to use each one.</p>
+            <ul class="rv d3">
+                <li><b>Iguana Panel:</b> color, shape, 4/8 spacing and type tokens, and a rule that change is never shown by color alone.</li>
+                <li><b>Haru:</b> the same cards and type in Home, Insights and Plan, with mixed radii to separate actions from content.</li>
+                <li><b>Le Petit:</b> repeatable patterns for product, cart and checkout across mobile and desktop.</li>
+            </ul>
+            <a href="iguana/index.html#sec-system" class="btn btn-fill rv d4">See the Iguana design system</a>
+        </div>
+        <div class="ds-tokens rv d2">
+            <h3>Iguana tokens</h3>
+            <p>A small set, declared once and consumed by every component.</p>
+            <div class="sw-row" role="img" aria-label="Color tokens: background, surface, ink, green, deep green and lime">
+                <span style="background:#f1f1ee"></span><span style="background:#ffffff"></span><span style="background:#121212"></span><span style="background:#0c7a3e"></span><span style="background:#0b3f24"></span><span style="background:#c6f36e"></span>
             </div>
-            <div class="card-body">
-                <div class="card-tags">
-                    <span class="c-tag">Conversion UX</span>
-                    <span class="c-tag">B2B</span>
-                    <span class="c-tag">Webflow</span>
-                </div>
-                <h3 class="card-name">Conversion Landing</h3>
-                <p class="card-desc">A B2B landing page built to convert cold traffic. Five deliberate decisions — exit intent, price anchoring, pain copy, social proof, scarcity — that delivered 75 qualified leads in 7 days.</p>
-                <div class="card-cta">
-                    View case study
-                    <div class="cta-arrow">↗</div>
-                </div>
-            </div>
-        </a>
+            <div class="ds-chips"><span>Radii 14 · 20 · 28</span><span>Spacing 4/8</span><span>Plus Jakarta Sans</span><span>JetBrains Mono</span><span>Icons 1.75 stroke</span></div>
+        </div>
     </div>
 </section>
 
@@ -856,10 +869,10 @@
             <div class="footer-col">
                 <p class="footer-col-title">Projects</p>
                 <a href="iguana/index.html">Iguana Panel</a>
+                <a href="lepetit/index.html">Le Petit</a>
+                <a href="haru/index.html">Haru</a>
                 <a href="gonow/index.html">GoNow</a>
-                <a href="pw-digital/index.html">Pipeline Automation</a>
                 <a href="youtube-music/index.html">YouTube Music</a>
-                <a href="pw-landing/index.html">Conversion Landing</a>
             </div>
             <div class="footer-col">
                 <p class="footer-col-title">Connect</p>
