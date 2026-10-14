@@ -1,133 +1,104 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Iguana Panel · Esteban Andrade</title>
-    <meta name="description" content="Case study: Panel Iguana, an admin dashboard for appointments, clients, money and an AI assistant. Persona, journey, pain points, UX decisions, design system and live demo.">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../assets/css/case.css">
-    <link rel="stylesheet" href="../assets/css/jpath.css">
-    <noscript><style>.rv{opacity:1!important;transform:none!important}</style></noscript>
-<link rel="stylesheet" href="../assets/css/bttr.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Iguana Panel | Esteban Andrade</title>
+<meta name="description" content="Case study: Panel Iguana, an admin dashboard for appointments, clients, money and an AI assistant. Persona, journey, UX decisions, design system and screens.">
+<script>try{var t=localStorage.getItem('ea-theme');if(t)document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@500;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/v3.css">
+<link rel="stylesheet" href="../assets/css/jpath.css">
 </head>
 <body>
-
-<nav class="site-nav" aria-label="Main">
-    <a href="../index.html" class="nav-logo" aria-label="Home">EA<span>.</span></a>
-    <div class="nav-right">
-        <span class="nav-tag">Dashboard · Design System</span>
-        <button class="hamburger" id="ham-btn" aria-label="Open menu" aria-expanded="false" aria-controls="drawer">
-            <span></span><span></span><span></span>
-        </button>
-    </div>
-</nav>
-
-<div class="drawer-overlay" id="overlay"></div>
-<aside class="drawer" id="drawer" aria-label="Menu">
-    <button class="drawer-close" id="dclose" aria-label="Close menu">✕</button>
-    <p class="drawer-label">Navigation</p>
-    <nav class="drawer-nav" aria-label="Pages">
-        <a href="../index.html">Home</a>
-        <a href="../about.html">About me</a>
-    </nav>
-    <div class="drawer-divider"></div>
-    <p class="drawer-section-title">Projects</p>
-    <nav class="drawer-nav" aria-label="Projects"><a href="../iguana/index.html" class="drawer-current">Iguana Panel</a><a href="../lepetit/index.html">Le Petit Paradis</a><a href="../haru/index.html">Haru</a><a href="../gonow/index.html">GoNow</a><a href="../youtube-music/index.html">YouTube Music</a></nav>
-    <div class="drawer-divider"></div>
-    <p class="drawer-section-title">Connect</p>
-    <div class="drawer-social-row">
-        <a href="https://www.behance.net/esteban13" target="_blank" rel="noopener noreferrer" class="drawer-social-link">Behance ↗</a>
-        <a href="https://www.linkedin.com/in/estebandrade13/" target="_blank" rel="noopener noreferrer" class="drawer-social-link">LinkedIn ↗</a>
-        <a href="mailto:isaiandrade7.ea@gmail.com" class="drawer-social-link">Email</a>
-    </div>
-</aside>
-
-<aside class="right-sidebar" id="right-sb" aria-label="Sections"><div class="rsb-item active" data-target="sec-overview"><div class="rsb-dot"></div><span class="rsb-label">Overview</span></div><div class="rsb-line"></div><div class="rsb-item" data-target="sec-context"><div class="rsb-dot"></div><span class="rsb-label">Context</span></div><div class="rsb-line"></div><div class="rsb-item" data-target="sec-empathize"><div class="rsb-dot"></div><span class="rsb-label">User</span></div><div class="rsb-line"></div><div class="rsb-item" data-target="sec-journey"><div class="rsb-dot"></div><span class="rsb-label">Journey</span></div><div class="rsb-line"></div><div class="rsb-item" data-target="sec-decisions"><div class="rsb-dot"></div><span class="rsb-label">Decisions</span></div><div class="rsb-line"></div><div class="rsb-item" data-target="sec-system"><div class="rsb-dot"></div><span class="rsb-label">Design system</span></div><div class="rsb-line"></div><div class="rsb-item" data-target="sec-demo"><div class="rsb-dot"></div><span class="rsb-label">Live demo</span></div></aside>
-
-<a href="../index.html" class="back-link">← Portfolio</a>
-
-<main>
-<section class="hero" id="sec-overview">
-    <div class="hero-kicker rv"><span class="kicker-tag">Iguana Panel</span><span class="kicker-tag">Dashboard</span><span class="kicker-tag">Design system</span></div>
-    <h1 class="hero-h1 rv d1">One panel for<br>the whole <em>business.</em></h1>
-    <p class="hero-sub rv d2">Admin dashboard for service businesses in Ecuador: appointments, clients, money and an AI assistant. Mobile-first, on its own design system.</p>
-    <div class="hero-meta rv d3"><div class="meta-cell"><span class="meta-label">Product</span><span class="meta-val">Admin panel</span></div><div class="meta-cell"><span class="meta-label">Role</span><span class="meta-val">UX / UI design</span></div><div class="meta-cell"><span class="meta-label">Language</span><span class="meta-val">Spanish (EC)</span></div><div class="meta-cell"><span class="meta-label">Views</span><span class="meta-val">6 + dialogs</span></div></div>
-    <div class="hero-shots rv d4">
-        <figure class="shot"><img src="images/iguana-desktop-inicio.webp" width="1280" height="800" alt="Iguana panel home on desktop: next appointment, money collected today and monthly profit"></figure>
-        <figure class="shot shot-m"><img src="images/iguana-mobile-calendario.webp" width="780" height="1688" alt="Iguana panel on mobile: daily calendar timeline with bottom tab bar"></figure>
-    </div>
-
-
-
+<a class="skip" href="#main">Skip to content</a>
+<header class="hd">
+  <a class="back" href="../index.html#work"><span aria-hidden="true">&larr;</span> Projects</a>
+  <span class="hd-mid">Dashboard · Design System</span>
+  <div style="display:flex;gap:10px;align-items:center"><a class="lnk" href="../about.html" style="font-size:15px">About</a><button class="tt" type="button" aria-label="Switch to dark mode"><svg class="moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/></svg><svg class="sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></button></div>
+</header>
+<main id="main" class="case">
+<section class="c-hero" id="sec-overview">
+<p class="c-kick rv">Iguana Panel · Dashboard · Design system</p>
+<h1 class="rv d1">One panel for<br>the whole <em>business.</em></h1>
+<p class="c-lede rv d2">Admin dashboard for service businesses in Ecuador: appointments, clients, money and an AI assistant. Mobile-first, on its own design system.</p>
+<dl class="c-facts rv d3"><div><dt>Product</dt><dd>Admin panel</dd></div><div><dt>Role</dt><dd>UX / UI design</dd></div><div><dt>Language</dt><dd>Spanish (EC)</dd></div><div><dt>Views</dt><dd>6 + dialogs</dd></div></dl>
 </section>
-<section class="section section-border" id="sec-context">
-    <p class="s-eyebrow rv">Context</p>
-    <h2 class="s-title rv d1">Run the day, not the software</h2>
-    
-<div class="grid-3">
+<figure class="c-fig rv"><div class="shot"><img src="images/iguana-desktop-inicio.webp" width="1280" height="800" alt="Iguana panel, Inicio view on desktop"><figcaption>Inicio: the next appointment, money collected today and what is owed.</figcaption></div></figure>
+<section class="c-sec" id="sec-context">
+<div class="c-label"><span class="c-no">01</span><span>Context</span></div>
+<div class="c-body">
+<h2 class="rv">Run the day, not the software</h2>
+
+<div class="blk"><div class="grid-3">
  <div class="card-d rv"><span class="tag">Inicio</span><h3>What matters today</h3><p>Next appointment, money in and out, what is owed.</p></div>
  <div class="card-d rv d1"><span class="tag">Calendario</span><h3>Day timeline first</h3><p>Week strip plus the day. Month is one tap away.</p></div>
  <div class="card-d rv d2"><span class="tag">Dinero</span><h3>Income, expenses, profit</h3><p>Every change shown with an arrow and a label.</p></div>
+</div></div>
 </div>
 </section>
-<section class="section section-border" id="sec-empathize">
-    <p class="s-eyebrow rv">Empathize · Define</p>
-    <h2 class="s-title rv d1">The owner behind the screen</h2>
-    <p class="s-body rv d2">Persona and pain points are a design synthesis from the product, to be validated with owner interviews.</p>
-<div class="compact-persona rv"><div class="cp-card"><div class="avatar" aria-hidden="true">D</div><h3>Daniela, 35</h3><p>Owns a small salon. Manages everything from her phone.</p><p><b>Goal:</b> Know her day and get paid for every service.</p><p><b>Fear:</b> Forgetting who still owes her, or double booking.</p></div><ul class="pain-mini"><li><b>Scattered agenda</b><span>Make “my day” one glance</span></li><li><b>Seconds, not minutes</b><span>Show the next appointment without a tap</span></li><li><b>Partial payments</b><span>Show payment status on every appointment</span></li><li><b>Money in many places</b><span>One place for today and this month</span></li></ul></div>
+<section class="c-sec" id="sec-empathize">
+<div class="c-label"><span class="c-no">02</span><span>Empathize · Define</span></div>
+<div class="c-body">
+<h2 class="rv">The owner behind the screen</h2>
+<p class="c-intro rv">Persona and pain points are a design synthesis from the product, to be validated with owner interviews.</p>
+<div class="blk"><div class="persona2 rv"><div class="who"><h3>Daniela, 35</h3><p>Owns a small salon. Manages everything from her phone.</p><p><b>Wants:</b> Know her day and get paid for every service.</p><p><b>Fears:</b> Forgetting who still owes her, or double booking.</p></div><ul class="pains"><li><b>Scattered agenda</b><span>Make “my day” one glance</span></li><li><b>Seconds, not minutes</b><span>Show the next appointment without a tap</span></li><li><b>Partial payments</b><span>Show payment status on every appointment</span></li><li><b>Money in many places</b><span>One place for today and this month</span></li></ul></div></div>
+</div>
 </section>
-<section class="section section-border" id="sec-journey">
-    <p class="s-eyebrow rv">Customer journey</p>
-    <h2 class="s-title rv d1">A day in the life</h2>
-    
-<div class="jp rv" data-jp><p class="jp-hint">Tap a stop on the path</p><ol class="jp-nodes" style="--n:5"><svg class="jp-road" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><path d="M0 21.0 C5.0 21.0 5.0 21.0 10.0 21.0 C20.0 21.0 20.0 61.0 30.0 61.0 C40.0 61.0 40.0 21.0 50.0 21.0 C60.0 21.0 60.0 61.0 70.0 61.0 C80.0 61.0 80.0 21.0 90.0 21.0 C95.0 21.0 95.0 21.0 100 21.0"/></svg><li style="--i:1;--c:#facc15;--m:0.4"><button type="button" class="jp-node" id="jpn-0" aria-expanded="false" aria-controls="jpp-0"><span class="jp-n">1</span><span class="jp-l">Awareness</span><span class="jp-e">Overloaded</span></button>
+<section class="c-sec" id="sec-journey">
+<div class="c-label"><span class="c-no">03</span><span>Customer journey</span></div>
+<div class="c-body">
+<h2 class="rv">A day in the life</h2>
+
+<div class="blk"><div class="jp rv" data-jp><p class="jp-hint">Tap a stop on the path</p><ol class="jp-nodes" style="--n:5"><svg class="jp-road" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><path d="M0 21.0 C5.0 21.0 5.0 21.0 10.0 21.0 C20.0 21.0 20.0 61.0 30.0 61.0 C40.0 61.0 40.0 21.0 50.0 21.0 C60.0 21.0 60.0 61.0 70.0 61.0 C80.0 61.0 80.0 21.0 90.0 21.0 C95.0 21.0 95.0 21.0 100 21.0"/></svg><li style="--i:1;--c:var(--mid);--m:0.4"><button type="button" class="jp-node" id="jpn-0" aria-expanded="false" aria-controls="jpp-0"><span class="jp-n">1</span><span class="jp-l">Awareness</span><span class="jp-e">Overloaded</span></button>
 <div class="jp-panel" id="jpp-0" role="region" aria-labelledby="jpn-0"><div class="jp-head"><span class="jp-step">Stage 1 of 5</span><h4>Awareness</h4><span class="jp-mood"><i></i>Overloaded</span><p class="jp-goal">Daniela notices her agenda, payments and chats live in too many places.</p></div>
 <div class="jp-grid"><div class="jp-c"><h5>Does</h5><ul><li>Keeps appointments in a notebook and the phone</li><li>Tracks who paid in chats and notes</li><li>Looks for something simpler</li></ul><p class="t">Touchpoints: Notebook, WhatsApp, spreadsheet</p></div>
 <div class="jp-c"><h5>Thinks</h5><p class="q">“I lose track of who paid and what is next.”</p></div>
 <div class="jp-c bad"><h5>Pain point</h5><p>Scattered information across tools.</p><p class="hmw"><b>HMW</b> make “my day” one glance?</p></div>
 <div class="jp-c good"><h5>Design response</h5><p>One home screen: next appointment, money collected today and what is owed.</p><div class="jp-chips"><span>Visual hierarchy</span><span>Glanceability</span></div></div></div>
-<div class="jp-foot"><span class="jp-measure"><b>Measure:</b> Time to find the next appointment</span><button type="button" class="jp-next" data-to="1">Next: Consideration →</button></div></div></li><li style="--i:2;--c:#facc15;--m:0.6"><button type="button" class="jp-node" id="jpn-1" aria-expanded="false" aria-controls="jpp-1"><span class="jp-n">2</span><span class="jp-l">Consideration</span><span class="jp-e">Curious</span></button>
+<div class="jp-foot"><span class="jp-measure"><b>Measure:</b> Time to find the next appointment</span><button type="button" class="jp-next" data-to="1">Next: Consideration →</button></div></div></li><li style="--i:2;--c:var(--mid);--m:0.6"><button type="button" class="jp-node" id="jpn-1" aria-expanded="false" aria-controls="jpp-1"><span class="jp-n">2</span><span class="jp-l">Consideration</span><span class="jp-e">Curious</span></button>
 <div class="jp-panel" id="jpp-1" role="region" aria-labelledby="jpn-1"><div class="jp-head"><span class="jp-step">Stage 2 of 5</span><h4>Consideration</h4><span class="jp-mood"><i></i>Curious</span><p class="jp-goal">She wants to know if she will understand it in seconds.</p></div>
-<div class="jp-grid"><div class="jp-c"><h5>Does</h5><ul><li>Opens the live demo, no sign up</li><li>Looks for her day first</li><li>Checks it on her phone</li></ul><p class="t">Touchpoints: Demo, mobile browser</p></div>
+<div class="jp-grid"><div class="jp-c"><h5>Does</h5><ul><li>Looks at screens of the panel</li><li>Looks for her day first</li><li>Checks how it looks on her phone</li></ul><p class="t">Touchpoints: Screens, mobile browser</p></div>
 <div class="jp-c"><h5>Thinks</h5><p class="q">“Will this be as heavy as the other panels?”</p></div>
 <div class="jp-c bad"><h5>Pain point</h5><p>Dashboards built for analysts, with heavy menus.</p><p class="hmw"><b>HMW</b> show value before asking for any effort?</p></div>
-<div class="jp-c good"><h5>Design response</h5><p>Daily calendar as the main view, demo mode with sample data, sidebar that becomes a bottom tab bar on mobile.</p><div class="jp-chips"><span>Thumb zone</span><span>Progressive disclosure</span></div></div></div>
-<div class="jp-foot"><span class="jp-measure"><b>Measure:</b> Demo to sign up rate</span><button type="button" class="jp-next" data-to="2">Next: Decision →</button></div></div></li><li style="--i:3;--c:#4ade80;--m:0.7"><button type="button" class="jp-node" id="jpn-2" aria-expanded="false" aria-controls="jpp-2"><span class="jp-n">3</span><span class="jp-l">Decision</span><span class="jp-e">Confident</span></button>
+<div class="jp-c good"><h5>Design response</h5><p>Daily calendar as the main view and a sidebar that becomes a bottom tab bar on mobile.</p><div class="jp-chips"><span>Thumb zone</span><span>Progressive disclosure</span></div></div></div>
+<div class="jp-foot"><span class="jp-measure"><b>Measure:</b> Time to understand the home screen</span><button type="button" class="jp-next" data-to="2">Next: Decision →</button></div></div></li><li style="--i:3;--c:var(--ok);--m:0.7"><button type="button" class="jp-node" id="jpn-2" aria-expanded="false" aria-controls="jpp-2"><span class="jp-n">3</span><span class="jp-l">Decision</span><span class="jp-e">Confident</span></button>
 <div class="jp-panel" id="jpp-2" role="region" aria-labelledby="jpn-2"><div class="jp-head"><span class="jp-step">Stage 3 of 5</span><h4>Decision</h4><span class="jp-mood"><i></i>Confident</span><p class="jp-goal">She starts using it in the middle of a working day.</p></div>
 <div class="jp-grid"><div class="jp-c"><h5>Does</h5><ul><li>Reads the next appointment and its countdown</li><li>Marks a payment, full or partial</li><li>Reads changes as arrow plus text</li></ul><p class="t">Touchpoints: Home, calendar, appointment detail</p></div>
 <div class="jp-c"><h5>Thinks</h5><p class="q">“I only have seconds between clients.”</p></div>
 <div class="jp-c bad"><h5>Pain point</h5><p>Partial payments are easy to forget on a small screen.</p><p class="hmw"><b>HMW</b> keep every balance visible without extra taps?</p></div>
 <div class="jp-c good"><h5>Design response</h5><p>Payment status pill on every appointment, total owed in Home, change shown as arrow plus text, never colour alone.</p><div class="jp-chips"><span>Visibility of status</span><span>Redundant cues</span></div></div></div>
-<div class="jp-foot"><span class="jp-measure"><b>Measure:</b> Taps to register a payment</span><button type="button" class="jp-next" data-to="3">Next: Retention →</button></div></div></li><li style="--i:4;--c:#4ade80;--m:0.85"><button type="button" class="jp-node" id="jpn-3" aria-expanded="false" aria-controls="jpp-3"><span class="jp-n">4</span><span class="jp-l">Retention</span><span class="jp-e">In control</span></button>
+<div class="jp-foot"><span class="jp-measure"><b>Measure:</b> Taps to register a payment</span><button type="button" class="jp-next" data-to="3">Next: Retention →</button></div></div></li><li style="--i:4;--c:var(--ok);--m:0.85"><button type="button" class="jp-node" id="jpn-3" aria-expanded="false" aria-controls="jpp-3"><span class="jp-n">4</span><span class="jp-l">Retention</span><span class="jp-e">In control</span></button>
 <div class="jp-panel" id="jpp-3" role="region" aria-labelledby="jpn-3"><div class="jp-head"><span class="jp-step">Stage 4 of 5</span><h4>Retention</h4><span class="jp-mood"><i></i>In control</span><p class="jp-goal">It becomes the daily habit, from morning to end of day.</p></div>
 <div class="jp-grid"><div class="jp-c"><h5>Does</h5><ul><li>Checks collected, spent and profit at day end</li><li>Compares the month with the last one</li><li>Lets the AI assistant answer clients on WhatsApp</li></ul><p class="t">Touchpoints: Money view, assistant, settings</p></div>
 <div class="jp-c"><h5>Thinks</h5><p class="q">“Now I know how my day really went.”</p></div>
 <div class="jp-c bad"><h5>Pain point</h5><p>Constant client questions and money in many places.</p><p class="hmw"><b>HMW</b> give her the evening back?</p></div>
 <div class="jp-c good"><h5>Design response</h5><p>Money summary with income and expenses, and an AI assistant on WhatsApp for repeated questions.</p><div class="jp-chips"><span>Consistency</span><span>Automation</span></div></div></div>
-<div class="jp-foot"><span class="jp-measure"><b>Measure:</b> Weekly active use, assistant resolved chats</span><button type="button" class="jp-next" data-to="4">Next: Advocacy →</button></div></div></li><li style="--i:5;--c:#4ade80;--m:0.7"><button type="button" class="jp-node" id="jpn-4" aria-expanded="false" aria-controls="jpp-4"><span class="jp-n">5</span><span class="jp-l">Advocacy</span><span class="jp-e">Proud</span></button>
+<div class="jp-foot"><span class="jp-measure"><b>Measure:</b> Weekly active use, assistant resolved chats</span><button type="button" class="jp-next" data-to="4">Next: Advocacy →</button></div></div></li><li style="--i:5;--c:var(--ok);--m:0.7"><button type="button" class="jp-node" id="jpn-4" aria-expanded="false" aria-controls="jpp-4"><span class="jp-n">5</span><span class="jp-l">Advocacy</span><span class="jp-e">Proud</span></button>
 <div class="jp-panel" id="jpp-4" role="region" aria-labelledby="jpn-4"><div class="jp-head"><span class="jp-step">Stage 5 of 5</span><h4>Advocacy</h4><span class="jp-mood"><i></i>Proud</span><p class="jp-goal">She recommends it to other business owners. A hypothesis to validate.</p></div>
 <div class="jp-grid"><div class="jp-c"><h5>Does</h5><ul><li>Shows it to a colleague</li><li>Adds a team member</li><li>Asks for the next view she needs</li></ul><p class="t">Touchpoints: Word of mouth, WhatsApp</p></div>
 <div class="jp-c"><h5>Thinks</h5><p class="q">“You should try this, it is simple.”</p></div>
 <div class="jp-c bad"><h5>Pain point</h5><p>A tool that is hard to explain is hard to recommend.</p><p class="hmw"><b>HMW</b> make the product easy to describe in one sentence?</p></div>
 <div class="jp-c good"><h5>Design response</h5><p>A documented design system keeps every new screen consistent, accessible and quick to ship.</p><div class="jp-chips"><span>Design system</span><span>Accessibility</span></div></div></div>
-<div class="jp-foot"><span class="jp-measure"><b>Measure:</b> Invites sent, retention after 30 days</span></div></div></li><div class="jp-empty"><span class="jp-arrow" aria-hidden="true">↑</span><p><b>Pick a stop on the path.</b> Each one opens what happens, what hurts and how the design responds.</p></div></ol><p class="jp-note">Design synthesis built from the product itself. Not interview data; to be validated with real users.</p></div>
+<div class="jp-foot"><span class="jp-measure"><b>Measure:</b> Invites sent, retention after 30 days</span></div></div></li><div class="jp-empty"><span class="jp-arrow" aria-hidden="true">↑</span><p><b>Pick a stop on the path.</b> Each one opens what happens, what hurts and how the design responds.</p></div></ol><p class="jp-note">Design synthesis built from the product itself. Not interview data; to be validated with real users.</p></div></div>
+</div>
 </section>
-<section class="section section-border" id="sec-decisions">
-    <p class="s-eyebrow rv">Key decisions</p>
-    <h2 class="s-title rv d1">Decision, reason, principle</h2>
-    
-<div class="dec-list"><div class="dec dec3 rv"><div><h4>Daily calendar as the main view</h4></div><div><p>A month grid hides what happens next.</p></div><div><span class="pr">Visual hierarchy</span></div></div><div class="dec dec3 rv"><div><h4>Next appointment with a countdown</h4></div><div><p>She has seconds, not minutes.</p></div><div><span class="pr">Glanceability</span></div></div><div class="dec dec3 rv"><div><h4>Change shown as arrow plus text</h4></div><div><p>Colour alone fails in glare or for colour-blind users.</p></div><div><span class="pr">Redundant cues</span></div></div><div class="dec dec3 rv"><div><h4>Payment status on every appointment</h4></div><div><p>Partial payments are easy to forget.</p></div><div><span class="pr">Visibility of status</span></div></div><div class="dec dec3 rv"><div><h4>Sidebar becomes a bottom tab bar</h4></div><div><p>One-handed use on a phone.</p></div><div><span class="pr">Thumb zone</span></div></div><div class="dec dec3 rv"><div><h4>Skip link, labelled landmarks, native dialogs</h4></div><div><p>Everyone must reach everything.</p></div><div><span class="pr">Accessibility</span></div></div></div>
+<section class="c-sec" id="sec-decisions">
+<div class="c-label"><span class="c-no">04</span><span>Key decisions</span></div>
+<div class="c-body">
+<h2 class="rv">Decision, reason, principle</h2>
+
+<div class="blk"><div class="dec-list"><div class="dec3 rv"><h4>Daily calendar as the main view</h4><p>A month grid hides what happens next.</p><div><span class="pr">Visual hierarchy</span></div></div><div class="dec3 rv"><h4>Next appointment with a countdown</h4><p>She has seconds, not minutes.</p><div><span class="pr">Glanceability</span></div></div><div class="dec3 rv"><h4>Change shown as arrow plus text</h4><p>Colour alone fails in glare or for colour-blind users.</p><div><span class="pr">Redundant cues</span></div></div><div class="dec3 rv"><h4>Payment status on every appointment</h4><p>Partial payments are easy to forget.</p><div><span class="pr">Visibility of status</span></div></div><div class="dec3 rv"><h4>Sidebar becomes a bottom tab bar</h4><p>One-handed use on a phone.</p><div><span class="pr">Thumb zone</span></div></div><div class="dec3 rv"><h4>Skip link, labelled landmarks, native dialogs</h4><p>Everyone must reach everything.</p><div><span class="pr">Accessibility</span></div></div></div></div>
+</div>
 </section>
-<section class="section section-border" id="sec-system">
-    <p class="s-eyebrow rv">Design system</p>
-    <h2 class="s-title rv d1">A small system, defined in tokens</h2>
-    <p class="s-body rv d2">
-        The whole interface is built from a short list of tokens declared once in <code>styles.css</code>: color, shape, a 4/8 spacing scale,
-        two typefaces, layers and layout measures. Components only consume tokens, so a change in one place changes the whole panel.
-    </p>
+<section class="c-sec" id="sec-system">
+<div class="c-label"><span class="c-no">05</span><span>Design system</span></div>
+<div class="c-body">
+<h2 class="rv">A small system, defined in tokens</h2>
+<p class="c-intro rv">The whole interface is built from a short list of tokens declared once in <code>styles.css</code>: color, shape, a 4/8 spacing scale, two typefaces, layers and layout measures. Components only consume tokens, so a change in one place changes the whole panel.</p>
+<div class="blk">
 
     <div class="sw-grid rv"><div class="sw"><div class="sw-chip" style="background:#f1f1ee"></div><div class="sw-meta"><b>Background</b><span>--bg · #f1f1ee</span></div></div><div class="sw"><div class="sw-chip" style="background:#ffffff"></div><div class="sw-meta"><b>Surface</b><span>--surface · #ffffff</span></div></div><div class="sw"><div class="sw-chip" style="background:#121212"></div><div class="sw-meta"><b>Ink</b><span>--ink · #121212</span></div></div><div class="sw"><div class="sw-chip" style="background:#0c7a3e"></div><div class="sw-meta"><b>Green</b><span>--green · #0c7a3e</span></div></div><div class="sw"><div class="sw-chip" style="background:#0b3f24"></div><div class="sw-meta"><b>Deep</b><span>--deep · #0b3f24</span></div></div><div class="sw"><div class="sw-chip" style="background:#c6f36e"></div><div class="sw-meta"><b>Lime</b><span>--lime · #c6f36e</span></div></div><div class="sw"><div class="sw-chip" style="background:#0c7a3e"></div><div class="sw-meta"><b>Income</b><span>--income · #0c7a3e</span></div></div><div class="sw"><div class="sw-chip" style="background:#e0701f"></div><div class="sw-meta"><b>Expense</b><span>--expense · #e0701f</span></div></div><div class="sw"><div class="sw-chip" style="background:#0a5a2d"></div><div class="sw-meta"><b>OK</b><span>--ok · #0a5a2d</span></div></div><div class="sw"><div class="sw-chip" style="background:#7a5200"></div><div class="sw-meta"><b>Warning</b><span>--warn · #7a5200</span></div></div><div class="sw"><div class="sw-chip" style="background:#b3261e"></div><div class="sw-meta"><b>Danger</b><span>--danger · #b3261e</span></div></div></div>
 
@@ -149,70 +120,22 @@
         <li><b>Touch first.</b> Primary controls stay at least 44 px tall on mobile and layouts adapt at tablet, phone and 320–380 px widths.</li>
         <li><b>One source of truth.</b> Tokens first, then components, then views.</li>
     </ul>
-</section>
-<section class="section section-border" id="sec-demo">
-    <p class="s-eyebrow rv">Live demo</p>
-    <h2 class="s-title rv d1">Try the panel</h2>
-    <p class="s-body rv d2">This is the real interface running on sample data. Nothing is saved and it reloads to the start. The interface is in Spanish, as its users are.</p>
-    <div class="demo-tabs" role="group" aria-label="Choose a view">
-        <button class="demo-tab" data-hash="#/inicio" aria-pressed="true">Inicio</button>
-        <button class="demo-tab" data-hash="#/calendario" aria-pressed="false">Calendario</button>
-        <button class="demo-tab" data-hash="#/clientes" aria-pressed="false">Clientes</button>
-        <button class="demo-tab" data-hash="#/dinero/resumen" aria-pressed="false">Dinero</button>
-        <button class="demo-tab" data-hash="#/asistente" aria-pressed="false">Asistente IA</button>
-    </div>
-    <div class="demo-frames">
-        <div>
-            <p class="frame-label">Desktop</p>
-            <div class="frame frame-desktop"><iframe id="demo-d" src="demo/index.html#/inicio" title="Iguana panel demo, desktop" loading="lazy"></iframe></div>
-        </div>
-        <div>
-            <p class="frame-label">Mobile</p>
-            <div class="frame frame-mobile"><iframe id="demo-m" src="demo/index.html#/inicio" title="Iguana panel demo, mobile" loading="lazy"></iframe></div>
-        </div>
-    </div>
-    <p class="note">Open the <a href="demo/index.html" target="_blank" rel="noopener" style="color:var(--orange)">full-screen demo ↗</a> to see the layout switch from sidebar to bottom tab bar as you resize the window.</p>
-</section>
-<p class="disclaimer rv">Persona, pain points and journey are a design synthesis, not research results. Interviews and usage data will replace them.</p>
-</main>
-
-<div class="next-section rv" style="gap:48px;">
-    <div>
-        <div class="next-label">Up next</div>
-        <div class="next-title">Le Petit</div>
-        <p style="font-size:14px;color:rgba(255,255,255,.55);max-width:340px;line-height:1.7;margin:10px 0 24px;">A mobile-first children’s clothing store in Ecuador, designed around trust and a short checkout.</p>
-        <div class="next-btns">
-            <a href="../lepetit/index.html" class="n-btn n-primary">View case study ↗</a>
-            <a href="../index.html" class="n-btn n-ghost">Back to portfolio</a>
-        </div>
-    </div>
-    <div style="width:260px;flex-shrink:0;border-radius:16px;overflow:hidden;border:1px solid rgba(255,255,255,.08);background:#1a1a1a;">
-        <img src="../iguana/images/iguana-mobile-inicio.webp" alt="Iguana mobile home" width="260" height="400" loading="lazy" style="width:100%;height:auto;display:block;object-fit:cover;">
-    </div>
 </div>
-
-<footer class="site-footer">
-    <div class="footer-inner">
-        <div>
-            <a href="../index.html" class="footer-logo">EA<span>.</span></a>
-            <p class="footer-copy" style="color:rgba(255,255,255,.5)">© 2026 Esteban Andrade</p>
-        </div>
-        <div class="footer-links">
-            <div class="footer-col">
-                <p class="footer-col-title">Projects</p><a href="../iguana/index.html">Iguana Panel</a><a href="../lepetit/index.html">Le Petit Paradis</a><a href="../haru/index.html">Haru</a><a href="../gonow/index.html">GoNow</a><a href="../youtube-music/index.html">YouTube Music</a>
-            </div>
-            <div class="footer-col">
-                <p class="footer-col-title">Connect</p>
-                <a href="https://www.behance.net/esteban13" target="_blank" rel="noopener noreferrer">Behance ↗</a>
-                <a href="https://www.linkedin.com/in/estebandrade13/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
-                <a href="mailto:isaiandrade7.ea@gmail.com">Email</a>
-                <a href="../about.html">About</a>
-            </div>
-        </div>
-    </div>
-</footer>
-
-<script src="../assets/js/case.js"></script>
+</div>
+</section>
+<section class="c-sec" id="sec-screens">
+<div class="c-label"><span class="c-no">06</span><span>Screens</span></div>
+<div class="c-body">
+<h2 class="rv">The panel, view by view</h2>
+<p class="c-intro rv">Desktop first, then the same views on a phone, where the sidebar becomes a bottom tab bar.</p>
+<div class="blk"><div class="gal"><figure class="rv"><img src="images/iguana-desktop-calendario.webp" width="1280" height="800" alt="Iguana panel, Calendario view on desktop" loading="lazy"><figcaption><b>Calendario</b> Day timeline first, month one tap away.</figcaption></figure><figure class="rv"><img src="images/iguana-desktop-dinero.webp" width="1280" height="800" alt="Iguana panel, Dinero view on desktop" loading="lazy"><figcaption><b>Dinero</b> Income, expenses and profit with arrow plus label.</figcaption></figure><figure class="rv"><img src="images/iguana-desktop-asistente.webp" width="1280" height="800" alt="Iguana panel, Asistente view on desktop" loading="lazy"><figcaption><b>Asistente</b> The AI assistant that answers clients on WhatsApp.</figcaption></figure><figure class="rv"><img src="images/iguana-desktop-clientes.webp" width="1280" height="800" alt="Iguana panel, Clientes view on desktop" loading="lazy"><figcaption><b>Clientes</b> Every client with their history and balance.</figcaption></figure></div><div class="gal gal-m" style="margin-top:clamp(28px,3vw,44px)"><figure class="rv"><img src="images/iguana-mobile-inicio.webp" width="780" height="1688" alt="Iguana panel, Inicio view on mobile" loading="lazy"><figcaption><b>Inicio</b></figcaption></figure><figure class="rv"><img src="images/iguana-mobile-calendario.webp" width="780" height="1688" alt="Iguana panel, Calendario view on mobile" loading="lazy"><figcaption><b>Calendario</b></figcaption></figure><figure class="rv"><img src="images/iguana-mobile-dinero.webp" width="780" height="1688" alt="Iguana panel, Dinero view on mobile" loading="lazy"><figcaption><b>Dinero</b></figcaption></figure></div></div>
+</div>
+</section>
+<p class="note rv">Persona, pain points and journey are a design synthesis, not research results. Interviews and usage data will replace them.</p>
+<a class="up-next" href="../lepetit/index.html"><div class="grid"><div class="t"><small>Next project</small><h3>Le Petit</h3><p>A mobile-first children’s clothing store in Ecuador, designed around trust and a short checkout.</p></div><div class="i"><img src="../lepetit/images/wide.webp" width="1600" height="900" alt="Iguana mobile home" loading="lazy"></div></div></a>
+</main>
+<footer class="ft"><span>&copy; 2026 Esteban Andrade</span><nav aria-label="Projects"><a href="../index.html">Home</a><a href="../iguana/index.html">Iguana Panel</a><a href="../lepetit/index.html">Le Petit Paradis</a><a href="../haru/index.html">Haru</a><a href="../gonow/index.html">GoNow</a><a href="../youtube-music/index.html">YouTube Music</a><a href="mailto:isaiandrade7.ea@gmail.com">Email</a></nav></footer>
+<script src="../assets/js/site.js"></script>
 <script src="../assets/js/jpath.js"></script>
 </body>
 </html>

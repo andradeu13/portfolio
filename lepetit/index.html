@@ -1,155 +1,98 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Le Petit Paradis e-commerce · Esteban Andrade</title>
-    <meta name="description" content="UX case study: a mobile-first children’s clothing store in Ecuador, built on trust, age-based navigation and a short checkout.">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../assets/css/case.css">
-    <link rel="stylesheet" href="../assets/css/jpath.css">
-    <noscript><style>.rv{opacity:1!important;transform:none!important}</style></noscript>
-<link rel="stylesheet" href="../assets/css/bttr.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Le Petit Paradis e-commerce | Esteban Andrade</title>
+<meta name="description" content="UX case study: a mobile-first children’s clothing store in Ecuador, built on trust, age-based navigation and a short checkout.">
+<script>try{var t=localStorage.getItem('ea-theme');if(t)document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@500;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/v3.css">
+<link rel="stylesheet" href="../assets/css/jpath.css">
 </head>
 <body>
-
-<nav class="site-nav" aria-label="Main">
-    <a href="../index.html" class="nav-logo" aria-label="Home">EA<span>.</span></a>
-    <div class="nav-right">
-        <span class="nav-tag">E-commerce · UX</span>
-        <button class="hamburger" id="ham-btn" aria-label="Open menu" aria-expanded="false" aria-controls="drawer">
-            <span></span><span></span><span></span>
-        </button>
-    </div>
-</nav>
-
-<div class="drawer-overlay" id="overlay"></div>
-<aside class="drawer" id="drawer" aria-label="Menu">
-    <button class="drawer-close" id="dclose" aria-label="Close menu">✕</button>
-    <p class="drawer-label">Navigation</p>
-    <nav class="drawer-nav" aria-label="Pages">
-        <a href="../index.html">Home</a>
-        <a href="../about.html">About me</a>
-    </nav>
-    <div class="drawer-divider"></div>
-    <p class="drawer-section-title">Projects</p>
-    <nav class="drawer-nav" aria-label="Projects"><a href="../iguana/index.html">Iguana Panel</a><a href="../lepetit/index.html" class="drawer-current">Le Petit Paradis</a><a href="../haru/index.html">Haru</a><a href="../gonow/index.html">GoNow</a><a href="../youtube-music/index.html">YouTube Music</a></nav>
-    <div class="drawer-divider"></div>
-    <p class="drawer-section-title">Connect</p>
-    <div class="drawer-social-row">
-        <a href="https://www.behance.net/esteban13" target="_blank" rel="noopener noreferrer" class="drawer-social-link">Behance ↗</a>
-        <a href="https://www.linkedin.com/in/estebandrade13/" target="_blank" rel="noopener noreferrer" class="drawer-social-link">LinkedIn ↗</a>
-        <a href="mailto:isaiandrade7.ea@gmail.com" class="drawer-social-link">Email</a>
-    </div>
-</aside>
-
-<aside class="right-sidebar" id="right-sb" aria-label="Sections"><div class="rsb-item active" data-target="sec-overview"><div class="rsb-dot"></div><span class="rsb-label">Overview</span></div><div class="rsb-line"></div><div class="rsb-item" data-target="sec-user"><div class="rsb-dot"></div><span class="rsb-label">User</span></div><div class="rsb-line"></div><div class="rsb-item" data-target="sec-journey"><div class="rsb-dot"></div><span class="rsb-label">Journey</span></div><div class="rsb-line"></div><div class="rsb-item" data-target="sec-screens"><div class="rsb-dot"></div><span class="rsb-label">Decisions</span></div><div class="rsb-line"></div><div class="rsb-item" data-target="sec-measure"><div class="rsb-dot"></div><span class="rsb-label">Measure</span></div></aside>
-
-<a href="../index.html" class="back-link">← Portfolio</a>
-
-<main>
-<section class="hero" id="sec-overview">
-    <div class="hero-kicker rv"><span class="kicker-tag">E-commerce</span><span class="kicker-tag">UX / UI</span><span class="kicker-tag">Mobile-first</span></div>
-    <h1 class="hero-h1 rv d1">A shop a parent<br>can <em>trust.</em></h1>
-    <p class="hero-sub rv d2">Online store for children’s clothing in Ecuador. Designed around age, trust and a short checkout.</p>
-    <div class="hero-meta rv d3"><div class="meta-cell"><span class="meta-label">Role</span><span class="meta-val">UX / UI design</span></div><div class="meta-cell"><span class="meta-label">Market</span><span class="meta-val">Ecuador</span></div><div class="meta-cell"><span class="meta-label">Focus</span><span class="meta-val">Trust, mobile</span></div><div class="meta-cell"><span class="meta-label">Platform</span><span class="meta-val">Custom storefront</span></div></div>
-    <div class="stage rv d4"><div class="stage-row"><img src="images/home.webp" width="640" height="1138" alt="Le Petit Paradis, Home screen"><img src="images/product.webp" width="640" height="1138" alt="Le Petit Paradis, Product page"><img src="images/checkout.webp" width="640" height="1138" alt="Le Petit Paradis, Checkout payment step"><img src="images/confirmation.webp" width="640" height="1138" alt="Le Petit Paradis, Order confirmation"></div></div>
+<a class="skip" href="#main">Skip to content</a>
+<header class="hd">
+  <a class="back" href="../index.html#work"><span aria-hidden="true">&larr;</span> Projects</a>
+  <span class="hd-mid">E-commerce · UX</span>
+  <div style="display:flex;gap:10px;align-items:center"><a class="lnk" href="../about.html" style="font-size:15px">About</a><button class="tt" type="button" aria-label="Switch to dark mode"><svg class="moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/></svg><svg class="sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></button></div>
+</header>
+<main id="main" class="case">
+<section class="c-hero" id="sec-overview">
+<p class="c-kick rv">E-commerce · UX / UI · Mobile-first</p>
+<h1 class="rv d1">A shop a parent<br>can <em>trust.</em></h1>
+<p class="c-lede rv d2">Online store for children’s clothing in Ecuador. Designed around age, trust and a short checkout.</p>
+<dl class="c-facts rv d3"><div><dt>Role</dt><dd>UX / UI design</dd></div><div><dt>Market</dt><dd>Ecuador</dd></div><div><dt>Focus</dt><dd>Trust, mobile</dd></div><div><dt>Platform</dt><dd>Custom storefront</dd></div></dl>
 </section>
-<section class="section section-border" id="sec-user">
-    <p class="s-eyebrow rv">Empathize · Define</p>
-    <h2 class="s-title rv d1">Who buys, and what stops her</h2>
-    <p class="s-body rv d2">Persona and pain points are a design synthesis, to be validated with interviews and store data.</p>
-<div class="compact-persona rv"><div class="cp-card"><div class="avatar" aria-hidden="true">C</div><h3>Carolina, 32</h3><p>Working mom in Quito, shops on her phone.</p><p><b>Goal:</b> Right clothes for her child’s age, fast.</p><p><b>Fear:</b> Paying online, then hearing the size is gone.</p></div><ul class="pain-mini"><li><b>Unknown shop</b><span>Show proof and a human channel first</span></li><li><b>Types, not ages</b><span>Organize the catalog by age</span></li><li><b>Size and stock doubts</b><span>Make unavailable sizes impossible to buy</span></li><li><b>Fear of paying online</b><span>Offer a path that feels safe</span></li></ul></div>
+<figure class="c-fig rv"><div class="band"><img src="images/home.webp" width="640" height="1138" alt="Le Petit Paradis screen 1"><img src="images/product.webp" width="640" height="1138" alt="Le Petit Paradis screen 2"><img src="images/checkout.webp" width="640" height="1138" alt="Le Petit Paradis screen 3"><img src="images/confirmation.webp" width="640" height="1138" alt="Le Petit Paradis screen 4"></div></figure>
+<section class="c-sec" id="sec-user">
+<div class="c-label"><span class="c-no">01</span><span>Empathize · Define</span></div>
+<div class="c-body">
+<h2 class="rv">Who buys, and what stops her</h2>
+<p class="c-intro rv">Persona and pain points are a design synthesis, to be validated with interviews and store data.</p>
+<div class="blk"><div class="persona2 rv"><div class="who"><h3>Carolina, 32</h3><p>Working mom in Quito who shops on her phone.</p><p><b>Wants:</b> Right clothes for her child’s age, fast.</p><p><b>Fears:</b> Paying online, then hearing the size is gone.</p></div><ul class="pains"><li><b>Unknown shop</b><span>Show proof and a human channel first</span></li><li><b>Types, not ages</b><span>Organize the catalog by age</span></li><li><b>Size and stock doubts</b><span>Make unavailable sizes impossible to buy</span></li><li><b>Fear of paying online</b><span>Offer a path that feels safe</span></li></ul></div></div>
+</div>
 </section>
-<section class="section section-border" id="sec-journey">
-    <p class="s-eyebrow rv">Customer journey</p>
-    <h2 class="s-title rv d1">From first tap to second purchase</h2>
-    
-<div class="jp rv" data-jp><p class="jp-hint">Tap a stop on the path</p><ol class="jp-nodes" style="--n:5"><svg class="jp-road" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><path d="M0 21.0 C5.0 21.0 5.0 21.0 10.0 21.0 C20.0 21.0 20.0 61.0 30.0 61.0 C40.0 61.0 40.0 21.0 50.0 21.0 C60.0 21.0 60.0 61.0 70.0 61.0 C80.0 61.0 80.0 21.0 90.0 21.0 C95.0 21.0 95.0 21.0 100 21.0"/></svg><li style="--i:1;--c:#facc15;--m:0.5"><button type="button" class="jp-node" id="jpn-0" aria-expanded="false" aria-controls="jpp-0"><span class="jp-n">1</span><span class="jp-l">Awareness</span><span class="jp-e">Curious, wary</span></button>
+<section class="c-sec" id="sec-journey">
+<div class="c-label"><span class="c-no">02</span><span>Customer journey</span></div>
+<div class="c-body">
+<h2 class="rv">From first tap to second purchase</h2>
+
+<div class="blk"><div class="jp rv" data-jp><p class="jp-hint">Tap a stop on the path</p><ol class="jp-nodes" style="--n:5"><svg class="jp-road" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><path d="M0 21.0 C5.0 21.0 5.0 21.0 10.0 21.0 C20.0 21.0 20.0 61.0 30.0 61.0 C40.0 61.0 40.0 21.0 50.0 21.0 C60.0 21.0 60.0 61.0 70.0 61.0 C80.0 61.0 80.0 21.0 90.0 21.0 C95.0 21.0 95.0 21.0 100 21.0"/></svg><li style="--i:1;--c:var(--mid);--m:0.5"><button type="button" class="jp-node" id="jpn-0" aria-expanded="false" aria-controls="jpp-0"><span class="jp-n">1</span><span class="jp-l">Awareness</span><span class="jp-e">Curious, wary</span></button>
 <div class="jp-panel" id="jpp-0" role="region" aria-labelledby="jpn-0"><div class="jp-head"><span class="jp-step">Stage 1 of 5</span><h4>Awareness</h4><span class="jp-mood"><i></i>Curious, wary</span><p class="jp-goal">A parent hears about the shop and decides if it feels real.</p></div>
 <div class="jp-grid"><div class="jp-c"><h5>Does</h5><ul><li>Sees an Instagram post or a link from another mom</li><li>Opens the shop on her phone</li><li>Looks for signs it is a real business</li></ul><p class="t">Touchpoints: Instagram, WhatsApp, shared link</p></div>
 <div class="jp-c"><h5>Thinks</h5><p class="q">“Is this shop real? Will my order actually arrive?”</p></div>
 <div class="jp-c bad"><h5>Pain point</h5><p>An unknown shop with no proof of other buyers.</p><p class="hmw"><b>HMW</b> show a real business in the first screen?</p></div>
 <div class="jp-c good"><h5>Design response</h5><p>Testimonials carousel and a WhatsApp button visible on the home.</p><div class="jp-chips"><span>Social proof</span><span>Risk reduction</span></div></div></div>
-<div class="jp-foot"><span class="jp-measure"><b>Measure:</b> Home bounce rate, clicks to WhatsApp</span><button type="button" class="jp-next" data-to="1">Next: Consideration →</button></div></div></li><li style="--i:2;--c:#4ade80;--m:0.75"><button type="button" class="jp-node" id="jpn-1" aria-expanded="false" aria-controls="jpp-1"><span class="jp-n">2</span><span class="jp-l">Consideration</span><span class="jp-e">Exploring</span></button>
+<div class="jp-foot"><span class="jp-measure"><b>Measure:</b> Home bounce rate, clicks to WhatsApp</span><button type="button" class="jp-next" data-to="1">Next: Consideration →</button></div></div></li><li style="--i:2;--c:var(--ok);--m:0.75"><button type="button" class="jp-node" id="jpn-1" aria-expanded="false" aria-controls="jpp-1"><span class="jp-n">2</span><span class="jp-l">Consideration</span><span class="jp-e">Exploring</span></button>
 <div class="jp-panel" id="jpp-1" role="region" aria-labelledby="jpn-1"><div class="jp-head"><span class="jp-step">Stage 2 of 5</span><h4>Consideration</h4><span class="jp-mood"><i></i>Exploring</span><p class="jp-goal">She looks for the right clothes for her child’s age.</p></div>
 <div class="jp-grid"><div class="jp-c"><h5>Does</h5><ul><li>Picks an age category</li><li>Applies fixed filters (size, price)</li><li>Checks best sellers and similar items</li></ul><p class="t">Touchpoints: Home, categories, filters</p></div>
 <div class="jp-c"><h5>Thinks</h5><p class="q">“Where are the things for a 3 year old girl?”</p></div>
 <div class="jp-c bad"><h5>Pain point</h5><p>Catalogs organized by product type, not by age; endless scrolling.</p><p class="hmw"><b>HMW</b> let a parent shop the way she thinks, by age?</p></div>
 <div class="jp-c good"><h5>Design response</h5><p>Age-based categories, sticky filters, best sellers capped at 4 and similar products.</p><div class="jp-chips"><span>Match with the real world</span><span>Hick’s law</span></div></div></div>
-<div class="jp-foot"><span class="jp-measure"><b>Measure:</b> Product views per session</span><button type="button" class="jp-next" data-to="2">Next: Decision →</button></div></div></li><li style="--i:3;--c:#f87171;--m:0.3"><button type="button" class="jp-node" id="jpn-2" aria-expanded="false" aria-controls="jpp-2"><span class="jp-n">3</span><span class="jp-l">Decision</span><span class="jp-e">Anxious</span></button>
+<div class="jp-foot"><span class="jp-measure"><b>Measure:</b> Product views per session</span><button type="button" class="jp-next" data-to="2">Next: Decision →</button></div></div></li><li style="--i:3;--c:var(--bad);--m:0.3"><button type="button" class="jp-node" id="jpn-2" aria-expanded="false" aria-controls="jpp-2"><span class="jp-n">3</span><span class="jp-l">Decision</span><span class="jp-e">Anxious</span></button>
 <div class="jp-panel" id="jpp-2" role="region" aria-labelledby="jpn-2"><div class="jp-head"><span class="jp-step">Stage 3 of 5</span><h4>Decision</h4><span class="jp-mood"><i></i>Anxious</span><p class="jp-goal">She chooses a size, pays and needs to be sure it worked.</p></div>
 <div class="jp-grid"><div class="jp-c"><h5>Does</h5><ul><li>Selects a size with real stock</li><li>Opens the side cart</li><li>Goes through a short checkout</li><li>Pays by card or transfer</li></ul><p class="t">Touchpoints: Product page, cart, checkout</p></div>
 <div class="jp-c"><h5>Thinks</h5><p class="q">“Will it fit? Is it safe to pay here?”</p></div>
 <div class="jp-c bad"><h5>Pain point</h5><p>Sizes shown but out of stock, long forms and fear of paying online.</p><p class="hmw"><b>HMW</b> make paying feel as safe as paying a person?</p></div>
 <div class="jp-c good"><h5>Design response</h5><p>Unavailable sizes cannot be chosen; side cart with animation; progressive checkout with shipping by zone ($0 Quito and valleys, $3.50 Pichincha, $6 national); transfer data with WhatsApp backup; a clear 20 to 30 s waiting message.</p><div class="jp-chips"><span>Error prevention</span><span>Progressive disclosure</span><span>Visibility of status</span></div></div></div>
-<div class="jp-foot"><span class="jp-measure"><b>Measure:</b> Checkout completion, payment drop-off</span><button type="button" class="jp-next" data-to="3">Next: Retention →</button></div></div></li><li style="--i:4;--c:#4ade80;--m:0.85"><button type="button" class="jp-node" id="jpn-3" aria-expanded="false" aria-controls="jpp-3"><span class="jp-n">4</span><span class="jp-l">Retention</span><span class="jp-e">Reassured</span></button>
+<div class="jp-foot"><span class="jp-measure"><b>Measure:</b> Checkout completion, payment drop-off</span><button type="button" class="jp-next" data-to="3">Next: Retention →</button></div></div></li><li style="--i:4;--c:var(--ok);--m:0.85"><button type="button" class="jp-node" id="jpn-3" aria-expanded="false" aria-controls="jpp-3"><span class="jp-n">4</span><span class="jp-l">Retention</span><span class="jp-e">Reassured</span></button>
 <div class="jp-panel" id="jpp-3" role="region" aria-labelledby="jpn-3"><div class="jp-head"><span class="jp-step">Stage 4 of 5</span><h4>Retention</h4><span class="jp-mood"><i></i>Reassured</span><p class="jp-goal">She gets confirmation, follows the order and comes back.</p></div>
 <div class="jp-grid"><div class="jp-c"><h5>Does</h5><ul><li>Reads the detailed confirmation</li><li>Follows the order status</li><li>Is kindly invited to log in</li><li>Saves favorites for later</li></ul><p class="t">Touchpoints: Confirmation page, WhatsApp, account</p></div>
 <div class="jp-c"><h5>Thinks</h5><p class="q">“Did it go through? When does it arrive?”</p></div>
 <div class="jp-c bad"><h5>Pain point</h5><p>Silence right after paying.</p><p class="hmw"><b>HMW</b> keep her informed without asking her to chase us?</p></div>
 <div class="jp-c good"><h5>Design response</h5><p>Detailed confirmation, optional account (password eye, recovery) and a favorites list.</p><div class="jp-chips"><span>Visibility of status</span><span>User control</span></div></div></div>
-<div class="jp-foot"><span class="jp-measure"><b>Measure:</b> Repeat purchases, accounts created</span><button type="button" class="jp-next" data-to="4">Next: Advocacy →</button></div></div></li><li style="--i:5;--c:#4ade80;--m:0.7"><button type="button" class="jp-node" id="jpn-4" aria-expanded="false" aria-controls="jpp-4"><span class="jp-n">5</span><span class="jp-l">Advocacy</span><span class="jp-e">Proud</span></button>
+<div class="jp-foot"><span class="jp-measure"><b>Measure:</b> Repeat purchases, accounts created</span><button type="button" class="jp-next" data-to="4">Next: Advocacy →</button></div></div></li><li style="--i:5;--c:var(--ok);--m:0.7"><button type="button" class="jp-node" id="jpn-4" aria-expanded="false" aria-controls="jpp-4"><span class="jp-n">5</span><span class="jp-l">Advocacy</span><span class="jp-e">Proud</span></button>
 <div class="jp-panel" id="jpp-4" role="region" aria-labelledby="jpn-4"><div class="jp-head"><span class="jp-step">Stage 5 of 5</span><h4>Advocacy</h4><span class="jp-mood"><i></i>Proud</span><p class="jp-goal">She recommends the shop to other parents. A hypothesis to validate.</p></div>
 <div class="jp-grid"><div class="jp-c"><h5>Does</h5><ul><li>Shares the shop with another mom</li><li>Leaves feedback after the order</li><li>Returns for the next size</li></ul><p class="t">Touchpoints: WhatsApp, Instagram</p></div>
 <div class="jp-c"><h5>Thinks</h5><p class="q">“That was easy, I will tell my friend.”</p></div>
 <div class="jp-c bad"><h5>Pain point</h5><p>Nothing invites her to share or return.</p><p class="hmw"><b>HMW</b> turn a good first purchase into a recommendation?</p></div>
 <div class="jp-c good"><h5>Design response</h5><p>Real testimonials feed the next buyer’s trust; favorites and the next-size reminder bring her back.</p><div class="jp-chips"><span>Social proof</span><span>Peak-end rule</span></div></div></div>
-<div class="jp-foot"><span class="jp-measure"><b>Measure:</b> Referrals, returning customers</span></div></div></li><div class="jp-empty"><span class="jp-arrow" aria-hidden="true">↑</span><p><b>Pick a stop on the path.</b> Each one opens what happens, what hurts and how the design responds.</p></div></ol><p class="jp-note">Design synthesis from the brief and how the business sells. Not interview data; to be validated with real shoppers.</p></div>
-</section>
-<section class="section section-border" id="sec-screens">
-    <p class="s-eyebrow rv">Key decisions</p>
-    <h2 class="s-title rv d1">Decision, reason, principle</h2>
-    
-<div class="sblock rv"><div class="sb-img"><img src="images/home.webp" width="640" height="1138" alt="Home screen" loading="lazy"></div><div class="sb-body"><h3>Home</h3><ul class="sb-list"><li><b>Floating cart and WhatsApp</b><span>Always in reach, and a human option for the doubtful.</span><em>Fitts’s law</em><em>Risk reduction</em></li><li><b>Categories grouped by age</b><span>Matches how a parent shops.</span><em>Match with real world</em></li><li><b>Testimonials carousel</b><span>Proof from other parents, without leaving the page.</span><em>Social proof</em></li></ul></div></div><div class="sblock rv"><div class="sb-img"><img src="images/product.webp" width="640" height="1138" alt="Product page" loading="lazy"></div><div class="sb-body"><h3>Product</h3><ul class="sb-list"><li><b>Real stock per size</b><span>Sizes with no units can’t be added, quantity is capped.</span><em>Error prevention</em></li><li><b>Age tag, gallery, favorites</b><span>Fit and options clear at a glance.</span><em>Recognition over recall</em></li><li><b>Benefits, size guide, shipping, exchanges in view</b><span>Answers the doubts before she asks.</span><em>Reduce uncertainty</em></li><li><b>WhatsApp button with the product name</b><span>No need to explain again.</span><em>Reduce effort</em></li></ul></div></div><div class="sblock rv"><div class="sb-img"><img src="images/checkout.webp" width="640" height="1138" alt="Checkout" loading="lazy"></div><div class="sb-body"><h3>Checkout</h3><ul class="sb-list"><li><b>Sections open as each one is filled</b><span>Contact, shipping, payment: short at every step.</span><em>Progressive disclosure</em></li><li><b>Reference address field</b><span>Helps the courier find the door.</span><em>Localisation</em></li><li><b>Shipping by zone, shown before paying</b><span>Quito and valleys free, Pichincha $3.50, national $6.</span><em>Transparency</em></li><li><b>Card or bank transfer</b><span>Card logos shown; transfer for those who prefer it.</span><em>Choice</em><em>Trust signals</em></li><li><b>“Wait 20 to 30 seconds” message</b><span>Stops reloads and double payments.</span><em>Reassurance</em></li></ul></div></div><div class="sblock rv"><div class="sb-img"><img src="images/confirmation.webp" width="640" height="1138" alt="Order confirmation" loading="lazy"></div><div class="sb-body"><h3>After paying</h3><ul class="sb-list"><li><b>Order tracker in four steps</b><span>She always knows what comes next.</span><em>Visibility of status</em></li><li><b>Amount and bank details on screen</b><span>No hunting for data, and WhatsApp to send the proof.</span><em>Closure</em></li><li><b>Account with password toggle, recovery, favorites</b><span>The second purchase is faster than the first.</span><em>Efficiency</em></li></ul></div></div>
-</section>
-<section class="section section-border" id="sec-measure">
-    <p class="s-eyebrow rv">Measure</p>
-    <h2 class="s-title rv d1">What gets measured</h2>
-    
-<div class="kpi-row rv"><span class="k">View product</span><span class="a" aria-hidden="true">→</span><span class="k">Add to cart</span><span class="a" aria-hidden="true">→</span><span class="k">Begin checkout</span><span class="a" aria-hidden="true">→</span><span class="k">Purchase</span></div><p class="one-line rv"><b>Meta Pixel + Conversions API</b> and <b>GA4 + GTM</b> send the same events from browser and server, loaded lazily. Payments are marked paid only when the gateway confirms.</p><p class="disclaimer rv">Persona, journey and validation points are hypotheses. Results will be added once there is data.</p>
-</section>
-</main>
-
-<div class="next-section rv" style="gap:48px;">
-    <div>
-        <div class="next-label">Up next</div>
-        <div class="next-title">Haru</div>
-        <p style="font-size:14px;color:rgba(255,255,255,.55);max-width:340px;line-height:1.7;margin:10px 0 24px;">A financial coach, not a bank. A UX design challenge.</p>
-        <div class="next-btns">
-            <a href="../haru/index.html" class="n-btn n-primary">View case study ↗</a>
-            <a href="../index.html" class="n-btn n-ghost">Back to portfolio</a>
-        </div>
-    </div>
-    <div style="width:260px;flex-shrink:0;border-radius:16px;overflow:hidden;border:1px solid rgba(255,255,255,.08);background:#1a1a1a;">
-        <img src="../haru/images/haru-home.webp" alt="Haru app home screen" width="260" height="400" loading="lazy" style="width:100%;height:auto;display:block;object-fit:cover;">
-    </div>
+<div class="jp-foot"><span class="jp-measure"><b>Measure:</b> Referrals, returning customers</span></div></div></li><div class="jp-empty"><span class="jp-arrow" aria-hidden="true">↑</span><p><b>Pick a stop on the path.</b> Each one opens what happens, what hurts and how the design responds.</p></div></ol><p class="jp-note">Design synthesis from the brief and how the business sells. Not interview data; to be validated with real shoppers.</p></div></div>
 </div>
+</section>
+<section class="c-sec" id="sec-screens">
+<div class="c-label"><span class="c-no">03</span><span>Key decisions</span></div>
+<div class="c-body">
+<h2 class="rv">Decision, reason, principle</h2>
 
-<footer class="site-footer">
-    <div class="footer-inner">
-        <div>
-            <a href="../index.html" class="footer-logo">EA<span>.</span></a>
-            <p class="footer-copy" style="color:rgba(255,255,255,.5)">© 2026 Esteban Andrade</p>
-        </div>
-        <div class="footer-links">
-            <div class="footer-col">
-                <p class="footer-col-title">Projects</p><a href="../iguana/index.html">Iguana Panel</a><a href="../lepetit/index.html">Le Petit Paradis</a><a href="../haru/index.html">Haru</a><a href="../gonow/index.html">GoNow</a><a href="../youtube-music/index.html">YouTube Music</a>
-            </div>
-            <div class="footer-col">
-                <p class="footer-col-title">Connect</p>
-                <a href="https://www.behance.net/esteban13" target="_blank" rel="noopener noreferrer">Behance ↗</a>
-                <a href="https://www.linkedin.com/in/estebandrade13/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
-                <a href="mailto:isaiandrade7.ea@gmail.com">Email</a>
-                <a href="../about.html">About</a>
-            </div>
-        </div>
-    </div>
-</footer>
+<div class="blk"><div class="sblock rv"><div class="sb-img"><img src="images/home.webp" width="640" height="1138" alt="Home screen" loading="lazy"></div><div class="sb-body"><h3>Home</h3><ul class="sb-list"><li><b>Floating cart and WhatsApp</b><span>Always in reach, and a human option for the doubtful.</span><div><em>Fitts’s law</em><em>Risk reduction</em></div></li><li><b>Categories grouped by age</b><span>Matches how a parent shops.</span><div><em>Match with real world</em></div></li><li><b>Testimonials carousel</b><span>Proof from other parents, without leaving the page.</span><div><em>Social proof</em></div></li></ul></div></div><div class="sblock rv"><div class="sb-img"><img src="images/product.webp" width="640" height="1138" alt="Product page" loading="lazy"></div><div class="sb-body"><h3>Product</h3><ul class="sb-list"><li><b>Real stock per size</b><span>Sizes with no units can’t be added, quantity is capped.</span><div><em>Error prevention</em></div></li><li><b>Age tag, gallery, favorites</b><span>Fit and options clear at a glance.</span><div><em>Recognition over recall</em></div></li><li><b>Benefits, size guide, shipping, exchanges in view</b><span>Answers the doubts before she asks.</span><div><em>Reduce uncertainty</em></div></li><li><b>WhatsApp button with the product name</b><span>No need to explain again.</span><div><em>Reduce effort</em></div></li></ul></div></div><div class="sblock rv"><div class="sb-img"><img src="images/checkout.webp" width="640" height="1138" alt="Checkout" loading="lazy"></div><div class="sb-body"><h3>Checkout</h3><ul class="sb-list"><li><b>Sections open as each one is filled</b><span>Contact, shipping, payment: short at every step.</span><div><em>Progressive disclosure</em></div></li><li><b>Reference address field</b><span>Helps the courier find the door.</span><div><em>Localisation</em></div></li><li><b>Shipping by zone, shown before paying</b><span>Quito and valleys free, Pichincha $3.50, national $6.</span><div><em>Transparency</em></div></li><li><b>Card or bank transfer</b><span>Card logos shown; transfer for those who prefer it.</span><div><em>Choice</em><em>Trust signals</em></div></li><li><b>“Wait 20 to 30 seconds” message</b><span>Stops reloads and double payments.</span><div><em>Reassurance</em></div></li></ul></div></div><div class="sblock rv"><div class="sb-img"><img src="images/confirmation.webp" width="640" height="1138" alt="Order confirmation" loading="lazy"></div><div class="sb-body"><h3>After paying</h3><ul class="sb-list"><li><b>Order tracker in four steps</b><span>She always knows what comes next.</span><div><em>Visibility of status</em></div></li><li><b>Amount and bank details on screen</b><span>No hunting for data, and WhatsApp to send the proof.</span><div><em>Closure</em></div></li><li><b>Account with password toggle, recovery, favorites</b><span>The second purchase is faster than the first.</span><div><em>Efficiency</em></div></li></ul></div></div></div>
+</div>
+</section>
+<section class="c-sec" id="sec-measure">
+<div class="c-label"><span class="c-no">04</span><span>Measure</span></div>
+<div class="c-body">
+<h2 class="rv">What gets measured</h2>
 
-<script src="../assets/js/case.js"></script>
+<div class="blk"><div class="kpi rv"><span>View product</span><span class="a" aria-hidden="true">&rarr;</span><span>Add to cart</span><span class="a" aria-hidden="true">&rarr;</span><span>Begin checkout</span><span class="a" aria-hidden="true">&rarr;</span><span>Purchase</span></div><p class="one-line rv"><b>Meta Pixel + Conversions API</b> and <b>GA4 + GTM</b> send the same events from browser and server, loaded lazily. Payments are marked paid only when the gateway confirms.</p><p class="note rv">Persona, journey and validation points are hypotheses. Results will be added once there is data.</p></div>
+</div>
+</section>
+<a class="up-next" href="../haru/index.html"><div class="grid"><div class="t"><small>Next project</small><h3>Haru</h3><p>A financial coach, not a bank. A UX design challenge.</p></div><div class="i"><img src="../haru/images/wide.webp" width="1600" height="900" alt="Haru app home screen" loading="lazy"></div></div></a>
+</main>
+<footer class="ft"><span>&copy; 2026 Esteban Andrade</span><nav aria-label="Projects"><a href="../index.html">Home</a><a href="../iguana/index.html">Iguana Panel</a><a href="../lepetit/index.html">Le Petit Paradis</a><a href="../haru/index.html">Haru</a><a href="../gonow/index.html">GoNow</a><a href="../youtube-music/index.html">YouTube Music</a><a href="mailto:isaiandrade7.ea@gmail.com">Email</a></nav></footer>
+<script src="../assets/js/site.js"></script>
 <script src="../assets/js/jpath.js"></script>
 </body>
 </html>

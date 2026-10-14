@@ -4,243 +4,121 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Esteban Andrade | UX & Product Designer</title>
-<meta name="description" content="Esteban Andrade, UX and product designer in Quito. Case studies in e-commerce, dashboards, fintech and mobility, with customer journeys and design systems.">
+<meta name="description" content="Esteban Andrade, UX and product designer in Quito. Apps, dashboards and stores people use every day: research, journeys, interfaces and design systems.">
 <meta property="og:title" content="Esteban Andrade | UX & Product Designer">
-<meta property="og:description" content="Products people trust and keep using. Case studies, customer journeys and design systems.">
-<meta property="og:image" content="iguana/images/cover.webp">
+<meta property="og:description" content="I make complicated things feel obvious. Selected UX and product design projects.">
+<meta property="og:image" content="iguana/images/wide.webp">
+<script>try{var t=localStorage.getItem('ea-theme');if(t)document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-<style>
-*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-:root{--bg:#1a1a1a;--fg:#fff;--mute:rgba(255,255,255,.55);--line:rgba(255,255,255,.22);--or:#ff7e00;--ease:cubic-bezier(.16,1,.3,1);--pad:clamp(22px,5vw,72px)}
-html{scroll-behavior:smooth}
-body{font-family:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--fg);-webkit-font-smoothing:antialiased;overflow-x:hidden}
-a{color:inherit;text-decoration:none}
-img{display:block;max-width:100%}
-:focus-visible{outline:2px solid var(--or);outline-offset:4px}
-.skip{position:absolute;left:-999px;top:8px;background:#fff;color:#000;padding:8px 14px;z-index:100;border-radius:6px}
-.skip:focus{left:8px}
-
-/* NAV */
-.nav{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;justify-content:space-between;align-items:center;padding:26px var(--pad);transition:transform .45s var(--ease),background .3s}
-.nav.hide{transform:translateY(-100%)}
-.nav.solid{background:rgba(26,26,26,.82);backdrop-filter:blur(14px)}
-.logo{font-weight:800;font-size:24px;letter-spacing:-.02em}
-.logo sup{font-size:10px;font-weight:600;margin-left:2px;vertical-align:super}
-.links{display:flex;gap:clamp(18px,2.6vw,38px);list-style:none;font-size:13px;font-weight:500;letter-spacing:.02em;text-transform:uppercase}
-.links a{position:relative;padding:4px 0}
-.links a::after{content:'';position:absolute;left:0;right:0;bottom:0;height:1px;background:#fff;transform:scaleX(0);transform-origin:left;transition:transform .35s var(--ease)}
-.links a:hover::after{transform:scaleX(1)}
-.burger{display:none;background:none;border:0;width:44px;height:44px;cursor:pointer;position:relative;z-index:60}
-.burger span{position:absolute;left:10px;right:10px;height:2px;background:#fff;transition:.3s var(--ease)}
-.burger span:first-child{top:17px}.burger span:last-child{top:25px}
-.burger.open span:first-child{top:21px;transform:rotate(45deg)}.burger.open span:last-child{top:21px;transform:rotate(-45deg)}
-.menu{position:fixed;inset:0;background:#111;z-index:55;display:flex;flex-direction:column;justify-content:center;gap:6px;padding:var(--pad);opacity:0;visibility:hidden;transition:.4s var(--ease)}
-.menu.open{opacity:1;visibility:visible}
-.menu a{font-size:clamp(34px,10vw,56px);font-weight:800;text-transform:uppercase;letter-spacing:-.02em;line-height:1.1}
-.menu a:hover{color:var(--or)}
-.menu small{margin-top:24px;color:var(--mute);font-size:13px}
-
-/* HERO */
-.hero{position:relative;min-height:100vh;min-height:100svh;display:grid;place-items:center;text-align:center;overflow:hidden;isolation:isolate;background:#0a58b5}
-.blob{position:absolute;border-radius:50%;filter:blur(70px);will-change:transform;z-index:-2}
-.b1{width:60vw;height:60vw;left:-15vw;top:-10vw;background:#031a45;animation:d1 22s ease-in-out infinite alternate}
-.b2{width:55vw;height:55vw;left:25vw;top:-28vw;background:#d9531a;animation:d2 26s ease-in-out infinite alternate}
-.b3{width:60vw;height:50vw;left:20vw;top:15vw;background:#1aa0e8;animation:d3 24s ease-in-out infinite alternate}
-.b4{width:45vw;height:45vw;right:-15vw;bottom:-18vw;background:#c9561f;animation:d1 28s ease-in-out infinite alternate-reverse}
-.b5{width:50vw;height:40vw;left:-10vw;bottom:-14vw;background:#0b6fd0;animation:d2 30s ease-in-out infinite alternate-reverse}
-@keyframes d1{to{transform:translate(12vw,8vw) scale(1.12)}}
-@keyframes d2{to{transform:translate(-10vw,10vw) scale(.92)}}
-@keyframes d3{to{transform:translate(-8vw,-6vw) scale(1.1)}}
-.grain{position:absolute;inset:0;z-index:-1;opacity:.5;mix-blend-mode:overlay;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .9 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
-.hero-in{padding:0 var(--pad)}
-.hero-k{font-size:clamp(15px,1.6vw,20px);font-weight:500;text-transform:uppercase;letter-spacing:.02em}
-.hero h1{font-size:clamp(42px,8.2vw,116px);font-weight:800;text-transform:uppercase;line-height:.98;letter-spacing:-.035em;margin:14px 0 22px}
-.hero-s{font-size:clamp(12px,1.2vw,14px);font-weight:500;text-transform:uppercase;letter-spacing:.14em;opacity:.85}
-.scroll{position:absolute;bottom:30px;left:50%;transform:translateX(-50%);font-size:11px;letter-spacing:.2em;text-transform:uppercase;opacity:.8;display:flex;flex-direction:column;align-items:center;gap:10px}
-.scroll::after{content:'';width:1px;height:38px;background:#fff;animation:sc 1.8s ease-in-out infinite;transform-origin:top}
-@keyframes sc{0%{transform:scaleY(0)}50%{transform:scaleY(1)}100%{transform:scaleY(1);opacity:0}}
-
-/* INTRO + WORK */
-.intro{text-align:center;padding:clamp(70px,9vw,120px) var(--pad) clamp(40px,5vw,70px)}
-.eyebrow{font-size:13px;font-weight:500;text-transform:uppercase;letter-spacing:.04em}
-.intro h2{margin-top:14px;font-size:clamp(26px,3.6vw,48px);font-weight:700;text-transform:uppercase;letter-spacing:-.025em;line-height:1.1}
-.work{padding:0 var(--pad)}
-.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:clamp(18px,2.2vw,32px);max-width:1500px;margin:0 auto}
-.tile{display:flex;flex-direction:column;gap:14px;grid-column:span 4}
-.tile.wide{grid-column:span 8}
-.tile-img{position:relative;overflow:hidden;background:#222;flex:1;aspect-ratio:4/5}
-.tile.wide .tile-img{aspect-ratio:3/2}
-.tile-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .9s var(--ease)}
-.tile:hover .tile-img img{transform:scale(1.045)}
-.tile-img::after{content:'View case \2197';position:absolute;right:16px;bottom:16px;background:#fff;color:#000;font-size:12px;font-weight:600;padding:9px 14px;border-radius:99px;opacity:0;transform:translateY(8px);transition:.4s var(--ease)}
-.tile:hover .tile-img::after,.tile:focus-visible .tile-img::after{opacity:1;transform:none}
-.meta{display:flex;justify-content:space-between;align-items:baseline;gap:14px;flex-wrap:wrap}
-.meta b{font-size:clamp(15px,1.4vw,19px);font-weight:700;text-transform:uppercase;letter-spacing:-.01em}
-.meta span{font-size:12px;color:var(--mute);text-transform:uppercase;letter-spacing:.06em}
-.more{display:block;text-align:center;margin:clamp(40px,5vw,64px) auto 0;width:max-content;font-size:14px;text-transform:uppercase;text-decoration:underline;text-underline-offset:5px}
-
-/* ABOUT */
-.about{padding:clamp(90px,12vw,170px) var(--pad) clamp(70px,9vw,120px)}
-.label{display:flex;align-items:center;gap:16px;font-size:13px;text-transform:uppercase;margin-bottom:28px}
-.label::after{content:'';width:50px;height:1px;background:#fff}
-.statement{font-size:clamp(26px,4.1vw,60px);line-height:1.18;font-weight:400;letter-spacing:-.025em;color:rgba(255,255,255,.48);max-width:1100px}
-.statement em{font-style:italic;font-weight:700;color:rgba(255,255,255,.72)}
-.statement b{font-weight:700;color:#fff}
-.about-links{display:flex;gap:28px;flex-wrap:wrap;margin-top:40px;font-size:14px;text-transform:uppercase}
-.about-links a{text-decoration:underline;text-underline-offset:5px}
-
-/* PROCESS */
-.process{padding:clamp(50px,7vw,100px) var(--pad);text-align:center}
-.cols{display:grid;grid-template-columns:repeat(3,1fr);margin-top:56px;max-width:1300px;margin-inline:auto;position:relative}
-.col h3{font-size:clamp(22px,2.6vw,34px);font-weight:800;text-transform:uppercase;letter-spacing:-.02em}
-.dot{position:relative;height:18px;margin:26px 0 30px}
-.dot::before{content:'';position:absolute;left:0;right:0;top:50%;height:1px;background:#fff}
-.col:first-child .dot::before{left:50%}.col:last-child .dot::before{right:50%}
-.dot i{position:absolute;left:50%;top:50%;width:18px;height:18px;margin:-9px;border-radius:50%;background:#fff;transition:.4s var(--ease)}
-.col:hover .dot i{background:var(--or);transform:scale(1.3)}
-.col p{color:var(--mute);font-size:clamp(14px,1.25vw,17px);line-height:1.6;max-width:360px;margin:0 auto;padding:0 12px}
-
-/* DESIGN SYSTEM BAND */
-.ds{margin:clamp(40px,6vw,80px) var(--pad) 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);display:grid;grid-template-columns:1fr 2fr auto;gap:28px;align-items:center;padding:34px 0}
-.ds h3{font-size:13px;text-transform:uppercase;letter-spacing:.04em;font-weight:500}
-.ds p{color:var(--mute);font-size:clamp(15px,1.4vw,18px);line-height:1.55}
-.ds a{font-size:14px;text-transform:uppercase;text-decoration:underline;text-underline-offset:5px;white-space:nowrap}
-
-/* CTA */
-.cta{text-align:center;padding:clamp(90px,12vw,170px) var(--pad) clamp(60px,8vw,110px)}
-.cta h2{font-size:clamp(38px,7vw,100px);font-weight:800;text-transform:uppercase;letter-spacing:-.035em;line-height:1}
-.mail{display:inline-block;margin-top:22px;font-size:clamp(16px,2vw,24px);text-decoration:underline;text-underline-offset:6px}
-.mail:hover{color:var(--or)}
-.cta-links{display:flex;gap:26px;justify-content:center;flex-wrap:wrap;margin-top:34px;font-size:13px;text-transform:uppercase;color:var(--mute)}
-.cta-links a:hover{color:#fff}
-footer{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding:26px var(--pad);border-top:1px solid var(--line);font-size:12px;color:var(--mute);text-transform:uppercase;letter-spacing:.04em}
-
-/* reveal */
-.rv{opacity:0;transform:translateY(26px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
-.rv.on{opacity:1;transform:none}
-.d1{transition-delay:.1s}.d2{transition-delay:.2s}
-html:not(.js) .rv{opacity:1;transform:none}
-
-@media(max-width:900px){
-  .links{display:none}.burger{display:block}
-  .tile,.tile.wide{grid-column:1/-1}
-  .tile-img,.tile.wide .tile-img{aspect-ratio:3/2;flex:none}
-  .tile-img::after{opacity:1;transform:none}
-  .cols{grid-template-columns:1fr;gap:46px}
-  .dot::before{display:none}
-  .ds{grid-template-columns:1fr;gap:14px}
-}
-@media(prefers-reduced-motion:reduce){.blob,.scroll::after{animation:none}.rv{transition:none}html{scroll-behavior:auto}}
-</style>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/v3.css">
+<noscript><style>.hero h1 .ln>span{transform:none;animation:none}</style></noscript>
 </head>
 <body>
-<a class="skip" href="#work">Skip to work</a>
+<a class="skip" href="#work">Skip to projects</a>
 
-<header class="nav" id="nav">
-  <a href="#top" class="logo" aria-label="Esteban Andrade, home">EA<sup>&reg;</sup></a>
-  <ul class="links">
-    <li><a href="#work">Work</a></li>
-    <li><a href="#about">About</a></li>
-    <li><a href="cv.html">CV</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
-  <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="menu"><span></span><span></span></button>
+<header class="hd">
+  <a class="brand" href="#top" aria-label="Esteban Andrade, home">Esteban <i>Andrade</i></a>
+  <nav class="hd-nav" aria-label="Main">
+    <a href="#work">Work</a><a href="#about">About</a><a href="cv.html">CV</a><a href="#contact">Contact</a>
+    <button class="tt" type="button" aria-label="Switch to dark mode"><svg class="moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/></svg><svg class="sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></button>
+  </nav>
+  <div style="display:flex;gap:6px;align-items:center">
+    <button class="tt burger-tt" type="button" aria-label="Switch to dark mode" style="display:none"><svg class="moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/></svg><svg class="sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></button>
+    <button class="burger" id="burger" type="button" aria-expanded="false" aria-controls="mmenu">Menu</button>
+  </div>
 </header>
-<nav class="menu" id="menu" aria-label="Menu">
-  <a href="#work">Work</a><a href="about.html">About</a><a href="cv.html">CV</a><a href="#contact">Contact</a>
-  <small>Quito, Ecuador &middot; isaiandrade7.ea@gmail.com</small>
-</nav>
+<nav class="mmenu" id="mmenu" aria-label="Menu"><button type="button">Close</button><a href="#work">Work</a><a href="about.html">About</a><a href="cv.html">CV</a><a href="#contact">Contact</a></nav>
 
 <main id="top">
 <section class="hero" aria-label="Introduction">
-  <div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div><div class="blob b4"></div><div class="blob b5"></div>
-  <div class="grain"></div>
-  <div class="hero-in">
-    <p class="hero-k">Let&rsquo;s create</p>
-    <h1>Better products</h1>
-    <p class="hero-s">UX &amp; Product Designer &middot; Quito, Ecuador</p>
-  </div>
-  <a class="scroll" href="#work">Scroll</a>
-</section>
-
-<section class="intro">
-  <p class="eyebrow rv">Based in Quito / Available worldwide</p>
-  <h2 class="rv d1">UX &amp; product design partner<br>for products people trust</h2>
-</section>
-
-<section class="work" id="work" aria-label="Selected work">
-  <div class="grid">
-    <a class="tile wide rv" href="iguana/index.html">
-      <div class="tile-img"><img src="iguana/images/cover.webp" width="1500" height="1000" alt="Iguana admin panel on desktop and mobile" loading="eager"></div>
-      <div class="meta"><b>Iguana Panel</b><span>Dashboard &middot; Design system &middot; Live demo</span></div>
-    </a>
-    <a class="tile rv d1" href="lepetit/index.html">
-      <div class="tile-img"><img src="lepetit/images/cover.webp" width="1500" height="1000" alt="Le Petit Paradis store screens on mobile" loading="lazy"></div>
-      <div class="meta"><b>Le Petit Paradis</b><span>E-commerce</span></div>
-    </a>
-    <a class="tile rv" href="haru/index.html">
-      <div class="tile-img"><img src="haru/images/cover.webp" width="1500" height="1000" alt="Haru financial coach app screens" loading="lazy"></div>
-      <div class="meta"><b>Haru</b><span>Fintech &middot; UX challenge</span></div>
-    </a>
-    <a class="tile rv d1" href="gonow/index.html">
-      <div class="tile-img"><img src="gonow/images/cover.webp" width="1500" height="1000" alt="GoNow transit app screens" loading="lazy"></div>
-      <div class="meta"><b>GoNow</b><span>Mobility &middot; Research</span></div>
-    </a>
-    <a class="tile rv d2" href="youtube-music/index.html">
-      <div class="tile-img"><img src="youtube-music/cover.webp" width="1500" height="1000" alt="YouTube Music redesign screens" loading="lazy"></div>
-      <div class="meta"><b>YouTube Music</b><span>Redesign &middot; UX audit</span></div>
-    </a>
+  <div class="mesh" aria-hidden="true"></div>
+  <p class="kick">UX &amp; product designer &middot; Quito, Ecuador</p>
+  <h1><span class="ln"><span>I make complicated</span></span><span class="ln"><span>things feel</span></span><span class="ln"><span><span class="sheen">obvious.</span></span></span></h1>
+  <div class="hero-foot">
+    <p>Apps, dashboards and online stores that people use every day. I handle the research, the journeys, the screens and the system underneath.</p>
+    <div class="cta-row"><a class="btn" href="#work">See the projects <span aria-hidden="true">&darr;</span></a><a class="lnk" href="cv.html">Read my CV</a></div>
   </div>
 </section>
 
-<section class="about" id="about">
-  <p class="label rv">About</p>
-  <p class="statement rv d1">I&rsquo;m Esteban, a UX and product designer. I turn complex products into <em>clear, trustworthy experiences</em>, from research and <b>customer journeys</b> to <em>design systems</em>, so people understand them and keep using them.</p>
-  <div class="about-links rv d2"><a href="about.html">About me</a><a href="cv.html">View CV</a></div>
-</section>
+<section class="sec" id="work" aria-label="Projects">
+  <div class="wrap">
+    <div class="sec-h"><h2>Projects</h2><span>Five case studies, 2025 to 2026</span></div>
 
-<section class="process" aria-label="Process">
-  <p class="eyebrow rv">How I work</p>
-  <div class="cols">
-    <div class="col rv"><h3>Understand</h3><div class="dot"><i></i></div><p>Interviews, journeys and pain points written as &ldquo;How might we&rdquo;. Personas without research are labeled as design synthesis.</p></div>
-    <div class="col rv d1"><h3>Design</h3><div class="dot"><i></i></div><p>Flows, interfaces and a system of tokens and components, so every decision traces back to a principle.</p></div>
-    <div class="col rv d2"><h3>Ship</h3><div class="dot"><i></i></div><p>Prototype, test and hand off. I build with Claude Code, Antigravity and Codex to bring interfaces to life.</p></div>
+    <a class="pj rv" href="iguana/index.html">
+      <div class="pj-in">
+        <div class="pj-txt"><span class="pj-n">01</span><h3>Iguana Panel</h3><p>A calendar-first admin panel for small service businesses, built on its own design system.</p>
+          <dl><div><dt>Type</dt><dd>Admin dashboard</dd></div><div><dt>Focus</dt><dd>Design system</dd></div><div><dt>Year</dt><dd>2026</dd></div></dl><span class="pj-go">Read the case <b>&rarr;</b></span></div>
+        <div class="pj-img"><img src="iguana/images/wide.webp" width="1600" height="900" alt="Iguana admin panel on desktop and mobile"></div>
+      </div>
+    </a>
+    <a class="pj rv" href="lepetit/index.html">
+      <div class="pj-in">
+        <div class="pj-txt"><span class="pj-n">02</span><h3>Le Petit Paradis</h3><p>A children&rsquo;s clothing shop built around one question: can I trust this store?</p>
+          <dl><div><dt>Type</dt><dd>E-commerce</dd></div><div><dt>Focus</dt><dd>Mobile checkout</dd></div><div><dt>Year</dt><dd>2026</dd></div></dl><span class="pj-go">Read the case <b>&rarr;</b></span></div>
+        <div class="pj-img"><img src="lepetit/images/wide.webp" width="1600" height="900" alt="Le Petit Paradis store screens on mobile" loading="lazy"></div>
+      </div>
+    </a>
+    <a class="pj rv" href="haru/index.html">
+      <div class="pj-in">
+        <div class="pj-txt"><span class="pj-n">03</span><h3>Haru</h3><p>A money app that explains the numbers instead of only showing them.</p>
+          <dl><div><dt>Type</dt><dd>Fintech concept</dd></div><div><dt>Focus</dt><dd>Insight over data</dd></div><div><dt>Year</dt><dd>2026</dd></div></dl><span class="pj-go">Read the case <b>&rarr;</b></span></div>
+        <div class="pj-img"><img src="haru/images/wide.webp" width="1600" height="900" alt="Haru financial coach app screens" loading="lazy"></div>
+      </div>
+    </a>
+    <a class="pj rv" href="gonow/index.html">
+      <div class="pj-in">
+        <div class="pj-txt"><span class="pj-n">04</span><h3>GoNow</h3><p>A transit app for Quito that started with six interviews and one safety button.</p>
+          <dl><div><dt>Type</dt><dd>Mobile app</dd></div><div><dt>Focus</dt><dd>Research, safety</dd></div><div><dt>Year</dt><dd>2025</dd></div></dl><span class="pj-go">Read the case <b>&rarr;</b></span></div>
+        <div class="pj-img"><img src="gonow/images/wide.webp" width="1600" height="900" alt="GoNow transit app screens" loading="lazy"></div>
+      </div>
+    </a>
+    <a class="pj rv" href="youtube-music/index.html">
+      <div class="pj-in">
+        <div class="pj-txt"><span class="pj-n">05</span><h3>YouTube Music</h3><p>Three screens I found frustrating, audited and redesigned, with before and after.</p>
+          <dl><div><dt>Type</dt><dd>Redesign concept</dd></div><div><dt>Focus</dt><dd>UX audit</dd></div><div><dt>Year</dt><dd>2025</dd></div></dl><span class="pj-go">Read the case <b>&rarr;</b></span></div>
+        <div class="pj-img"><img src="youtube-music/wide.webp" width="1600" height="900" alt="YouTube Music redesign screens" loading="lazy"></div>
+      </div>
+    </a>
   </div>
 </section>
 
-<div class="ds rv">
-  <h3>Design systems</h3>
-  <p>Iguana runs on documented tokens, components and usage rules, with a demo you can try in the browser.</p>
-  <a href="iguana/index.html#sec-system">See the system</a>
-</div>
+<section class="sec" aria-label="How I work" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-h"><h2>How I work</h2><span>Three habits</span></div>
+    <div class="how rv">
+      <div><h3>Ask before drawing</h3><p>Interviews and observation come first. When a project has no research, the page says so.</p></div>
+      <div><h3>Map the path</h3><p>Journeys and flows give every screen a reason to exist, and every decision a principle.</p></div>
+      <div><h3>Build it to last</h3><p>Tokens and components first, then prototypes made with code, using Claude Code, Antigravity and Codex.</p></div>
+    </div>
+  </div>
+</section>
 
-<section class="cta" id="contact">
-  <h2 class="rv">Let&rsquo;s do better</h2>
-  <a class="mail rv d1" href="mailto:isaiandrade7.ea@gmail.com">isaiandrade7.ea@gmail.com</a>
-  <div class="cta-links rv d2">
-    <a href="https://www.behance.net/esteban13" target="_blank" rel="noopener noreferrer">Behance</a>
-    <a href="https://www.linkedin.com/in/estebandrade13/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-    <a href="CV_Esteban_Andrade_EN.pdf" download>CV EN</a>
-    <a href="CV_Esteban_Andrade_ES.pdf" download>CV ES</a>
+<section class="sec" id="about" aria-label="About" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-h"><h2>About</h2><span>Quito, Ecuador</span></div>
+    <div class="about-s">
+      <p class="big rv">I started in graphic design and multimedia, then moved toward the people <i>using</i> the screens. Now I design products that explain themselves.</p>
+      <div class="side rv"><span>Previously at PW Digital, Autority and VSinnova.</span><a href="about.html"><span>My story</span><span>&rarr;</span></a><a href="cv.html"><span>CV online</span><span>&rarr;</span></a><a href="CV_Esteban_Andrade_EN.pdf" download><span>CV PDF (EN)</span><span>&darr;</span></a><a href="CV_Esteban_Andrade_ES.pdf" download><span>CV PDF (ES)</span><span>&darr;</span></a></div>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact" aria-label="Contact">
+  <div class="wrap">
+    <h2 class="rv">Got something that needs to <i>make sense?</i></h2>
+    <a class="mail rv" href="mailto:isaiandrade7.ea@gmail.com">isaiandrade7.ea@gmail.com</a>
   </div>
 </section>
 </main>
 
-<footer><span>&copy; 2026 Esteban Andrade</span><span>Quito, Ecuador</span></footer>
+<footer class="ft">
+  <span>&copy; 2026 Esteban Andrade</span>
+  <nav aria-label="Elsewhere"><a href="https://www.behance.net/esteban13" target="_blank" rel="noopener noreferrer">Behance</a><a href="https://www.linkedin.com/in/estebandrade13/" target="_blank" rel="noopener noreferrer">LinkedIn</a><a href="about.html">About</a><a href="cv.html">CV</a></nav>
+</footer>
 
-<script>
-document.documentElement.classList.add('js');
-var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target)}})},{threshold:.08,rootMargin:'0px 0px -30px 0px'});
-document.querySelectorAll('.rv').forEach(function(el){io.observe(el)});
-var nav=document.getElementById('nav'),last=0;
-addEventListener('scroll',function(){var y=scrollY;nav.classList.toggle('solid',y>60);nav.classList.toggle('hide',y>last&&y>240&&!menu.classList.contains('open'));last=Math.max(0,y)},{passive:true});
-var b=document.getElementById('burger'),menu=document.getElementById('menu');
-function tog(o){b.classList.toggle('open',o);menu.classList.toggle('open',o);b.setAttribute('aria-expanded',o);document.body.style.overflow=o?'hidden':''}
-b.addEventListener('click',function(){tog(!menu.classList.contains('open'))});
-menu.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){tog(false)})});
-addEventListener('keydown',function(e){if(e.key==='Escape')tog(false)});
-</script>
+<style>@media(max-width:820px){.burger-tt{display:inline-grid!important}}</style>
+<script src="assets/js/site.js"></script>
 </body>
 </html>
