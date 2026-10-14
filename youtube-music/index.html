@@ -6,7 +6,7 @@
     <title>YouTube Music Redesign · Esteban Andrade</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
         :root{
@@ -148,13 +148,13 @@
         /* ── DRAWER ──────────────────────────────────────── */
         .drawer-overlay{position:fixed;inset:0;z-index:300;background:rgba(0,0,0,.5);opacity:0;pointer-events:none;transition:opacity .35s var(--ease);backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px);}
         .drawer-overlay.open{opacity:1;pointer-events:all;}
-        .drawer{position:fixed;top:0;right:0;bottom:0;z-index:400;width:320px;max-width:90vw;background:#fff;transform:translateX(100%);transition:transform .45s var(--ease);padding:80px 32px 40px;display:flex;flex-direction:column;overflow-y:auto;box-shadow:-16px 0 48px rgba(0,0,0,.2);}
+        .drawer{position:fixed;top:0;right:0;bottom:0;z-index:400;width:320px;max-width:90vw;background:#111;transform:translateX(100%);transition:transform .45s var(--ease);padding:80px 32px 40px;display:flex;flex-direction:column;overflow-y:auto;box-shadow:-16px 0 48px rgba(0,0,0,.2);}
         .drawer.open{transform:translateX(0);}
         .drawer-close{position:absolute;top:20px;right:20px;background:var(--off);border:1px solid var(--border);border-radius:100px;width:36px;height:36px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:13px;color:var(--muted);transition:background .2s;}
         .drawer-close:hover{background:var(--border);}
         .drawer-label{font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--orange);margin-bottom:18px;}
         .drawer-nav{display:flex;flex-direction:column;margin-bottom:28px;}
-        .drawer-nav a{font-family:var(--font-d);font-size:24px;font-weight:700;letter-spacing:-.03em;color:#0a0a0a;text-decoration:none;padding:8px 0;border-bottom:1px solid #e8e8e8;line-height:1.2;transition:color .2s,padding-left .3s var(--ease);}
+        .drawer-nav a{font-family:var(--font-d);font-size:24px;font-weight:700;letter-spacing:-.03em;color:#fff;text-decoration:none;padding:8px 0;border-bottom:1px solid #e8e8e8;line-height:1.2;transition:color .2s,padding-left .3s var(--ease);}
         .drawer-nav a:last-child{border-bottom:none;}
         .drawer-nav a:hover{color:var(--orange);padding-left:6px;}
         .drawer-current{color:var(--orange) !important;}
@@ -211,6 +211,8 @@
         }
     </style>
     <link rel="stylesheet" href="../assets/css/jpath.css">
+<link rel="stylesheet" href="../assets/css/bttr-dark.css">
+<link rel="stylesheet" href="../assets/css/bttr.css">
 </head>
 <body>
 
