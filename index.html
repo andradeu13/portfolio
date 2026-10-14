@@ -10,254 +10,237 @@
 <meta property="og:image" content="iguana/images/cover.webp">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-:root{--ink:#1a1a1a;--cream:#f4f0e5;--red:#ff3b00;--disp:'Anton','Impact','Arial Narrow',sans-serif;--mono:'Space Mono',ui-monospace,Menlo,monospace;--pad:clamp(18px,2.4vw,36px);--ease:cubic-bezier(.16,1,.3,1)}
+:root{--bg:#1a1a1a;--fg:#fff;--mute:rgba(255,255,255,.55);--line:rgba(255,255,255,.22);--or:#ff7e00;--ease:cubic-bezier(.16,1,.3,1);--pad:clamp(22px,5vw,72px)}
 html{scroll-behavior:smooth}
-body{background:var(--ink);color:var(--cream);font-family:var(--mono);font-size:13px;line-height:1.5;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body{font-family:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--fg);-webkit-font-smoothing:antialiased;overflow-x:hidden}
 a{color:inherit;text-decoration:none}
 img{display:block;max-width:100%}
-:focus-visible{outline:2px solid var(--red);outline-offset:3px}
-.skip{position:absolute;left:-999px;top:8px;background:var(--cream);color:var(--ink);padding:8px 14px;z-index:100}
+:focus-visible{outline:2px solid var(--or);outline-offset:4px}
+.skip{position:absolute;left:-999px;top:8px;background:#fff;color:#000;padding:8px 14px;z-index:100;border-radius:6px}
 .skip:focus{left:8px}
-.up{text-transform:uppercase}
-.disp{font-family:var(--disp);text-transform:uppercase;font-weight:400;line-height:.88;letter-spacing:.005em}
 
 /* NAV */
-.top{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;justify-content:space-between;align-items:center;padding:18px var(--pad);pointer-events:none}
-.top>*{pointer-events:auto}
-.mark{width:46px;height:46px;background:var(--red);color:var(--ink);display:grid;place-items:center;font-family:var(--disp);font-size:19px;letter-spacing:.02em;clip-path:polygon(30% 0,70% 0,100% 30%,100% 70%,70% 100%,30% 100%,0 70%,0 30%);transition:transform .5s var(--ease)}
-.mark:hover{transform:rotate(45deg) scale(1.05)}
-.mark span{display:block;transition:transform .5s var(--ease)}
-.mark:hover span{transform:rotate(-45deg)}
-.links{display:flex;gap:30px;list-style:none;text-transform:uppercase;font-size:12px;color:#fff;mix-blend-mode:difference}
-.links a{padding:6px 0;border-bottom:1px solid transparent}
-.links a:hover{border-color:#fff}
-.burger{display:none;background:none;border:0;color:#fff;mix-blend-mode:difference;font:inherit;font-size:12px;text-transform:uppercase;cursor:pointer;padding:10px 0}
-.menu{position:fixed;inset:0;background:var(--red);color:var(--ink);z-index:60;display:flex;flex-direction:column;justify-content:center;padding:var(--pad);transform:translateY(-100%);transition:transform .6s var(--ease)}
-.menu.open{transform:none}
-.menu a{font-family:var(--disp);text-transform:uppercase;font-size:clamp(56px,17vw,120px);line-height:.95}
-.menu button{position:absolute;top:22px;right:var(--pad);background:none;border:0;font:inherit;text-transform:uppercase;font-size:12px;cursor:pointer;color:var(--ink)}
+.nav{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;justify-content:space-between;align-items:center;padding:26px var(--pad);transition:transform .45s var(--ease),background .3s}
+.nav.hide{transform:translateY(-100%)}
+.nav.solid{background:rgba(26,26,26,.82);backdrop-filter:blur(14px)}
+.logo{font-weight:800;font-size:24px;letter-spacing:-.02em}
+.logo sup{font-size:10px;font-weight:600;margin-left:2px;vertical-align:super}
+.links{display:flex;gap:clamp(18px,2.6vw,38px);list-style:none;font-size:13px;font-weight:500;letter-spacing:.02em;text-transform:uppercase}
+.links a{position:relative;padding:4px 0}
+.links a::after{content:'';position:absolute;left:0;right:0;bottom:0;height:1px;background:#fff;transform:scaleX(0);transform-origin:left;transition:transform .35s var(--ease)}
+.links a:hover::after{transform:scaleX(1)}
+.burger{display:none;background:none;border:0;width:44px;height:44px;cursor:pointer;position:relative;z-index:60}
+.burger span{position:absolute;left:10px;right:10px;height:2px;background:#fff;transition:.3s var(--ease)}
+.burger span:first-child{top:17px}.burger span:last-child{top:25px}
+.burger.open span:first-child{top:21px;transform:rotate(45deg)}.burger.open span:last-child{top:21px;transform:rotate(-45deg)}
+.menu{position:fixed;inset:0;background:#111;z-index:55;display:flex;flex-direction:column;justify-content:center;gap:6px;padding:var(--pad);opacity:0;visibility:hidden;transition:.4s var(--ease)}
+.menu.open{opacity:1;visibility:visible}
+.menu a{font-size:clamp(34px,10vw,56px);font-weight:800;text-transform:uppercase;letter-spacing:-.02em;line-height:1.1}
+.menu a:hover{color:var(--or)}
+.menu small{margin-top:24px;color:var(--mute);font-size:13px}
 
 /* HERO */
-.hero{position:relative;min-height:100vh;min-height:100svh;display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden;padding:0 var(--pad)}
-.hero h1{position:absolute;z-index:3;left:0;right:0;top:50%;transform:translateY(-50%);text-align:center;font-size:clamp(58px,13.2vw,230px);color:var(--cream);pointer-events:none}
-.hero h1 span{display:block}
-.ph{position:absolute;z-index:2;overflow:hidden;background:#333}
-.ph img{width:100%;height:100%;object-fit:cover}
-.ph.a{left:0;top:17%;width:12vw;aspect-ratio:4/5}
-.ph.b{left:41.5%;top:0;width:16vw;aspect-ratio:3/2}
-.ph.c{left:8.5%;bottom:14%;width:16vw;aspect-ratio:4/5}
-.ph.d{right:var(--pad);bottom:20%;width:21vw;aspect-ratio:3/2}
-.hero-bar{position:relative;z-index:4;display:grid;grid-template-columns:1fr 2fr 1fr;gap:20px;align-items:start;border-top:1px solid rgba(244,240,229,.5);padding:14px 0 22px;text-transform:uppercase;font-size:12px}
-.hero-bar p{text-align:center;text-transform:none;font-size:clamp(13px,1.15vw,16px);max-width:560px;margin:0 auto}
-.hero-bar a{justify-self:end;border-bottom:1px solid transparent}
-.hero-bar a:hover{border-color:var(--cream)}
+.hero{position:relative;min-height:100vh;min-height:100svh;display:grid;place-items:center;text-align:center;overflow:hidden;isolation:isolate;background:#0a58b5}
+.blob{position:absolute;border-radius:50%;filter:blur(70px);will-change:transform;z-index:-2}
+.b1{width:60vw;height:60vw;left:-15vw;top:-10vw;background:#031a45;animation:d1 22s ease-in-out infinite alternate}
+.b2{width:55vw;height:55vw;left:25vw;top:-28vw;background:#d9531a;animation:d2 26s ease-in-out infinite alternate}
+.b3{width:60vw;height:50vw;left:20vw;top:15vw;background:#1aa0e8;animation:d3 24s ease-in-out infinite alternate}
+.b4{width:45vw;height:45vw;right:-15vw;bottom:-18vw;background:#c9561f;animation:d1 28s ease-in-out infinite alternate-reverse}
+.b5{width:50vw;height:40vw;left:-10vw;bottom:-14vw;background:#0b6fd0;animation:d2 30s ease-in-out infinite alternate-reverse}
+@keyframes d1{to{transform:translate(12vw,8vw) scale(1.12)}}
+@keyframes d2{to{transform:translate(-10vw,10vw) scale(.92)}}
+@keyframes d3{to{transform:translate(-8vw,-6vw) scale(1.1)}}
+.grain{position:absolute;inset:0;z-index:-1;opacity:.5;mix-blend-mode:overlay;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .9 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.hero-in{padding:0 var(--pad)}
+.hero-k{font-size:clamp(15px,1.6vw,20px);font-weight:500;text-transform:uppercase;letter-spacing:.02em}
+.hero h1{font-size:clamp(42px,8.2vw,116px);font-weight:800;text-transform:uppercase;line-height:.98;letter-spacing:-.035em;margin:14px 0 22px}
+.hero-s{font-size:clamp(12px,1.2vw,14px);font-weight:500;text-transform:uppercase;letter-spacing:.14em;opacity:.85}
+.scroll{position:absolute;bottom:30px;left:50%;transform:translateX(-50%);font-size:11px;letter-spacing:.2em;text-transform:uppercase;opacity:.8;display:flex;flex-direction:column;align-items:center;gap:10px}
+.scroll::after{content:'';width:1px;height:38px;background:#fff;animation:sc 1.8s ease-in-out infinite;transform-origin:top}
+@keyframes sc{0%{transform:scaleY(0)}50%{transform:scaleY(1)}100%{transform:scaleY(1);opacity:0}}
 
-/* WORK */
-.cream{background:var(--cream);color:var(--ink)}
-.work{padding:0 var(--pad) clamp(70px,9vw,140px)}
-.rule{display:flex;justify-content:space-between;border-bottom:1px solid var(--ink);padding:14px 0 10px;text-transform:uppercase;font-size:12px}
-.work-head{display:grid;grid-template-columns:1fr minmax(0,330px);align-items:end;gap:30px;margin:clamp(40px,6vw,90px) 0 clamp(40px,6vw,100px)}
-.work-head h2{font-size:clamp(70px,14.5vw,250px)}
-.work-head p{font-size:clamp(12px,1.05vw,15px);padding-bottom:1.2vw}
-.wgrid{display:grid;grid-template-columns:repeat(12,1fr);column-gap:clamp(16px,2.4vw,36px);row-gap:clamp(40px,6vw,90px);align-items:start}
-.w{display:block}
-.w .wi{overflow:hidden;background:#d9d4c6}
-.w .wi img{width:100%;height:100%;object-fit:cover;transition:transform 1.1s var(--ease)}
-.w:hover .wi img{transform:scale(1.05)}
-.wm{display:grid;grid-template-columns:2.2em 1fr auto;gap:2px 12px;align-items:baseline;margin-top:12px;text-transform:uppercase;font-size:12px}
-.wm b{font-family:var(--disp);font-weight:400;font-size:clamp(20px,2vw,30px);line-height:1;transition:color .25s}
-.w:hover .wm b{color:var(--red)}
-.wm i{font-style:normal;grid-column:2/3;opacity:.7}
-.wm em{font-style:normal;grid-column:3;grid-row:1/3;align-self:end}
-.w1{grid-column:1/8}.w1 .wi{aspect-ratio:3/2}
-.w2{grid-column:9/13;margin-top:clamp(40px,10vw,150px)}.w2 .wi{aspect-ratio:4/5}
-.w3{grid-column:1/5}.w3 .wi{aspect-ratio:4/5}
-.w4{grid-column:5/10;margin-top:clamp(30px,11vw,170px)}.w4 .wi{aspect-ratio:3/2}
-.w5{grid-column:10/13;margin-top:clamp(0px,3vw,50px)}.w5 .wi{aspect-ratio:3/4}
-.wmore{margin-top:clamp(40px,5vw,70px);display:flex;justify-content:flex-end;text-transform:uppercase;font-size:12px}
-.wmore a{border-bottom:1px solid var(--ink);padding-bottom:3px}
-
-/* SERVICES */
-.serv{padding:clamp(70px,9vw,140px) var(--pad)}
-.serv .rule{border-color:rgba(244,240,229,.5)}
-.serv h2{font-size:clamp(70px,14.5vw,250px);margin:clamp(30px,5vw,70px) 0}
-.row{display:grid;grid-template-columns:1fr minmax(0,330px);gap:30px;align-items:end;border-bottom:1px solid rgba(244,240,229,.5);padding:clamp(6px,1vw,14px) 0 clamp(10px,1.4vw,18px);position:relative;transition:background .3s,color .3s,padding .4s var(--ease)}
-.row:first-of-type{border-top:1px solid rgba(244,240,229,.5)}
-.row h3{font-family:var(--disp);font-weight:400;text-transform:uppercase;font-size:clamp(44px,8.6vw,150px);line-height:.95}
-.row div{display:grid;grid-template-columns:3em 1fr;font-size:12px;text-transform:uppercase;padding-bottom:.8vw}
-.row:hover{background:var(--red);color:var(--ink);padding-left:14px;padding-right:14px}
-.tools{margin-top:22px;text-transform:uppercase;font-size:12px;display:flex;gap:10px 26px;flex-wrap:wrap;opacity:.8}
+/* INTRO + WORK */
+.intro{text-align:center;padding:clamp(70px,9vw,120px) var(--pad) clamp(40px,5vw,70px)}
+.eyebrow{font-size:13px;font-weight:500;text-transform:uppercase;letter-spacing:.04em}
+.intro h2{margin-top:14px;font-size:clamp(26px,3.6vw,48px);font-weight:700;text-transform:uppercase;letter-spacing:-.025em;line-height:1.1}
+.work{padding:0 var(--pad)}
+.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:clamp(18px,2.2vw,32px);max-width:1500px;margin:0 auto}
+.tile{display:flex;flex-direction:column;gap:14px;grid-column:span 4}
+.tile.wide{grid-column:span 8}
+.tile-img{position:relative;overflow:hidden;background:#222;flex:1;aspect-ratio:4/5}
+.tile.wide .tile-img{aspect-ratio:3/2}
+.tile-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .9s var(--ease)}
+.tile:hover .tile-img img{transform:scale(1.045)}
+.tile-img::after{content:'View case \2197';position:absolute;right:16px;bottom:16px;background:#fff;color:#000;font-size:12px;font-weight:600;padding:9px 14px;border-radius:99px;opacity:0;transform:translateY(8px);transition:.4s var(--ease)}
+.tile:hover .tile-img::after,.tile:focus-visible .tile-img::after{opacity:1;transform:none}
+.meta{display:flex;justify-content:space-between;align-items:baseline;gap:14px;flex-wrap:wrap}
+.meta b{font-size:clamp(15px,1.4vw,19px);font-weight:700;text-transform:uppercase;letter-spacing:-.01em}
+.meta span{font-size:12px;color:var(--mute);text-transform:uppercase;letter-spacing:.06em}
+.more{display:block;text-align:center;margin:clamp(40px,5vw,64px) auto 0;width:max-content;font-size:14px;text-transform:uppercase;text-decoration:underline;text-underline-offset:5px}
 
 /* ABOUT */
-.about{padding:clamp(40px,6vw,90px) var(--pad) clamp(80px,10vw,150px)}
-.about .rule{border-color:rgba(244,240,229,.5)}
-.about h2{font-size:clamp(46px,9.2vw,160px);margin:clamp(30px,5vw,70px) 0 clamp(30px,4vw,56px);max-width:15ch}
-.about h2 em{font-style:normal;color:var(--red)}
-.about-cols{display:grid;grid-template-columns:1fr minmax(0,460px);gap:30px;align-items:start}
-.about p{font-size:clamp(13px,1.1vw,16px);max-width:560px}
-.about-links{display:flex;flex-direction:column;gap:6px;text-transform:uppercase;font-size:12px;justify-self:end;min-width:200px}
-.about-links a{display:flex;justify-content:space-between;border-bottom:1px solid rgba(244,240,229,.5);padding:8px 0}
-.about-links a:hover{color:var(--red)}
+.about{padding:clamp(90px,12vw,170px) var(--pad) clamp(70px,9vw,120px)}
+.label{display:flex;align-items:center;gap:16px;font-size:13px;text-transform:uppercase;margin-bottom:28px}
+.label::after{content:'';width:50px;height:1px;background:#fff}
+.statement{font-size:clamp(26px,4.1vw,60px);line-height:1.18;font-weight:400;letter-spacing:-.025em;color:rgba(255,255,255,.48);max-width:1100px}
+.statement em{font-style:italic;font-weight:700;color:rgba(255,255,255,.72)}
+.statement b{font-weight:700;color:#fff}
+.about-links{display:flex;gap:28px;flex-wrap:wrap;margin-top:40px;font-size:14px;text-transform:uppercase}
+.about-links a{text-decoration:underline;text-underline-offset:5px}
 
-/* MARQUEE */
-.marq{background:var(--red);color:var(--ink);border-top:1px solid var(--ink);border-bottom:1px solid var(--ink);overflow:hidden;white-space:nowrap;padding:14px 0}
-.marq div{display:inline-flex;gap:40px;padding-right:40px;animation:mq 38s linear infinite;font-family:var(--disp);text-transform:uppercase;font-size:clamp(22px,2.6vw,38px);line-height:1}
-.marq span{display:inline-flex;align-items:center;gap:40px}
-.marq span::after{content:'\2731';font-family:var(--mono);font-size:.6em}
-@keyframes mq{to{transform:translateX(-100%)}}
+/* PROCESS */
+.process{padding:clamp(50px,7vw,100px) var(--pad);text-align:center}
+.cols{display:grid;grid-template-columns:repeat(3,1fr);margin-top:56px;max-width:1300px;margin-inline:auto;position:relative}
+.col h3{font-size:clamp(22px,2.6vw,34px);font-weight:800;text-transform:uppercase;letter-spacing:-.02em}
+.dot{position:relative;height:18px;margin:26px 0 30px}
+.dot::before{content:'';position:absolute;left:0;right:0;top:50%;height:1px;background:#fff}
+.col:first-child .dot::before{left:50%}.col:last-child .dot::before{right:50%}
+.dot i{position:absolute;left:50%;top:50%;width:18px;height:18px;margin:-9px;border-radius:50%;background:#fff;transition:.4s var(--ease)}
+.col:hover .dot i{background:var(--or);transform:scale(1.3)}
+.col p{color:var(--mute);font-size:clamp(14px,1.25vw,17px);line-height:1.6;max-width:360px;margin:0 auto;padding:0 12px}
 
-/* FOOTER */
-.foot{background:var(--red);color:var(--ink);padding:clamp(40px,6vw,90px) var(--pad) 0;overflow:hidden}
-.foot-top{display:flex;justify-content:space-between;gap:30px;align-items:flex-start;flex-wrap:wrap}
-.cta{font-family:var(--disp);text-transform:uppercase;font-size:clamp(54px,9.4vw,170px);line-height:.88}
-.cta:hover{letter-spacing:.012em}
-.cta{transition:letter-spacing .4s var(--ease)}
-.foot-links{display:flex;gap:clamp(18px,3vw,46px);text-transform:uppercase;font-size:12px;flex-wrap:wrap}
-.foot-links a{border-bottom:1px solid transparent}
-.foot-links a:hover{border-color:var(--ink)}
-.word{font-family:var(--disp);text-transform:lowercase;font-size:clamp(120px,30.5vw,520px);line-height:.78;margin-top:clamp(20px,4vw,60px);margin-left:-.02em;white-space:nowrap}
-.copy{display:flex;justify-content:space-between;text-transform:uppercase;font-size:11px;padding:14px 0 18px;border-top:1px solid var(--ink)}
+/* DESIGN SYSTEM BAND */
+.ds{margin:clamp(40px,6vw,80px) var(--pad) 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);display:grid;grid-template-columns:1fr 2fr auto;gap:28px;align-items:center;padding:34px 0}
+.ds h3{font-size:13px;text-transform:uppercase;letter-spacing:.04em;font-weight:500}
+.ds p{color:var(--mute);font-size:clamp(15px,1.4vw,18px);line-height:1.55}
+.ds a{font-size:14px;text-transform:uppercase;text-decoration:underline;text-underline-offset:5px;white-space:nowrap}
+
+/* CTA */
+.cta{text-align:center;padding:clamp(90px,12vw,170px) var(--pad) clamp(60px,8vw,110px)}
+.cta h2{font-size:clamp(38px,7vw,100px);font-weight:800;text-transform:uppercase;letter-spacing:-.035em;line-height:1}
+.mail{display:inline-block;margin-top:22px;font-size:clamp(16px,2vw,24px);text-decoration:underline;text-underline-offset:6px}
+.mail:hover{color:var(--or)}
+.cta-links{display:flex;gap:26px;justify-content:center;flex-wrap:wrap;margin-top:34px;font-size:13px;text-transform:uppercase;color:var(--mute)}
+.cta-links a:hover{color:#fff}
+footer{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding:26px var(--pad);border-top:1px solid var(--line);font-size:12px;color:var(--mute);text-transform:uppercase;letter-spacing:.04em}
 
 /* reveal */
-.rv{opacity:0;transform:translateY(34px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+.rv{opacity:0;transform:translateY(26px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
 .rv.on{opacity:1;transform:none}
+.d1{transition-delay:.1s}.d2{transition-delay:.2s}
 html:not(.js) .rv{opacity:1;transform:none}
 
 @media(max-width:900px){
   .links{display:none}.burger{display:block}
-  .hero{min-height:92svh}
-  .hero h1{font-size:clamp(46px,17vw,120px)}
-  .ph.a{width:26vw;top:14%}.ph.b{left:38%;width:30vw}.ph.c{left:4%;width:30vw;bottom:19%}.ph.d{width:42vw;bottom:15%}
-  .hero-bar{grid-template-columns:1fr 1fr;gap:14px}
-  .hero-bar p{grid-column:1/-1;order:3;text-align:left;margin:0}
-  .work-head,.row,.about-cols{grid-template-columns:1fr}
-  .wgrid{grid-template-columns:1fr}
-  .w1,.w2,.w3,.w4,.w5{grid-column:1/-1;margin-top:0}
-  .w1 .wi,.w4 .wi{aspect-ratio:3/2}.w2 .wi,.w3 .wi,.w5 .wi{aspect-ratio:4/5}
-  .about-links{justify-self:stretch}
-  .row div{padding-bottom:0}
+  .tile,.tile.wide{grid-column:1/-1}
+  .tile-img,.tile.wide .tile-img{aspect-ratio:3/2;flex:none}
+  .tile-img::after{opacity:1;transform:none}
+  .cols{grid-template-columns:1fr;gap:46px}
+  .dot::before{display:none}
+  .ds{grid-template-columns:1fr;gap:14px}
 }
-@media(prefers-reduced-motion:reduce){.marq div{animation:none}.rv{transition:none}html{scroll-behavior:auto}}
+@media(prefers-reduced-motion:reduce){.blob,.scroll::after{animation:none}.rv{transition:none}html{scroll-behavior:auto}}
 </style>
 </head>
 <body>
 <a class="skip" href="#work">Skip to work</a>
 
-<header class="top">
-  <a class="mark" href="#top" aria-label="Esteban Andrade, home"><span>EA</span></a>
+<header class="nav" id="nav">
+  <a href="#top" class="logo" aria-label="Esteban Andrade, home">EA<sup>&reg;</sup></a>
   <ul class="links">
     <li><a href="#work">Work</a></li>
     <li><a href="#about">About</a></li>
     <li><a href="cv.html">CV</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
-  <button class="burger" id="burger" aria-expanded="false" aria-controls="menu">Menu</button>
+  <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="menu"><span></span><span></span></button>
 </header>
 <nav class="menu" id="menu" aria-label="Menu">
-  <button id="close">Close</button>
   <a href="#work">Work</a><a href="about.html">About</a><a href="cv.html">CV</a><a href="#contact">Contact</a>
+  <small>Quito, Ecuador &middot; isaiandrade7.ea@gmail.com</small>
 </nav>
 
 <main id="top">
 <section class="hero" aria-label="Introduction">
-  <div class="ph a"><img src="lepetit/images/cover.webp" alt="" width="1500" height="1000"></div>
-  <div class="ph b"><img src="haru/images/cover.webp" alt="" width="1500" height="1000"></div>
-  <div class="ph c"><img src="youtube-music/cover.webp" alt="" width="1500" height="1000"></div>
-  <div class="ph d"><img src="iguana/images/cover.webp" alt="" width="1500" height="1000"></div>
-  <h1 class="disp"><span>Products</span><span>people trust</span><span>&amp; keep using</span></h1>
-  <div class="hero-bar">
-    <span>Quito &middot; EC</span>
-    <p>UX and product designer. I turn complex products into clear experiences, from research and customer journeys to design systems.</p>
-    <a href="#work">View my work</a>
+  <div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div><div class="blob b4"></div><div class="blob b5"></div>
+  <div class="grain"></div>
+  <div class="hero-in">
+    <p class="hero-k">Let&rsquo;s create</p>
+    <h1>Better products</h1>
+    <p class="hero-s">UX &amp; Product Designer &middot; Quito, Ecuador</p>
+  </div>
+  <a class="scroll" href="#work">Scroll</a>
+</section>
+
+<section class="intro">
+  <p class="eyebrow rv">Based in Quito / Available worldwide</p>
+  <h2 class="rv d1">UX &amp; product design partner<br>for products people trust</h2>
+</section>
+
+<section class="work" id="work" aria-label="Selected work">
+  <div class="grid">
+    <a class="tile wide rv" href="iguana/index.html">
+      <div class="tile-img"><img src="iguana/images/cover.webp" width="1500" height="1000" alt="Iguana admin panel on desktop and mobile" loading="eager"></div>
+      <div class="meta"><b>Iguana Panel</b><span>Dashboard &middot; Design system &middot; Live demo</span></div>
+    </a>
+    <a class="tile rv d1" href="lepetit/index.html">
+      <div class="tile-img"><img src="lepetit/images/cover.webp" width="1500" height="1000" alt="Le Petit Paradis store screens on mobile" loading="lazy"></div>
+      <div class="meta"><b>Le Petit Paradis</b><span>E-commerce</span></div>
+    </a>
+    <a class="tile rv" href="haru/index.html">
+      <div class="tile-img"><img src="haru/images/cover.webp" width="1500" height="1000" alt="Haru financial coach app screens" loading="lazy"></div>
+      <div class="meta"><b>Haru</b><span>Fintech &middot; UX challenge</span></div>
+    </a>
+    <a class="tile rv d1" href="gonow/index.html">
+      <div class="tile-img"><img src="gonow/images/cover.webp" width="1500" height="1000" alt="GoNow transit app screens" loading="lazy"></div>
+      <div class="meta"><b>GoNow</b><span>Mobility &middot; Research</span></div>
+    </a>
+    <a class="tile rv d2" href="youtube-music/index.html">
+      <div class="tile-img"><img src="youtube-music/cover.webp" width="1500" height="1000" alt="YouTube Music redesign screens" loading="lazy"></div>
+      <div class="meta"><b>YouTube Music</b><span>Redesign &middot; UX audit</span></div>
+    </a>
   </div>
 </section>
 
-<section class="work cream" id="work" aria-label="Selected work">
-  <div class="rule"><span>Selected work</span><span>05 projects</span></div>
-  <div class="work-head">
-    <h2 class="disp rv">Selected<br>work</h2>
-    <p class="rv">Case studies in dashboards, e-commerce, fintech and mobility, each with its journey, decisions and system.</p>
-  </div>
-  <div class="wgrid">
-    <a class="w w1 rv" href="iguana/index.html">
-      <div class="wi"><img src="iguana/images/cover.webp" width="1500" height="1000" alt="Iguana admin panel on desktop and mobile"></div>
-      <div class="wm"><span>01</span><b>Iguana Panel</b><em>2026</em><i>Dashboard + design system</i></div>
-    </a>
-    <a class="w w2 rv" href="lepetit/index.html">
-      <div class="wi"><img src="lepetit/images/cover.webp" width="1500" height="1000" alt="Le Petit Paradis store screens on mobile" loading="lazy"></div>
-      <div class="wm"><span>02</span><b>Le Petit Paradis</b><em>2026</em><i>E-commerce</i></div>
-    </a>
-    <a class="w w3 rv" href="haru/index.html">
-      <div class="wi"><img src="haru/images/cover.webp" width="1500" height="1000" alt="Haru financial coach app screens" loading="lazy"></div>
-      <div class="wm"><span>03</span><b>Haru</b><em>2026</em><i>Fintech, UX challenge</i></div>
-    </a>
-    <a class="w w4 rv" href="gonow/index.html">
-      <div class="wi"><img src="gonow/images/cover.webp" width="1500" height="1000" alt="GoNow transit app screens" loading="lazy"></div>
-      <div class="wm"><span>04</span><b>GoNow</b><em>2025</em><i>Mobility + research</i></div>
-    </a>
-    <a class="w w5 rv" href="youtube-music/index.html">
-      <div class="wi"><img src="youtube-music/cover.webp" width="1500" height="1000" alt="YouTube Music redesign screens" loading="lazy"></div>
-      <div class="wm"><span>05</span><b>YouTube Music</b><em>2025</em><i>Redesign + UX audit</i></div>
-    </a>
-  </div>
-  <div class="wmore"><a href="https://www.behance.net/esteban13" target="_blank" rel="noopener noreferrer">More on Behance &nearr;</a></div>
+<section class="about" id="about">
+  <p class="label rv">About</p>
+  <p class="statement rv d1">I&rsquo;m Esteban, a UX and product designer. I turn complex products into <em>clear, trustworthy experiences</em>, from research and <b>customer journeys</b> to <em>design systems</em>, so people understand them and keep using them.</p>
+  <div class="about-links rv d2"><a href="about.html">About me</a><a href="cv.html">View CV</a></div>
 </section>
 
-<section class="serv" aria-label="What I do">
-  <div class="rule"><span>What I do</span><span>End to end product design</span></div>
-  <h2 class="disp rv">What<br>I do</h2>
-  <div>
-    <div class="row rv"><h3>User research</h3><div><span>01</span><span>Interviews, personas and pain points written as &ldquo;How might we&rdquo;.</span></div></div>
-    <div class="row rv"><h3>Customer journeys</h3><div><span>02</span><span>The path from first touch to loyalty, with emotions, pains and opportunities.</span></div></div>
-    <div class="row rv"><h3>Product design</h3><div><span>03</span><span>Flows and interfaces where every decision traces back to a principle.</span></div></div>
-    <div class="row rv"><h3>Design systems</h3><div><span>04</span><span>Tokens, components and usage rules that keep a product consistent.</span></div></div>
-  </div>
-  <p class="tools rv"><span>Figma</span><span>FigJam</span><span>Illustrator</span><span>Claude Code</span><span>Antigravity</span><span>Codex</span></p>
-</section>
-
-<section class="about" id="about" aria-label="About">
-  <div class="rule"><span>About</span><span>Quito, Ecuador</span></div>
-  <h2 class="disp rv">Design that people <em>understand</em> at a glance</h2>
-  <div class="about-cols">
-    <p class="rv">I&rsquo;m Esteban Andrade, a UX and product designer with a background in graphic design and multimedia production. I work from real problems, not assumptions, and I prototype with AI coding agents to bring interfaces to life.</p>
-    <div class="about-links rv"><a href="about.html"><span>About me</span><span>&rarr;</span></a><a href="cv.html"><span>View CV</span><span>&rarr;</span></a><a href="CV_Esteban_Andrade_EN.pdf" download><span>CV (EN) PDF</span><span>&darr;</span></a><a href="CV_Esteban_Andrade_ES.pdf" download><span>CV (ES) PDF</span><span>&darr;</span></a></div>
+<section class="process" aria-label="Process">
+  <p class="eyebrow rv">How I work</p>
+  <div class="cols">
+    <div class="col rv"><h3>Understand</h3><div class="dot"><i></i></div><p>Interviews, journeys and pain points written as &ldquo;How might we&rdquo;. Personas without research are labeled as design synthesis.</p></div>
+    <div class="col rv d1"><h3>Design</h3><div class="dot"><i></i></div><p>Flows, interfaces and a system of tokens and components, so every decision traces back to a principle.</p></div>
+    <div class="col rv d2"><h3>Ship</h3><div class="dot"><i></i></div><p>Prototype, test and hand off. I build with Claude Code, Antigravity and Codex to bring interfaces to life.</p></div>
   </div>
 </section>
 
-<div class="marq" aria-hidden="true"><div><span>UX design</span><span>Product design</span><span>Customer journeys</span><span>Design systems</span><span>Quito, Ecuador</span><span>UX design</span><span>Product design</span><span>Customer journeys</span><span>Design systems</span><span>Quito, Ecuador</span></div><div><span>UX design</span><span>Product design</span><span>Customer journeys</span><span>Design systems</span><span>Quito, Ecuador</span><span>UX design</span><span>Product design</span><span>Customer journeys</span><span>Design systems</span><span>Quito, Ecuador</span></div></div>
+<div class="ds rv">
+  <h3>Design systems</h3>
+  <p>Iguana runs on documented tokens, components and usage rules, with a demo you can try in the browser.</p>
+  <a href="iguana/index.html#sec-system">See the system</a>
+</div>
 
-<footer class="foot" id="contact">
-  <div class="foot-top">
-    <a class="cta" href="mailto:isaiandrade7.ea@gmail.com">Let&rsquo;s work<br>together &nearr;</a>
-    <nav class="foot-links" aria-label="Footer">
-      <a href="#work">Work</a><a href="about.html">About</a><a href="cv.html">CV</a>
-      <a href="https://www.behance.net/esteban13" target="_blank" rel="noopener noreferrer">Behance</a>
-      <a href="https://www.linkedin.com/in/estebandrade13/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-    </nav>
+<section class="cta" id="contact">
+  <h2 class="rv">Let&rsquo;s do better</h2>
+  <a class="mail rv d1" href="mailto:isaiandrade7.ea@gmail.com">isaiandrade7.ea@gmail.com</a>
+  <div class="cta-links rv d2">
+    <a href="https://www.behance.net/esteban13" target="_blank" rel="noopener noreferrer">Behance</a>
+    <a href="https://www.linkedin.com/in/estebandrade13/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+    <a href="CV_Esteban_Andrade_EN.pdf" download>CV EN</a>
+    <a href="CV_Esteban_Andrade_ES.pdf" download>CV ES</a>
   </div>
-  <div class="word" aria-hidden="true">esteban</div>
-  <div class="copy"><span>&copy;2026</span><span>isaiandrade7.ea@gmail.com</span></div>
-</footer>
+</section>
 </main>
+
+<footer><span>&copy; 2026 Esteban Andrade</span><span>Quito, Ecuador</span></footer>
 
 <script>
 document.documentElement.classList.add('js');
 var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target)}})},{threshold:.08,rootMargin:'0px 0px -30px 0px'});
 document.querySelectorAll('.rv').forEach(function(el){io.observe(el)});
-var m=document.getElementById('menu');
-function tog(o){m.classList.toggle('open',o);document.getElementById('burger').setAttribute('aria-expanded',o);document.body.style.overflow=o?'hidden':''}
-document.getElementById('burger').addEventListener('click',function(){tog(true)});
-document.getElementById('close').addEventListener('click',function(){tog(false)});
-m.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){tog(false)})});
+var nav=document.getElementById('nav'),last=0;
+addEventListener('scroll',function(){var y=scrollY;nav.classList.toggle('solid',y>60);nav.classList.toggle('hide',y>last&&y>240&&!menu.classList.contains('open'));last=Math.max(0,y)},{passive:true});
+var b=document.getElementById('burger'),menu=document.getElementById('menu');
+function tog(o){b.classList.toggle('open',o);menu.classList.toggle('open',o);b.setAttribute('aria-expanded',o);document.body.style.overflow=o?'hidden':''}
+b.addEventListener('click',function(){tog(!menu.classList.contains('open'))});
+menu.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){tog(false)})});
 addEventListener('keydown',function(e){if(e.key==='Escape')tog(false)});
-/* hero images drift with the pointer */
-var ph=[].slice.call(document.querySelectorAll('.ph'));
-if(matchMedia('(hover:hover)').matches&&!matchMedia('(prefers-reduced-motion:reduce)').matches){
-  addEventListener('mousemove',function(e){var x=e.clientX/innerWidth-.5,y=e.clientY/innerHeight-.5;ph.forEach(function(p,i){var k=(i%2?-1:1)*(14+i*6);p.style.transform='translate('+x*k+'px,'+y*k+'px)'})});
-}
 </script>
 </body>
 </html>
