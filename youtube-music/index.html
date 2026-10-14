@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<script>try{var t=localStorage.getItem("ea-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>YouTube Music Redesign · Esteban Andrade</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
         :root{
@@ -148,13 +150,13 @@
         /* ── DRAWER ──────────────────────────────────────── */
         .drawer-overlay{position:fixed;inset:0;z-index:300;background:rgba(0,0,0,.5);opacity:0;pointer-events:none;transition:opacity .35s var(--ease);backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px);}
         .drawer-overlay.open{opacity:1;pointer-events:all;}
-        .drawer{position:fixed;top:0;right:0;bottom:0;z-index:400;width:320px;max-width:90vw;background:#fff;transform:translateX(100%);transition:transform .45s var(--ease);padding:80px 32px 40px;display:flex;flex-direction:column;overflow-y:auto;box-shadow:-16px 0 48px rgba(0,0,0,.2);}
+        .drawer{position:fixed;top:0;right:0;bottom:0;z-index:400;width:320px;max-width:90vw;background:#111;transform:translateX(100%);transition:transform .45s var(--ease);padding:80px 32px 40px;display:flex;flex-direction:column;overflow-y:auto;box-shadow:-16px 0 48px rgba(0,0,0,.2);}
         .drawer.open{transform:translateX(0);}
         .drawer-close{position:absolute;top:20px;right:20px;background:var(--off);border:1px solid var(--border);border-radius:100px;width:36px;height:36px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:13px;color:var(--muted);transition:background .2s;}
         .drawer-close:hover{background:var(--border);}
         .drawer-label{font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--orange);margin-bottom:18px;}
         .drawer-nav{display:flex;flex-direction:column;margin-bottom:28px;}
-        .drawer-nav a{font-family:var(--font-d);font-size:24px;font-weight:700;letter-spacing:-.03em;color:#0a0a0a;text-decoration:none;padding:8px 0;border-bottom:1px solid #e8e8e8;line-height:1.2;transition:color .2s,padding-left .3s var(--ease);}
+        .drawer-nav a{font-family:var(--font-d);font-size:24px;font-weight:700;letter-spacing:-.03em;color:#fff;text-decoration:none;padding:8px 0;border-bottom:1px solid #e8e8e8;line-height:1.2;transition:color .2s,padding-left .3s var(--ease);}
         .drawer-nav a:last-child{border-bottom:none;}
         .drawer-nav a:hover{color:var(--orange);padding-left:6px;}
         .drawer-current{color:var(--orange) !important;}
@@ -211,13 +213,16 @@
         }
     </style>
     <link rel="stylesheet" href="../assets/css/jpath.css">
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/legacy3.css">
 </head>
 <body>
 
 <nav class="site-nav">
-    <a href="../index.html" class="nav-logo">EA<span>.</span></a>
+    <a href="../index.html" class="nav-logo">Esteban <i>Andrade</i></a>
     <div style="display:flex;align-items:center;gap:12px;">
         <span class="nav-tag">Speculative Redesign</span>
+        <button class="tt" type="button" aria-label="Switch to dark mode"><svg class="moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/></svg><svg class="sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></button>
         <button class="hamburger" id="ham-btn" aria-label="Menu">
             <span></span><span></span><span></span>
         </button>
@@ -493,7 +498,7 @@
     <div>
         <div class="next-label">Up next</div>
         <div class="next-title">Iguana Panel</div>
-        <p style="font-size:14px;font-weight:300;color:var(--muted);max-width:340px;line-height:1.7;margin:10px 0 24px;">An admin dashboard with its own design system and a live demo you can try.</p>
+        <p style="font-size:14px;font-weight:300;color:var(--muted);max-width:340px;line-height:1.7;margin:10px 0 24px;">An admin dashboard with its own design system and screens for desktop and mobile.</p>
         <div class="next-btns">
             <a href="../iguana/index.html" class="n-btn n-fill">View case study ↗</a>
             <a href="../index.html" class="n-btn n-out">Back to portfolio</a>
@@ -507,7 +512,7 @@
 <footer class="site-footer">
     <div class="footer-inner">
         <div>
-            <a href="../index.html" class="footer-logo">EA<span>.</span></a>
+            <a href="../index.html" class="footer-logo">Esteban <i>Andrade</i></a>
             <p class="footer-copy">© 2026 Esteban Andrade</p>
         </div>
         <div class="footer-links">
@@ -573,5 +578,6 @@ window.addEventListener('scroll',()=>{
     lastScrollYT=Math.max(0,c);
 },{passive:true});
 </script>
+<script src="../assets/js/site.js"></script>
 </body>
 </html>

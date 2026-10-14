@@ -1,0 +1,57 @@
+/* Shared "BTTR" look for sub-pages: Inter, uppercase display type, grainy gradient heroes, minimal nav */
+:root{--font-d:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;--font-b:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;--bttr-bg:#1a1a1a;--bttr-mute:rgba(255,255,255,.58);--bttr-line:rgba(255,255,255,.2)}
+body{font-family:var(--font-b);letter-spacing:-.005em}
+h1,h2,.hero-h1,.s-h2,.s-title,.c-h2{text-transform:uppercase;font-weight:800;letter-spacing:-.035em;line-height:1.02}
+h1 em,h2 em,.hero-h1 em{font-style:normal}
+.eyebrow,.s-label,.s-tag,.s-eyebrow,.hero-tag,.nav-tag,.drawer-label,.drawer-section-title{text-transform:uppercase;letter-spacing:.06em}
+
+/* nav */
+nav.site-nav,#main-nav,body>nav:first-of-type{height:76px;padding:0 clamp(22px,5vw,72px);background:transparent;border-bottom:0;backdrop-filter:none;-webkit-backdrop-filter:none}
+nav.site-nav.solid,nav.site-nav:not(.nav-hidden){}
+.nav-logo{font-family:var(--font-d);font-weight:800;font-size:24px;letter-spacing:-.02em;color:#fff}
+.nav-logo span{display:none}
+.nav-logo::after{content:'\00AE';font-size:10px;font-weight:600;margin-left:2px;vertical-align:super}
+.hamburger span{background:#fff}
+
+/* drawer as full-screen menu */
+.drawer{background:#111;border-left:0}
+.drawer-nav a,.drawer-nav a:hover{text-transform:uppercase;font-weight:800;letter-spacing:-.02em}
+.drawer-nav a{font-size:clamp(22px,3vw,30px)}
+.drawer-nav a:hover{color:var(--orange)}
+.drawer-social-link{text-transform:uppercase;letter-spacing:.04em;font-size:12px}
+
+/* grainy gradient hero */
+.hero{background-color:#06224a;background-image:
+ url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .9 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),
+ radial-gradient(55% 70% at 88% 0%,rgba(224,90,24,.9),transparent 62%),
+ radial-gradient(65% 80% at 8% 100%,rgba(11,111,208,.95),transparent 64%),
+ radial-gradient(55% 60% at 62% 70%,rgba(26,160,232,.55),transparent 70%);
+ background-blend-mode:overlay,normal,normal,normal;color:#fff}
+.hero::before,.hero::after{opacity:.0}
+.hero p,.hero .hero-sub{color:rgba(255,255,255,.85)}
+
+/* footer */
+.site-footer{background:#1a1a1a;border-top:1px solid var(--bttr-line)}
+.footer-logo{font-weight:800;font-size:22px;letter-spacing:-.02em}
+.footer-logo span{display:none}
+.footer-col-title,.footer-copy{text-transform:uppercase;letter-spacing:.06em;font-size:11px}
+.footer-col a{text-transform:uppercase;font-size:12px;letter-spacing:.04em}
+
+/* Fewer boxes: cards become open blocks separated by thin rules */
+*{border-radius:0!important}
+.avatar,.jp-n,.jp-hint::before,.jp-mood i{border-radius:50%!important}
+[class*="card"]:not(.card-visual):not([class*="cover"]),.pain-mini li,.kpi-row .k,.next-project,.stat,.stats>*,.meta-grid,.hero-meta,.meta-cell,.v-step,.jp,.jp-c{background:transparent!important;border:0!important;border-top:1px solid rgba(255,255,255,.22)!important;box-shadow:none!important;padding-left:0!important;padding-right:0!important}
+.cp-card{background:transparent!important;border:0!important;border-top:1px solid rgba(255,255,255,.22)!important;padding-left:0!important}
+.jp{border:0!important;padding-left:0!important;padding-right:0!important}
+.jp-panel{background:transparent!important;border:0!important;border-top:1px solid rgba(255,255,255,.22)!important;padding-left:0!important;padding-right:0!important}
+.jp-empty{border:0!important;border-top:1px dashed rgba(255,255,255,.25)!important;border-radius:0!important}
+.jp-c{background:transparent!important}
+.hero .meta-grid,.hero-meta{border-top:1px solid rgba(255,255,255,.3)!important}
+.stage,.stage-row{border:0!important}
+.kicker-pill,.hero-tag,.tag,.pr,.chip,.jp-chips span,.sb-list em{background:transparent!important;border:0!important;border-bottom:1px solid rgba(255,255,255,.35)!important;padding-left:0!important;padding-right:0!important}
+.kpi-row .k{border-top:0!important}
+.metrics{background:transparent!important;border-top:1px solid rgba(255,255,255,.22)}
+.m-item{border-color:rgba(255,255,255,.18)!important;background:transparent!important}
+.sb-list li,.dec,.dec3,.phones-strip{background:transparent!important}
+.sb-list li,.dec,.dec3{border:0!important;border-top:1px solid rgba(255,255,255,.18)!important;padding-left:0!important}
+.sec-gray,.quote-sec{background:#1a1a1a!important}
