@@ -279,7 +279,8 @@ code{font-size:.9em;background:var(--bg2);padding:1px 6px}
 
 /* ===== BTTR-style override (white): Inter, uppercase display, grainy gradient hero ===== */
 .hd{padding:22px var(--pad)}
-.hd.solid{background:transparent;backdrop-filter:none;border-bottom-color:transparent}
+.hd.solid{background:var(--bg);backdrop-filter:none;border-bottom-color:var(--line);padding-top:14px;padding-bottom:14px}
+.hd.hide{transform:none}
 .back{text-transform:uppercase;font-size:13px;font-weight:500}
 .hd .lnk{text-transform:uppercase;font-size:13px!important;font-weight:500;border:0}
 .hd-mid{display:none!important}

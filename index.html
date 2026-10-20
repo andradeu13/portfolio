@@ -28,8 +28,8 @@ img{display:block;max-width:100%}
 .up{text-transform:uppercase}
 
 /* NAV */
-.hd{position:fixed;top:0;left:0;right:0;z-index:80;display:flex;justify-content:space-between;align-items:center;padding:22px var(--pad);transition:transform .4s var(--ease)}
-.hd.hide{transform:translateY(-100%)}
+.hd{position:fixed;top:0;left:0;right:0;z-index:80;display:flex;justify-content:space-between;align-items:center;padding:22px var(--pad);border-bottom:1px solid transparent;transition:padding .3s var(--ease),background .3s,border-color .3s}
+.hd.solid{background:var(--bg);border-bottom:1px solid var(--line);padding-top:14px;padding-bottom:14px}
 .logo{font-weight:800;font-size:25px;letter-spacing:-.04em;text-transform:uppercase}
 .logo sup{font-size:9px;font-weight:600;margin-left:2px;vertical-align:super}
 .links{display:flex;gap:clamp(18px,2.6vw,40px);list-style:none;text-transform:uppercase;font-size:13px;font-weight:500;align-items:center}
