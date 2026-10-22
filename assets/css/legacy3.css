@@ -16,7 +16,7 @@ em{font-style:normal}
 h1 em,h2 em,.hero-h1 em{color:var(--acc)!important}
 
 /* header */
-nav.site-nav,body>nav:not(.sidebar){position:fixed;top:0;left:0;right:0;z-index:80;height:68px;padding:0 clamp(20px,5vw,72px);display:flex;align-items:center;justify-content:space-between;background:var(--bg);border-bottom:1px solid var(--line)}
+nav.site-nav,body>nav:not(.sidebar):not(.mpanel){position:fixed;top:0;left:0;right:0;z-index:80;height:68px;padding:0 clamp(20px,5vw,72px);display:flex;align-items:center;justify-content:space-between;background:var(--bg);border-bottom:1px solid var(--line)}
 nav.site-nav.nav-hidden,body>nav.nav-hidden,nav:not(.sidebar).nav-hidden{transform:none!important}
 .nav-logo{font-family:var(--disp)!important;font-size:22px!important;font-weight:800!important;letter-spacing:-.04em!important;text-transform:uppercase!important;color:var(--fg)!important}
 .nav-logo i{font-style:normal}
