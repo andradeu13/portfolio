@@ -76,10 +76,8 @@ img{display:block;max-width:100%}
 .work{padding:0 var(--pad)}
 .mosaic{display:grid;grid-template-columns:repeat(12,1fr);gap:clamp(16px,2.2vw,32px);max-width:1500px;margin:0 auto}
 .t{display:flex;flex-direction:column;gap:12px;grid-column:span 4}
-.t.big{grid-column:span 8}
-.t .im{position:relative;overflow:hidden;background:var(--soft);aspect-ratio:4/5}
-.t.big .im{aspect-ratio:3/2}
-.t.mid .im{aspect-ratio:3/2}
+.t.half{grid-column:span 6}
+.t .im{position:relative;overflow:hidden;background:var(--soft);aspect-ratio:3/2;border-radius:14px}
 .t .im img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 1s var(--ease)}
 .t:hover .im img{transform:scale(1.04)}
 .cap{display:flex;justify-content:space-between;align-items:baseline;gap:12px;font-size:12px;text-transform:uppercase;font-weight:600;letter-spacing:.01em}
@@ -123,7 +121,7 @@ html:not(.js) .rv{opacity:1;transform:none}
 
 @media(max-width:900px){
   .links{display:none}.burger{display:block}
-  .t,.t.big{grid-column:1/-1}.t .im,.t.big .im{aspect-ratio:3/2}
+  .t,.t.half{grid-column:1/-1}
   .cols{grid-template-columns:1fr;gap:44px}.dot::before{display:none}
 }
 @media(prefers-reduced-motion:reduce){.blob,.scroll::after{animation:none}.rv{transition:none}html{scroll-behavior:auto}}
@@ -161,11 +159,11 @@ html:not(.js) .rv{opacity:1;transform:none}
 
 <section class="work" id="work" aria-label="Selected work">
   <div class="mosaic">
-    <a class="t big rv" href="iguana/index.html">
+    <a class="t half rv" href="iguana/index.html">
       <div class="im"><img src="iguana/images/cover.webp" width="1500" height="1000" alt="Iguana admin panel on desktop and mobile"></div>
       <div class="cap"><b>Iguana Panel</b><span>Dashboard + design system</span></div>
     </a>
-    <a class="t rv" href="lepetit/index.html">
+    <a class="t half rv" href="lepetit/index.html">
       <div class="im"><img src="lepetit/images/cover.webp" width="1500" height="1000" alt="Le Petit Paradis store screens on mobile" loading="lazy"></div>
       <div class="cap"><b>Le Petit Paradis</b><span>E-commerce</span></div>
     </a>

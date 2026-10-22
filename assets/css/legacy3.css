@@ -50,7 +50,9 @@ nav.site-nav.nav-hidden,body>nav.nav-hidden,nav:not(.sidebar).nav-hidden{transfo
 .hero p,.hero-sub,.s-body,.dec-body,.m-desc,.prob-body,.out-body{color:var(--mute)!important}
 .s-tag,.s-eyebrow,.s-label,.hero-tag,.kicker-pill,.dec-num,.m-label,.meta-label,.prob-icon{font-family:var(--body)!important;text-transform:none!important;letter-spacing:.02em!important;color:var(--mute)!important;background:transparent!important;border:0!important;font-size:14px!important}
 .s-tag,.s-eyebrow{display:block;margin-bottom:14px}
-img,.phone,.phone-wrap,.screen-img{border-radius:0!important}
+img{border-radius:12px}
+.phone,.phone-wrap,.screen-img{border-radius:0!important}
+.stage-img,.mock-img,.phone-ph,.dev-img{border-radius:14px!important;overflow:hidden}
 .stage-img,.mock-img,.phone-ph{background:var(--bg2)!important}
 a{color:inherit}
 .site-footer{background:var(--bg)!important;color:var(--mute)!important;border-top:1px solid var(--line)!important}
