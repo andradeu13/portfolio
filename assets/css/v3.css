@@ -318,3 +318,10 @@ code{font-size:.9em;background:var(--bg2);padding:1px 6px}
 .pj-n,.pj h3{font-weight:800}
 .ft{font-size:11px;text-transform:uppercase;letter-spacing:.04em}
 .brand{font-weight:800;text-transform:uppercase;letter-spacing:-.04em;font-size:22px}
+
+/* rounded images */
+.c-fig .band,.c-fig .shot,.sb-img,.pj-img,.up-next .i,.sw-chip,.ds-panel{border-radius:14px;overflow:hidden}
+.c-fig .shot img,.gal figure img,.phones figure img{border-radius:12px}
+.phones figure img{border-radius:14px}
+.gal-m img{border-radius:12px}
+.c-fig .band img,.sb-img img{border-radius:0}
